@@ -15,6 +15,7 @@ namespace ThucHanhBuoi01
         public Bai2()
         {
             InitializeComponent();
+            Text = "Bài 02 – Số lớn nhất, nhỏ nhất";
         }
 
         private void Bai2_Load(object sender, EventArgs e)
@@ -45,12 +46,12 @@ namespace ThucHanhBuoi01
                 maxRes.Text = maxNum.ToString();
                 minRes.Text = minNum.ToString();
             }
-            catch (FormatException f)
+            catch (FormatException)
             {
                 MessageBox.Show("Vui lòng nhập số thực vào!");
                 return;
             }
-            catch (OverflowException o)
+            catch (OverflowException)
             {
                 MessageBox.Show("Xảy ra tràn số, vui lòng nhập lại só khác!");
                 return;
@@ -72,6 +73,11 @@ namespace ThucHanhBuoi01
         private void quitBtn_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void numOneLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

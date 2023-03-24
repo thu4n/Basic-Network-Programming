@@ -29,6 +29,7 @@ namespace ThucHanhBuoi01
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bai1));
             this.num1Label = new System.Windows.Forms.Label();
             this.num2Label = new System.Windows.Forms.Label();
             this.resultLabel = new System.Windows.Forms.Label();
@@ -101,12 +102,17 @@ namespace ThucHanhBuoi01
             // 
             // confirm
             // 
-            this.confirm.Location = new System.Drawing.Point(117, 226);
+            this.confirm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(71)))), ((int)(((byte)(94)))));
+            this.confirm.FlatAppearance.BorderSize = 0;
+            this.confirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.confirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.confirm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(191)))), ((int)(((byte)(220)))));
+            this.confirm.Location = new System.Drawing.Point(112, 225);
             this.confirm.Name = "confirm";
-            this.confirm.Size = new System.Drawing.Size(75, 28);
+            this.confirm.Size = new System.Drawing.Size(95, 31);
             this.confirm.TabIndex = 6;
             this.confirm.Text = "Cộng lại";
-            this.confirm.UseVisualStyleBackColor = true;
+            this.confirm.UseVisualStyleBackColor = false;
             this.confirm.Click += new System.EventHandler(this.confirm_Click);
             // 
             // Bai1
@@ -122,6 +128,7 @@ namespace ThucHanhBuoi01
             this.Controls.Add(this.resultLabel);
             this.Controls.Add(this.num2Label);
             this.Controls.Add(this.num1Label);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Bai1";
             this.Text = "Bai1";
             this.Load += new System.EventHandler(this.Bai1_Load);

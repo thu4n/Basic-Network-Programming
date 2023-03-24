@@ -117,6 +117,9 @@
     <EmbeddedResource Include="Bai3.resx">
       <DependentUpon>Bai3.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Bai4.resx">
+      <DependentUpon>Bai4.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,7 +146,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Icon1.ico" />
+    <Content Include="steamLogo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

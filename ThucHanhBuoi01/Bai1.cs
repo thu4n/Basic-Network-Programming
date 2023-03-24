@@ -15,6 +15,7 @@ namespace ThucHanhBuoi01
         public Bai1()
         {
             InitializeComponent();
+            Text = "Bài 01 – Tính tổng 2 số nguyên (Có điều kiện)";
         }
 
         private void Bai1_Load(object sender, EventArgs e)
@@ -46,12 +47,12 @@ namespace ThucHanhBuoi01
                 int res = numOne + numTwo;
                 result.Text = res.ToString();
             }
-            catch(FormatException f)
+            catch(FormatException)
             {
                 MessageBox.Show("Vui lòng nhập số nguyên vào!");
                 return;
             }
-            catch(OverflowException o)
+            catch(OverflowException)
             {
                 MessageBox.Show("Xảy ra tràn số, vui lòng nhập lại só khác!");
                 return;
