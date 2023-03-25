@@ -44,7 +44,7 @@ namespace ThucHanhBuoi01
             {
                 int numOne = Int32.Parse(num1.Text);
                 int numTwo = Int32.Parse(num2.Text);
-                int res = numOne + numTwo;
+                long res = numOne + numTwo;
                 result.Text = res.ToString();
             }
             catch(FormatException)
@@ -57,7 +57,6 @@ namespace ThucHanhBuoi01
                 MessageBox.Show("Xảy ra tràn số, vui lòng nhập lại só khác!");
                 return;
             }
-            
         }
         
     }

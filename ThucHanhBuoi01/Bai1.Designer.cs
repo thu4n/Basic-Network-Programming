@@ -105,7 +105,7 @@ namespace ThucHanhBuoi01
             this.confirm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(71)))), ((int)(((byte)(94)))));
             this.confirm.FlatAppearance.BorderSize = 0;
             this.confirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.confirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.confirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.confirm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(191)))), ((int)(((byte)(220)))));
             this.confirm.Location = new System.Drawing.Point(112, 225);
             this.confirm.Name = "confirm";

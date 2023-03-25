@@ -60,7 +60,7 @@ namespace ThucHanhBuoi01
             this.kmLabel.AutoSize = true;
             this.kmLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kmLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
-            this.kmLabel.Location = new System.Drawing.Point(204, 230);
+            this.kmLabel.Location = new System.Drawing.Point(200, 230);
             this.kmLabel.Name = "kmLabel";
             this.kmLabel.Size = new System.Drawing.Size(159, 20);
             this.kmLabel.TabIndex = 19;
@@ -71,7 +71,7 @@ namespace ThucHanhBuoi01
             this.gasTotalLabel.AutoSize = true;
             this.gasTotalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gasTotalLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
-            this.gasTotalLabel.Location = new System.Drawing.Point(204, 173);
+            this.gasTotalLabel.Location = new System.Drawing.Point(200, 173);
             this.gasTotalLabel.Name = "gasTotalLabel";
             this.gasTotalLabel.Size = new System.Drawing.Size(226, 20);
             this.gasTotalLabel.TabIndex = 18;
@@ -82,7 +82,7 @@ namespace ThucHanhBuoi01
             this.gasFilledLabel.AutoSize = true;
             this.gasFilledLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gasFilledLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
-            this.gasFilledLabel.Location = new System.Drawing.Point(204, 119);
+            this.gasFilledLabel.Location = new System.Drawing.Point(200, 113);
             this.gasFilledLabel.Name = "gasFilledLabel";
             this.gasFilledLabel.Size = new System.Drawing.Size(163, 20);
             this.gasFilledLabel.TabIndex = 17;
@@ -93,7 +93,7 @@ namespace ThucHanhBuoi01
             this.moneyLabel.AutoSize = true;
             this.moneyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.moneyLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
-            this.moneyLabel.Location = new System.Drawing.Point(206, 289);
+            this.moneyLabel.Location = new System.Drawing.Point(200, 289);
             this.moneyLabel.Name = "moneyLabel";
             this.moneyLabel.Size = new System.Drawing.Size(103, 20);
             this.moneyLabel.TabIndex = 20;
@@ -102,11 +102,14 @@ namespace ThucHanhBuoi01
             // money
             // 
             this.money.AutoSize = true;
+            this.money.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(107)))), ((int)(((byte)(34)))));
             this.money.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.money.ForeColor = System.Drawing.Color.Lime;
-            this.money.Location = new System.Drawing.Point(315, 289);
+            this.money.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(238)))), ((int)(((byte)(17)))));
+            this.money.Location = new System.Drawing.Point(309, 283);
+            this.money.Margin = new System.Windows.Forms.Padding(3);
             this.money.Name = "money";
-            this.money.Size = new System.Drawing.Size(63, 20);
+            this.money.Padding = new System.Windows.Forms.Padding(3);
+            this.money.Size = new System.Drawing.Size(69, 26);
             this.money.TabIndex = 24;
             this.money.Text = "Money";
             this.money.Click += new System.EventHandler(this.money_Click);
@@ -114,33 +117,42 @@ namespace ThucHanhBuoi01
             // km
             // 
             this.km.AutoSize = true;
+            this.km.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(107)))), ((int)(((byte)(34)))));
             this.km.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.km.ForeColor = System.Drawing.Color.Lime;
-            this.km.Location = new System.Drawing.Point(373, 230);
+            this.km.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(238)))), ((int)(((byte)(17)))));
+            this.km.Location = new System.Drawing.Point(373, 224);
+            this.km.Margin = new System.Windows.Forms.Padding(3);
             this.km.Name = "km";
-            this.km.Size = new System.Drawing.Size(159, 20);
+            this.km.Padding = new System.Windows.Forms.Padding(3);
+            this.km.Size = new System.Drawing.Size(165, 26);
             this.km.TabIndex = 23;
             this.km.Text = "Số km xe đi được:";
             // 
             // gasTotal
             // 
             this.gasTotal.AutoSize = true;
+            this.gasTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(107)))), ((int)(((byte)(34)))));
             this.gasTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gasTotal.ForeColor = System.Drawing.Color.Lime;
-            this.gasTotal.Location = new System.Drawing.Point(435, 173);
+            this.gasTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(238)))), ((int)(((byte)(17)))));
+            this.gasTotal.Location = new System.Drawing.Point(432, 167);
+            this.gasTotal.Margin = new System.Windows.Forms.Padding(3);
             this.gasTotal.Name = "gasTotal";
-            this.gasTotal.Size = new System.Drawing.Size(226, 20);
+            this.gasTotal.Padding = new System.Windows.Forms.Padding(3);
+            this.gasTotal.Size = new System.Drawing.Size(232, 26);
             this.gasTotal.TabIndex = 22;
             this.gasTotal.Text = "Tổng lượng xăng trong xe:";
             // 
             // gasFilled
             // 
             this.gasFilled.AutoSize = true;
+            this.gasFilled.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(107)))), ((int)(((byte)(34)))));
             this.gasFilled.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gasFilled.ForeColor = System.Drawing.Color.Lime;
-            this.gasFilled.Location = new System.Drawing.Point(373, 119);
+            this.gasFilled.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(238)))), ((int)(((byte)(17)))));
+            this.gasFilled.Location = new System.Drawing.Point(373, 107);
+            this.gasFilled.Margin = new System.Windows.Forms.Padding(3);
             this.gasFilled.Name = "gasFilled";
-            this.gasFilled.Size = new System.Drawing.Size(163, 20);
+            this.gasFilled.Padding = new System.Windows.Forms.Padding(3);
+            this.gasFilled.Size = new System.Drawing.Size(169, 26);
             this.gasFilled.TabIndex = 21;
             this.gasFilled.Text = "Lượng xăng đã đổ:";
             // 
