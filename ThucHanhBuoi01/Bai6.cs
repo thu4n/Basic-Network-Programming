@@ -100,7 +100,13 @@ namespace ThucHanhBuoi01
 
         private void clearBtn_Click(object sender, EventArgs e)
         {
+            num1TB.Text = "";
+            num2TB.Text = "";
+        }
 
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

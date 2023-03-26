@@ -59,6 +59,19 @@ namespace ThucHanhBuoi01
                     days += monthDays[i];
                 }
             }
+            else
+            {
+                for (int i = year; i < 1800; i++)
+                {
+                    if (i % 4 == 0 && i % 100 != 0) days += 366;
+                    else if (i % 100 == 0 && i % 400 == 0) days += 366;
+                    else days += 365;
+                }
+                for (int i = 1; i < month; i++)
+                {
+                    days += monthDays[i];
+                }
+            }
             days += day - 1; // Final gap between two dates
             int weekday = days % 7; // In the year 1800
             int daysGap = weekday + 4; // Wednesday

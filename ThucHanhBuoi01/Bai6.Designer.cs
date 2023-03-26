@@ -113,6 +113,7 @@ namespace ThucHanhBuoi01
             this.closeBtn.TabIndex = 17;
             this.closeBtn.Text = "Thoát";
             this.closeBtn.UseVisualStyleBackColor = false;
+            this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
             // 
             // clearBtn
             // 
