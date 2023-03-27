@@ -44,16 +44,6 @@ namespace ThucHanhBuoi01
                 MessageBox.Show("Số thập phân tạm thời chưa được hỗ trợ, vui lòng nhập số nguyên");
                 return;
             }
-            /*int i = 1;
-            if (str.Length > 1)
-            {
-                
-                for (i = 0; i < str.Length; i++)
-                {
-                    if (str[i] != '0') break;
-                }
-            }
-            str = str.Substring(0, i+1);*/
             try
             {
                 bool neg = false;
