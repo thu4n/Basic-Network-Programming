@@ -1,5 +1,5 @@
 # NT106-Nhom01
-Nơi chứa soucre code bài tập nhóm các tuần trong môn Lập trình mang căn bản
+Nơi chứa soucre code bài tập nhóm các tuần trong môn Lập trình mạng căn bản
 ## Thành viên nhóm
 - Tống Võ Anh Thuận - 21522652 (Nhóm trưởng)
 - Nguyễn Lê Tiến Phát - 21522446
