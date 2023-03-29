@@ -16,5 +16,11 @@ namespace Week04_TCP_Chatroom
         {
             InitializeComponent();
         }
+
+        private void clientBtn_Click(object sender, EventArgs e)
+        {
+            Client client = new Client();
+            client.Show();
+        }
     }
 }

@@ -48,6 +48,7 @@ namespace Week04_TCP_Chatroom
             this.clientBtn.TabIndex = 0;
             this.clientBtn.Text = "Client";
             this.clientBtn.UseVisualStyleBackColor = true;
+            this.clientBtn.Click += new System.EventHandler(this.clientBtn_Click);
             // 
             // serverBtn
             // 
