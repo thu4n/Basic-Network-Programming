@@ -116,12 +116,12 @@ namespace Week04_TCP_Chatroom
             // 
             this.typeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(49)))), ((int)(((byte)(86)))));
             this.typeBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.typeBox.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.typeBox.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.typeBox.ForeColor = System.Drawing.Color.White;
             this.typeBox.Location = new System.Drawing.Point(108, 548);
             this.typeBox.Multiline = true;
             this.typeBox.Name = "typeBox";
-            this.typeBox.Size = new System.Drawing.Size(430, 43);
+            this.typeBox.Size = new System.Drawing.Size(430, 53);
             this.typeBox.TabIndex = 10;
             // 
             // sendBtn
@@ -133,7 +133,7 @@ namespace Week04_TCP_Chatroom
             this.sendBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(152)))), ((int)(((byte)(251)))));
             this.sendBtn.Location = new System.Drawing.Point(562, 548);
             this.sendBtn.Name = "sendBtn";
-            this.sendBtn.Size = new System.Drawing.Size(135, 43);
+            this.sendBtn.Size = new System.Drawing.Size(135, 53);
             this.sendBtn.TabIndex = 11;
             this.sendBtn.Text = "Send";
             this.sendBtn.UseVisualStyleBackColor = true;

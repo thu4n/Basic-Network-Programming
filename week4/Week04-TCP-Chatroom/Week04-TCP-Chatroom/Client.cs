@@ -21,6 +21,8 @@ namespace Week04_TCP_Chatroom
         private void Client_Load(object sender, EventArgs e)
         {
             chatBox.Text += "Waiting for connection... \r\n";
+            chatBox.ScrollBars = ScrollBars.Vertical;
+            typeBox.ScrollBars = ScrollBars.Vertical;
         }
 
         private void connectBtn_Click(object sender, EventArgs e)

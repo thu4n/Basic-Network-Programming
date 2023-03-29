@@ -52,5 +52,10 @@ namespace Week04_TCP_Chatroom
                 // Code xử lý exception ở đây
             }
         }
+
+        private void Server_Load(object sender, EventArgs e)
+        {
+            chatBox.ScrollBars = ScrollBars.Vertical;
+        }
     }
 }
