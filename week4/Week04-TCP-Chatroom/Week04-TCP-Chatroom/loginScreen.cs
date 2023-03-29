@@ -22,5 +22,11 @@ namespace Week04_TCP_Chatroom
             Client client = new Client();
             client.Show();
         }
+
+        private void serverBtn_Click(object sender, EventArgs e)
+        {
+            Server server = new Server();
+            server.Show();
+        }
     }
 }

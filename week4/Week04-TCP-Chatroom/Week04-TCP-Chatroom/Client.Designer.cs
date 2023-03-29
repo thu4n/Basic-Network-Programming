@@ -36,6 +36,8 @@ namespace Week04_TCP_Chatroom
             this.usernameTB = new System.Windows.Forms.TextBox();
             this.connectBtn = new System.Windows.Forms.Button();
             this.chatBox = new System.Windows.Forms.TextBox();
+            this.typeBox = new System.Windows.Forms.TextBox();
+            this.sendBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // serverIPLabel
@@ -110,12 +112,41 @@ namespace Week04_TCP_Chatroom
             this.chatBox.Size = new System.Drawing.Size(589, 359);
             this.chatBox.TabIndex = 9;
             // 
+            // typeBox
+            // 
+            this.typeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(49)))), ((int)(((byte)(86)))));
+            this.typeBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.typeBox.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.typeBox.ForeColor = System.Drawing.Color.White;
+            this.typeBox.Location = new System.Drawing.Point(108, 548);
+            this.typeBox.Multiline = true;
+            this.typeBox.Name = "typeBox";
+            this.typeBox.Size = new System.Drawing.Size(430, 43);
+            this.typeBox.TabIndex = 10;
+            // 
+            // sendBtn
+            // 
+            this.sendBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(0)))), ((int)(((byte)(95)))));
+            this.sendBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(0)))), ((int)(((byte)(96)))));
+            this.sendBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sendBtn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sendBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(152)))), ((int)(((byte)(251)))));
+            this.sendBtn.Location = new System.Drawing.Point(562, 548);
+            this.sendBtn.Name = "sendBtn";
+            this.sendBtn.Size = new System.Drawing.Size(135, 43);
+            this.sendBtn.TabIndex = 11;
+            this.sendBtn.Text = "Send";
+            this.sendBtn.UseVisualStyleBackColor = true;
+            this.sendBtn.Click += new System.EventHandler(this.sendBtn_Click);
+            // 
             // Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(12)))), ((int)(((byte)(29)))));
-            this.ClientSize = new System.Drawing.Size(800, 551);
+            this.ClientSize = new System.Drawing.Size(800, 639);
+            this.Controls.Add(this.sendBtn);
+            this.Controls.Add(this.typeBox);
             this.Controls.Add(this.chatBox);
             this.Controls.Add(this.connectBtn);
             this.Controls.Add(this.usernameTB);
@@ -139,5 +170,7 @@ namespace Week04_TCP_Chatroom
         private System.Windows.Forms.TextBox usernameTB;
         private System.Windows.Forms.Button connectBtn;
         private System.Windows.Forms.TextBox chatBox;
+        private System.Windows.Forms.TextBox typeBox;
+        private System.Windows.Forms.Button sendBtn;
     }
 }
