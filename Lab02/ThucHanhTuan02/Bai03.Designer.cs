@@ -48,6 +48,7 @@ namespace ThucHanhTuan02
             this.readBtn.TabIndex = 1;
             this.readBtn.Text = "Đọc File";
             this.readBtn.UseVisualStyleBackColor = false;
+            this.readBtn.Click += new System.EventHandler(this.readBtn_Click);
             // 
             // textBox
             // 
@@ -83,6 +84,7 @@ namespace ThucHanhTuan02
             this.writeBtn.TabIndex = 5;
             this.writeBtn.Text = "Ghi File";
             this.writeBtn.UseVisualStyleBackColor = false;
+            this.writeBtn.Click += new System.EventHandler(this.writeBtn_Click);
             // 
             // Bai03
             // 
