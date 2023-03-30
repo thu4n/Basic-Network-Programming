@@ -25,8 +25,32 @@ namespace ThucHanhTuan02
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Bai2 b2 = new Bai2();
+            Bai02 b2 = new Bai02();
             b2.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Bai03 b3 = new Bai03();
+            b3.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Bai04 b4 = new Bai04();
+            b4.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Bai05 b5 = new Bai05();
+            b5.Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Bai06 b6 = new Bai06();
+            b6.Show();
         }
     }
 }

@@ -52,11 +52,35 @@
     <Compile Include="Bai01.Designer.cs">
       <DependentUpon>Bai01.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bai2.cs">
+    <Compile Include="Bai03.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bai2.Designer.cs">
-      <DependentUpon>Bai2.cs</DependentUpon>
+    <Compile Include="Bai03.Designer.cs">
+      <DependentUpon>Bai03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bai02.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bai02.Designer.cs">
+      <DependentUpon>Bai02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bai04.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bai04.Designer.cs">
+      <DependentUpon>Bai04.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bai05.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bai05.Designer.cs">
+      <DependentUpon>Bai05.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bai06.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bai06.Designer.cs">
+      <DependentUpon>Bai06.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
@@ -69,8 +93,8 @@
     <EmbeddedResource Include="Bai01.resx">
       <DependentUpon>Bai01.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bai2.resx">
-      <DependentUpon>Bai2.cs</DependentUpon>
+    <EmbeddedResource Include="Bai02.resx">
+      <DependentUpon>Bai02.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>

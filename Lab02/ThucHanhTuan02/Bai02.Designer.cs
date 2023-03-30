@@ -1,7 +1,7 @@
 ﻿
 namespace ThucHanhTuan02
 {
-    partial class Bai2
+    partial class Bai02
     {
         /// <summary>
         /// Required designer variable.

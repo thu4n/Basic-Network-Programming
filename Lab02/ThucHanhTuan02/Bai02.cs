@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace ThucHanhTuan02
 {
-    public partial class Bai2 : Form
+    public partial class Bai02 : Form
     {
         private StreamReader sr;
-        public Bai2()
+        public Bai02()
         {
             InitializeComponent();
         }
