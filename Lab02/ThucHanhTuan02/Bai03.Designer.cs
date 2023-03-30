@@ -33,6 +33,7 @@ namespace ThucHanhTuan02
             this.textBox = new System.Windows.Forms.TextBox();
             this.titleLabel = new System.Windows.Forms.Label();
             this.writeBtn = new System.Windows.Forms.Button();
+            this.subtextLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // readBtn
@@ -86,12 +87,25 @@ namespace ThucHanhTuan02
             this.writeBtn.UseVisualStyleBackColor = false;
             this.writeBtn.Click += new System.EventHandler(this.writeBtn_Click);
             // 
+            // subtextLabel
+            // 
+            this.subtextLabel.AutoSize = true;
+            this.subtextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.subtextLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
+            this.subtextLabel.Location = new System.Drawing.Point(282, 31);
+            this.subtextLabel.Name = "subtextLabel";
+            this.subtextLabel.Size = new System.Drawing.Size(169, 25);
+            this.subtextLabel.TabIndex = 6;
+            this.subtextLabel.Text = "Kết quả đọc file:";
+            this.subtextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Bai03
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(40)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(800, 413);
+            this.Controls.Add(this.subtextLabel);
             this.Controls.Add(this.writeBtn);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.textBox);
@@ -109,5 +123,6 @@ namespace ThucHanhTuan02
         private System.Windows.Forms.TextBox textBox;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Button writeBtn;
+        private System.Windows.Forms.Label subtextLabel;
     }
 }

@@ -31,24 +31,20 @@ namespace ThucHanhTuan02
 
         private void writeBtn_Click(object sender, EventArgs e)
         {
-            /*SaveFileDialog sfd = new SaveFileDialog();
-            sfd.ShowDialog();
-            FileStream fs = new FileStream(sfd.FileName, FileMode.OpenOrCreate);
-            StreamWriter sw = new StreamWriter(fs);
-            sw.Write(textBox.Text.ToUpper());
-            sw.Close();
-            sr.Close();*/
-            //textBox.Text = "12 – 7 – 5 + 2 – 3";
-            /*string str = "12 - 7 - 5 + 2 - 3";
-            float res = stackProcessing(str);
-            textBox.Text += str + " = " + res.ToString() + "\r\n";*/
             string[] expressions = textBox.Text.Split('\n');
-            textBox.Text += "\r\n";
+            textBox.Text = "";
             for (int i = 0; i < expressions.Length; i++)
             {
                 float res = stackProcessing(expressions[i]); ;
                 textBox.Text += expressions[i] + " = " + res.ToString() + "\r\n";
             }
+            subtextLabel.Text = "Hiển thị file vừa ghi:";
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.ShowDialog();
+            FileStream fs = new FileStream(sfd.FileName, FileMode.OpenOrCreate);
+            StreamWriter sw = new StreamWriter(fs);
+            sw.Write(textBox.Text);
+            sw.Close();
         }
         private float stackProcessing(string str)
         {   
