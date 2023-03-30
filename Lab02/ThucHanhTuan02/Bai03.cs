@@ -38,10 +38,17 @@ namespace ThucHanhTuan02
             sw.Write(textBox.Text.ToUpper());
             sw.Close();
             sr.Close();*/
-            textBox.Text = "200 /10*5+(3-6)*2/7-1+10";
-            string str = textBox.Text;
+            //textBox.Text = "12 – 7 – 5 + 2 – 3";
+            /*string str = "12 - 7 - 5 + 2 - 3";
             float res = stackProcessing(str);
-            textBox.Text += " = " + res.ToString();
+            textBox.Text += str + " = " + res.ToString() + "\r\n";*/
+            string[] expressions = textBox.Text.Split('\n');
+            textBox.Text += "\r\n";
+            for (int i = 0; i < expressions.Length; i++)
+            {
+                float res = stackProcessing(expressions[i]); ;
+                textBox.Text += expressions[i] + " = " + res.ToString() + "\r\n";
+            }
         }
         private float stackProcessing(string str)
         {   
@@ -65,7 +72,7 @@ namespace ThucHanhTuan02
                 {
                     sign.Push(str[i]);
                 }
-                else if (checkChar(str[i]) != -1 && sign.Count > 0)
+                else if (checkChar(str[i]) != -1)
                 {
                     while (sign.Count > 0 && checkChar(str[i]) <= checkChar(sign.Peek()))
                     {
@@ -85,12 +92,15 @@ namespace ThucHanhTuan02
                     sign.Pop();
                 }
             }
+            int j = 0;
             while (sign.Count > 0) 
             {
                 float result = calculate(nums, sign);
                 nums.Push(result);
+                j++;
+
             }
-            return nums.Pop();
+            return nums.Peek();
         }
         private int checkChar(char c)
         {
@@ -137,7 +147,7 @@ namespace ThucHanhTuan02
                     }
                 case '/':
                     {
-                        if (b == 0)
+                        if (a == 0)
                         {
                             MessageBox.Show("Không thể chia cho 0");
                             return 0;
