@@ -16,5 +16,15 @@ namespace ThucHanhTuan02
         {
             InitializeComponent();
         }
+
+        private void Bai04_Load(object sender, EventArgs e)
+        {
+            previewTB.ScrollBars = ScrollBars.Vertical;
+        }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            previewTB.Text += nameTB.Text + "\r\n" + mssvTB.Text + "\r\n" + phoneTB.Text + "\r\n" + firstGradeTB.Text + "\r\n" + secondGradeTB.Text + "\r\n" + thirdGradeTB.Text + "\r\n\r\n";
+        }
     }
 }

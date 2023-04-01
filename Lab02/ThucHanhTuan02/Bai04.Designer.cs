@@ -39,12 +39,12 @@ namespace ThucHanhTuan02
             this.thirdGradeLabel = new System.Windows.Forms.Label();
             this.addBtn = new System.Windows.Forms.Button();
             this.nameTB = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox = new System.Windows.Forms.TextBox();
+            this.mssvTB = new System.Windows.Forms.TextBox();
+            this.phoneTB = new System.Windows.Forms.TextBox();
+            this.firstGradeTB = new System.Windows.Forms.TextBox();
+            this.secondGradeTB = new System.Windows.Forms.TextBox();
+            this.thirdGradeTB = new System.Windows.Forms.TextBox();
+            this.previewTB = new System.Windows.Forms.TextBox();
             this.subtextLabel = new System.Windows.Forms.Label();
             this.show3rdGradeTB = new System.Windows.Forms.TextBox();
             this.show2ndGradeTB = new System.Windows.Forms.TextBox();
@@ -61,6 +61,8 @@ namespace ThucHanhTuan02
             this.backBtn = new System.Windows.Forms.Button();
             this.forwardBtn = new System.Windows.Forms.Button();
             this.pageNumLabel = new System.Windows.Forms.Label();
+            this.showAvgTB = new System.Windows.Forms.TextBox();
+            this.showAvgLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // writeBtn
@@ -70,7 +72,7 @@ namespace ThucHanhTuan02
             this.writeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.writeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.writeBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(191)))), ((int)(((byte)(243)))));
-            this.writeBtn.Location = new System.Drawing.Point(464, 340);
+            this.writeBtn.Location = new System.Drawing.Point(465, 388);
             this.writeBtn.Name = "writeBtn";
             this.writeBtn.Size = new System.Drawing.Size(107, 35);
             this.writeBtn.TabIndex = 7;
@@ -84,7 +86,7 @@ namespace ThucHanhTuan02
             this.readBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.readBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.readBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(191)))), ((int)(((byte)(243)))));
-            this.readBtn.Location = new System.Drawing.Point(784, 32);
+            this.readBtn.Location = new System.Drawing.Point(795, 32);
             this.readBtn.Name = "readBtn";
             this.readBtn.Size = new System.Drawing.Size(207, 35);
             this.readBtn.TabIndex = 6;
@@ -176,6 +178,7 @@ namespace ThucHanhTuan02
             this.addBtn.TabIndex = 14;
             this.addBtn.Text = "Thêm sinh viên";
             this.addBtn.UseVisualStyleBackColor = false;
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
             // nameTB
             // 
@@ -186,60 +189,62 @@ namespace ThucHanhTuan02
             this.nameTB.TabIndex = 15;
             this.nameTB.WordWrap = false;
             // 
-            // textBox1
+            // mssvTB
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(190, 126);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(166, 27);
-            this.textBox1.TabIndex = 16;
-            this.textBox1.WordWrap = false;
+            this.mssvTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mssvTB.Location = new System.Drawing.Point(190, 126);
+            this.mssvTB.MaxLength = 8;
+            this.mssvTB.Name = "mssvTB";
+            this.mssvTB.Size = new System.Drawing.Size(166, 27);
+            this.mssvTB.TabIndex = 16;
+            this.mssvTB.WordWrap = false;
             // 
-            // textBox2
+            // phoneTB
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(190, 166);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(166, 27);
-            this.textBox2.TabIndex = 17;
-            this.textBox2.WordWrap = false;
+            this.phoneTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.phoneTB.Location = new System.Drawing.Point(190, 166);
+            this.phoneTB.MaxLength = 10;
+            this.phoneTB.Name = "phoneTB";
+            this.phoneTB.Size = new System.Drawing.Size(166, 27);
+            this.phoneTB.TabIndex = 17;
+            this.phoneTB.WordWrap = false;
             // 
-            // textBox3
+            // firstGradeTB
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(190, 206);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(166, 27);
-            this.textBox3.TabIndex = 18;
-            this.textBox3.WordWrap = false;
+            this.firstGradeTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.firstGradeTB.Location = new System.Drawing.Point(190, 206);
+            this.firstGradeTB.Name = "firstGradeTB";
+            this.firstGradeTB.Size = new System.Drawing.Size(166, 27);
+            this.firstGradeTB.TabIndex = 18;
+            this.firstGradeTB.WordWrap = false;
             // 
-            // textBox4
+            // secondGradeTB
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(190, 246);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(166, 27);
-            this.textBox4.TabIndex = 19;
-            this.textBox4.WordWrap = false;
+            this.secondGradeTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.secondGradeTB.Location = new System.Drawing.Point(190, 246);
+            this.secondGradeTB.Name = "secondGradeTB";
+            this.secondGradeTB.Size = new System.Drawing.Size(166, 27);
+            this.secondGradeTB.TabIndex = 19;
+            this.secondGradeTB.WordWrap = false;
             // 
-            // textBox5
+            // thirdGradeTB
             // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(190, 285);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(166, 27);
-            this.textBox5.TabIndex = 20;
-            this.textBox5.WordWrap = false;
+            this.thirdGradeTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.thirdGradeTB.Location = new System.Drawing.Point(190, 285);
+            this.thirdGradeTB.Name = "thirdGradeTB";
+            this.thirdGradeTB.Size = new System.Drawing.Size(166, 27);
+            this.thirdGradeTB.TabIndex = 20;
+            this.thirdGradeTB.WordWrap = false;
             // 
-            // textBox
+            // previewTB
             // 
-            this.textBox.Location = new System.Drawing.Point(404, 80);
-            this.textBox.Multiline = true;
-            this.textBox.Name = "textBox";
-            this.textBox.ReadOnly = true;
-            this.textBox.Size = new System.Drawing.Size(231, 232);
-            this.textBox.TabIndex = 21;
-            this.textBox.WordWrap = false;
+            this.previewTB.Location = new System.Drawing.Point(404, 80);
+            this.previewTB.Multiline = true;
+            this.previewTB.Name = "previewTB";
+            this.previewTB.ReadOnly = true;
+            this.previewTB.Size = new System.Drawing.Size(231, 295);
+            this.previewTB.TabIndex = 21;
+            this.previewTB.WordWrap = false;
             // 
             // subtextLabel
             // 
@@ -256,7 +261,7 @@ namespace ThucHanhTuan02
             // show3rdGradeTB
             // 
             this.show3rdGradeTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.show3rdGradeTB.Location = new System.Drawing.Point(872, 298);
+            this.show3rdGradeTB.Location = new System.Drawing.Point(894, 298);
             this.show3rdGradeTB.Name = "show3rdGradeTB";
             this.show3rdGradeTB.ReadOnly = true;
             this.show3rdGradeTB.Size = new System.Drawing.Size(166, 27);
@@ -266,7 +271,7 @@ namespace ThucHanhTuan02
             // show2ndGradeTB
             // 
             this.show2ndGradeTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.show2ndGradeTB.Location = new System.Drawing.Point(872, 259);
+            this.show2ndGradeTB.Location = new System.Drawing.Point(894, 259);
             this.show2ndGradeTB.Name = "show2ndGradeTB";
             this.show2ndGradeTB.ReadOnly = true;
             this.show2ndGradeTB.Size = new System.Drawing.Size(166, 27);
@@ -276,7 +281,7 @@ namespace ThucHanhTuan02
             // show1stGradeTB
             // 
             this.show1stGradeTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.show1stGradeTB.Location = new System.Drawing.Point(872, 219);
+            this.show1stGradeTB.Location = new System.Drawing.Point(894, 219);
             this.show1stGradeTB.Name = "show1stGradeTB";
             this.show1stGradeTB.ReadOnly = true;
             this.show1stGradeTB.Size = new System.Drawing.Size(166, 27);
@@ -286,7 +291,7 @@ namespace ThucHanhTuan02
             // showPhoneTB
             // 
             this.showPhoneTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showPhoneTB.Location = new System.Drawing.Point(872, 179);
+            this.showPhoneTB.Location = new System.Drawing.Point(894, 179);
             this.showPhoneTB.Name = "showPhoneTB";
             this.showPhoneTB.ReadOnly = true;
             this.showPhoneTB.Size = new System.Drawing.Size(166, 27);
@@ -296,7 +301,7 @@ namespace ThucHanhTuan02
             // showMSSVTB
             // 
             this.showMSSVTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showMSSVTB.Location = new System.Drawing.Point(872, 139);
+            this.showMSSVTB.Location = new System.Drawing.Point(894, 139);
             this.showMSSVTB.Name = "showMSSVTB";
             this.showMSSVTB.ReadOnly = true;
             this.showMSSVTB.Size = new System.Drawing.Size(166, 27);
@@ -306,7 +311,7 @@ namespace ThucHanhTuan02
             // showNameTB
             // 
             this.showNameTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showNameTB.Location = new System.Drawing.Point(872, 96);
+            this.showNameTB.Location = new System.Drawing.Point(894, 96);
             this.showNameTB.Name = "showNameTB";
             this.showNameTB.ReadOnly = true;
             this.showNameTB.Size = new System.Drawing.Size(166, 27);
@@ -392,7 +397,7 @@ namespace ThucHanhTuan02
             this.backBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.backBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(191)))), ((int)(((byte)(243)))));
-            this.backBtn.Location = new System.Drawing.Point(804, 340);
+            this.backBtn.Location = new System.Drawing.Point(826, 386);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(42, 35);
             this.backBtn.TabIndex = 35;
@@ -406,7 +411,7 @@ namespace ThucHanhTuan02
             this.forwardBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.forwardBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.forwardBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(191)))), ((int)(((byte)(243)))));
-            this.forwardBtn.Location = new System.Drawing.Point(910, 340);
+            this.forwardBtn.Location = new System.Drawing.Point(932, 386);
             this.forwardBtn.Name = "forwardBtn";
             this.forwardBtn.Size = new System.Drawing.Size(42, 35);
             this.forwardBtn.TabIndex = 36;
@@ -418,12 +423,34 @@ namespace ThucHanhTuan02
             this.pageNumLabel.AutoSize = true;
             this.pageNumLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pageNumLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
-            this.pageNumLabel.Location = new System.Drawing.Point(867, 342);
+            this.pageNumLabel.Location = new System.Drawing.Point(889, 388);
             this.pageNumLabel.Name = "pageNumLabel";
             this.pageNumLabel.Size = new System.Drawing.Size(27, 29);
             this.pageNumLabel.TabIndex = 37;
             this.pageNumLabel.Text = "1";
             this.pageNumLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // showAvgTB
+            // 
+            this.showAvgTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showAvgTB.Location = new System.Drawing.Point(894, 340);
+            this.showAvgTB.Name = "showAvgTB";
+            this.showAvgTB.ReadOnly = true;
+            this.showAvgTB.Size = new System.Drawing.Size(166, 27);
+            this.showAvgTB.TabIndex = 39;
+            this.showAvgTB.WordWrap = false;
+            // 
+            // showAvgLabel
+            // 
+            this.showAvgLabel.AutoSize = true;
+            this.showAvgLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showAvgLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
+            this.showAvgLabel.Location = new System.Drawing.Point(714, 340);
+            this.showAvgLabel.Name = "showAvgLabel";
+            this.showAvgLabel.Size = new System.Drawing.Size(170, 25);
+            this.showAvgLabel.TabIndex = 38;
+            this.showAvgLabel.Text = "Điểm trung bình:";
+            this.showAvgLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Bai04
             // 
@@ -431,6 +458,8 @@ namespace ThucHanhTuan02
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(40)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(1141, 450);
+            this.Controls.Add(this.showAvgTB);
+            this.Controls.Add(this.showAvgLabel);
             this.Controls.Add(this.pageNumLabel);
             this.Controls.Add(this.forwardBtn);
             this.Controls.Add(this.backBtn);
@@ -447,12 +476,12 @@ namespace ThucHanhTuan02
             this.Controls.Add(this.showMSSVLabel);
             this.Controls.Add(this.showNameLabel);
             this.Controls.Add(this.subtextLabel);
-            this.Controls.Add(this.textBox);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.previewTB);
+            this.Controls.Add(this.thirdGradeTB);
+            this.Controls.Add(this.secondGradeTB);
+            this.Controls.Add(this.firstGradeTB);
+            this.Controls.Add(this.phoneTB);
+            this.Controls.Add(this.mssvTB);
             this.Controls.Add(this.nameTB);
             this.Controls.Add(this.addBtn);
             this.Controls.Add(this.thirdGradeLabel);
@@ -465,6 +494,7 @@ namespace ThucHanhTuan02
             this.Controls.Add(this.readBtn);
             this.Name = "Bai04";
             this.Text = "Bai04";
+            this.Load += new System.EventHandler(this.Bai04_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -482,12 +512,12 @@ namespace ThucHanhTuan02
         private System.Windows.Forms.Label thirdGradeLabel;
         private System.Windows.Forms.Button addBtn;
         private System.Windows.Forms.TextBox nameTB;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox;
+        private System.Windows.Forms.TextBox mssvTB;
+        private System.Windows.Forms.TextBox phoneTB;
+        private System.Windows.Forms.TextBox firstGradeTB;
+        private System.Windows.Forms.TextBox secondGradeTB;
+        private System.Windows.Forms.TextBox thirdGradeTB;
+        private System.Windows.Forms.TextBox previewTB;
         private System.Windows.Forms.Label subtextLabel;
         private System.Windows.Forms.TextBox show3rdGradeTB;
         private System.Windows.Forms.TextBox show2ndGradeTB;
@@ -504,5 +534,7 @@ namespace ThucHanhTuan02
         private System.Windows.Forms.Button backBtn;
         private System.Windows.Forms.Button forwardBtn;
         private System.Windows.Forms.Label pageNumLabel;
+        private System.Windows.Forms.TextBox showAvgTB;
+        private System.Windows.Forms.Label showAvgLabel;
     }
 }
