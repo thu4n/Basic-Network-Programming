@@ -10,7 +10,7 @@ namespace ThucHanhTuan02
     {
         private string name { get; set; }
         private int mssv { get; set; }
-        private int phone { get; set; }
+        private string phone { get; set; }
         private float firstGrade { get; set; }
         private float secondGrade { get; set; }
         private float thirdGrade { get; set; }
@@ -19,7 +19,7 @@ namespace ThucHanhTuan02
         {
             name = "";
             mssv = 0;
-            phone = 0;
+            phone = "";
             firstGrade = 0;
             secondGrade = 0;
             thirdGrade = 0;
