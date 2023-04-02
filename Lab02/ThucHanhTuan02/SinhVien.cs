@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace ThucHanhTuan02
 {
+    [Serializable]
     class SinhVien
     {
-        private string name { get; set; }
-        private int mssv { get; set; }
-        private string phone { get; set; }
-        private float firstGrade { get; set; }
-        private float secondGrade { get; set; }
-        private float thirdGrade { get; set; }
+        public string name { get; set; }
+        public int mssv { get; set; }
+        public string phone { get; set; }
+        public float firstGrade { get; set; }
+        public float secondGrade { get; set; }
+        public float thirdGrade { get; set; }
 
         public SinhVien()
         {
@@ -23,6 +24,15 @@ namespace ThucHanhTuan02
             firstGrade = 0;
             secondGrade = 0;
             thirdGrade = 0;
+        }
+        public SinhVien(string nameStr, string mssvStr, string phoneStr, string firstStr, string secondStr, string thirdStr)
+        {
+            name = nameStr;
+            mssv = int.Parse(mssvStr);
+            phone = phoneStr;
+            firstGrade = float.Parse(firstStr);
+            secondGrade = float.Parse(secondStr);
+            thirdGrade = float.Parse(thirdStr);
         }
         public float avgGrade()
         {

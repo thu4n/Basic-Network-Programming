@@ -78,6 +78,7 @@ namespace ThucHanhTuan02
             this.writeBtn.TabIndex = 7;
             this.writeBtn.Text = "Ghi File";
             this.writeBtn.UseVisualStyleBackColor = false;
+            this.writeBtn.Click += new System.EventHandler(this.writeBtn_Click);
             // 
             // readBtn
             // 
@@ -92,6 +93,7 @@ namespace ThucHanhTuan02
             this.readBtn.TabIndex = 6;
             this.readBtn.Text = "Đọc File Đã Ghi";
             this.readBtn.UseVisualStyleBackColor = false;
+            this.readBtn.Click += new System.EventHandler(this.readBtn_Click);
             // 
             // nameLabel
             // 
@@ -403,6 +405,7 @@ namespace ThucHanhTuan02
             this.backBtn.TabIndex = 35;
             this.backBtn.Text = "<";
             this.backBtn.UseVisualStyleBackColor = false;
+            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
             // forwardBtn
             // 
@@ -417,6 +420,7 @@ namespace ThucHanhTuan02
             this.forwardBtn.TabIndex = 36;
             this.forwardBtn.Text = ">";
             this.forwardBtn.UseVisualStyleBackColor = false;
+            this.forwardBtn.Click += new System.EventHandler(this.forwardBtn_Click);
             // 
             // pageNumLabel
             // 
