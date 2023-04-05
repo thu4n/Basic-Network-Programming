@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
 
 namespace Week04_TCP_Chatroom
 {
@@ -17,18 +18,24 @@ namespace Week04_TCP_Chatroom
         {
             InitializeComponent();
         }
-
+        private delegate void UpdateStatusCallback(string strMessage);
         private void listenBtn_Click(object sender, EventArgs e)
         {
+            
+            chatBox.AppendText("Đang lắng nghe các kết nối...\r\n");
+
             try
             {
 
-                // Xử lý tác vụ lấy địa chỉ IP và username ở đây
-
                 if (!isListening)
                 {
-                    // Code thêm mở kết nối TCP tại đây
-
+                    // Chuyển đổi dạng dữ liệu của IP
+                    IPAddress ipAddr = IPAddress.Parse(serverIPTB.Text);
+                    ChatServer1 mainServer = new ChatServer1(ipAddr);
+                    // Hook the StatusChanged event handler to mainServer_StatusChanged
+                    ChatServer1.StatusChanged += new StatusChangedEventHandler(mainServer_StatusChanged);
+                    // Bắt đầu quá trình lắng nghe kết nối
+                    mainServer.StartListening();
                     listenBtn.Text = "Stop listening";
                     isListening = true;
                     serverIPTB.ReadOnly = true;
@@ -51,6 +58,18 @@ namespace Week04_TCP_Chatroom
             {
                 // Code xử lý exception ở đây
             }
+        }
+
+        public void mainServer_StatusChanged(object sender, StatusChangedEventArgs e)
+        {
+            // Call the method that updates the form
+            this.Invoke(new UpdateStatusCallback(this.UpdateStatus), new object[] { e.EventMessage });
+        }
+
+        private void UpdateStatus(string strMessage)
+        {
+            // Updates the log with the message
+            chatBox.AppendText(strMessage + "\r\n");
         }
 
         private void Server_Load(object sender, EventArgs e)
