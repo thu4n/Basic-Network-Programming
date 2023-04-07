@@ -24,9 +24,6 @@ namespace Week04_TCP_Chatroom
         NetworkStream serverStream = default(NetworkStream);
         string readData = null;
 
-        //StreamWriter write;
-        //StreamReader read;
-
         private bool isConnected = false;
         public Client()
         {
@@ -96,11 +93,9 @@ namespace Week04_TCP_Chatroom
                     usernameTB.ReadOnly = true;
                     serverIPTB.ForeColor = Color.Gray;
                     usernameTB.ForeColor = Color.Gray;
-                    // chatBox.Text += "Connected successfully to the server at " + serverIPTB.Text + "! \r\n";
                 }
                 else
                 {
-                    // Code thêm đóng kết nối TCP tại đây
                     serverStream.Close();
                     connectBtn.Text = "Close";
                     isConnected = false;
