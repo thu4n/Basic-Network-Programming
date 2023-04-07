@@ -187,7 +187,7 @@ namespace Week04_TCP_Chatroom
                 IPAddress ipaLocal = ipAddress;
 
                 // Create the TCP listener object using the IP of the server and the specified port
-                tlsClient = new TcpListener(ipaLocal, 1986);
+                tlsClient = new TcpListener(ipaLocal, 8888);
 
                 // Start the TCP listener and listen for connections
                 tlsClient.Start();
@@ -272,11 +272,7 @@ namespace Week04_TCP_Chatroom
                         return;
                     }
                     else
-                    {
-                        // 1 means connected successfully
-                        swSender.WriteLine("1");
-                        swSender.Flush();
-
+                    {   
                         // Add the user to the hash tables and start listening for messages from him
                         ChatServer1.AddUser(tcpClient, currUser);
                     }

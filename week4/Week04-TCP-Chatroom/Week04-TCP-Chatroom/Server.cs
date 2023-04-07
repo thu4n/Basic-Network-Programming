@@ -22,7 +22,7 @@ namespace Week04_TCP_Chatroom
         private void listenBtn_Click(object sender, EventArgs e)
         {
             
-            chatBox.AppendText("Đang lắng nghe các kết nối...\r\n");
+            chatBox.AppendText("Start listening for connections... \r\n");
 
             try
             {
@@ -40,7 +40,6 @@ namespace Week04_TCP_Chatroom
                     isListening = true;
                     serverIPTB.ReadOnly = true;
                     serverIPTB.ForeColor = Color.Gray;
-                    chatBox.Text += "Start listening for connections... \r\n";
                 }
                 else
                 {
@@ -56,19 +55,19 @@ namespace Week04_TCP_Chatroom
             }
             catch (Exception)
             {
-                // Code xử lý exception ở đây
+                MessageBox.Show("Không thể tạo server");
             }
         }
 
         public void mainServer_StatusChanged(object sender, StatusChangedEventArgs e)
         {
-            // Call the method that updates the form
+            // gọi hàm update form
             this.Invoke(new UpdateStatusCallback(this.UpdateStatus), new object[] { e.EventMessage });
         }
 
         private void UpdateStatus(string strMessage)
         {
-            // Updates the log with the message
+            // cập nhật thông tin gói tin vào chatbox
             chatBox.AppendText(strMessage + "\r\n");
         }
 
