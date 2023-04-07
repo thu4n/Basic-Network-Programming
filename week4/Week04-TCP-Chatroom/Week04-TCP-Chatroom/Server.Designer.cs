@@ -46,6 +46,7 @@ namespace Week04_TCP_Chatroom
             this.serverIPTB.Name = "serverIPTB";
             this.serverIPTB.Size = new System.Drawing.Size(195, 34);
             this.serverIPTB.TabIndex = 7;
+            this.serverIPTB.Text = "127.0.0.5";
             // 
             // serverIPLabel
             // 
@@ -54,7 +55,7 @@ namespace Week04_TCP_Chatroom
             this.serverIPLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(0)))), ((int)(((byte)(95)))));
             this.serverIPLabel.Location = new System.Drawing.Point(78, 39);
             this.serverIPLabel.Name = "serverIPLabel";
-            this.serverIPLabel.Size = new System.Drawing.Size(231, 29);
+            this.serverIPLabel.Size = new System.Drawing.Size(221, 27);
             this.serverIPLabel.TabIndex = 6;
             this.serverIPLabel.Text = "Server IP Address: ";
             // 

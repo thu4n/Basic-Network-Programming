@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
 
 namespace Week04_TCP_Chatroom
 {
@@ -17,44 +18,60 @@ namespace Week04_TCP_Chatroom
         {
             InitializeComponent();
         }
+        private delegate void UpdateStatusCallback(string strMessage);
+
+        bool check = false;
 
         private void listenBtn_Click(object sender, EventArgs e)
         {
+
             try
             {
-
-                // Xử lý tác vụ lấy địa chỉ IP và username ở đây
-
+                if (check)
+                    this.Close();
                 if (!isListening)
                 {
-                    // Code thêm mở kết nối TCP tại đây
-
+                    chatBox.Text += "start listening for connections... \r\n";
+                    IPAddress ipAddr = IPAddress.Parse(serverIPTB.Text);
+                    ChatServer1 mainServer = new ChatServer1(ipAddr);
+                    ChatServer1.StatusChanged += new StatusChangedEventHandler(mainServer_StatusChanged);
+                    mainServer.StartListening();
                     listenBtn.Text = "Stop listening";
                     isListening = true;
                     serverIPTB.ReadOnly = true;
                     serverIPTB.ForeColor = Color.Gray;
-                    chatBox.Text += "Start listening for connections... \r\n";
+
                 }
                 else
                 {
-                    // Code thêm đóng kết nối TCP tại đây
 
-                    listenBtn.Text = "Connect";
+                    listenBtn.Text = "Close";
                     isListening = false;
                     serverIPTB.ReadOnly = false;
                     serverIPTB.ForeColor = Color.White;
                     chatBox.Text += "Stopped listening. \r\n";
+                    check = true;
                 }
-
             }
             catch (Exception)
             {
-                // Code xử lý exception ở đây
+                this.Close();
             }
+        }
+
+        public void mainServer_StatusChanged(object sender, StatusChangedEventArgs e)
+        {
+            this.Invoke(new UpdateStatusCallback(this.UpdateStatus), new object[] { e.EventMessage });
+        }
+
+        private void UpdateStatus(string strMessage)
+        {
+            chatBox.AppendText(strMessage + "\r\n");
         }
 
         private void Server_Load(object sender, EventArgs e)
         {
+            chatBox.Text += "Waiting for connection... \r\n";
             chatBox.ScrollBars = ScrollBars.Vertical;
         }
     }
