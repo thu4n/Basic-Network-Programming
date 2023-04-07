@@ -47,7 +47,7 @@ namespace Week04_TCP_Chatroom
             this.serverIPLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(0)))), ((int)(((byte)(95)))));
             this.serverIPLabel.Location = new System.Drawing.Point(103, 46);
             this.serverIPLabel.Name = "serverIPLabel";
-            this.serverIPLabel.Size = new System.Drawing.Size(231, 29);
+            this.serverIPLabel.Size = new System.Drawing.Size(221, 27);
             this.serverIPLabel.TabIndex = 4;
             this.serverIPLabel.Text = "Server IP Address: ";
             // 
@@ -61,6 +61,7 @@ namespace Week04_TCP_Chatroom
             this.serverIPTB.Name = "serverIPTB";
             this.serverIPTB.Size = new System.Drawing.Size(195, 34);
             this.serverIPTB.TabIndex = 5;
+            this.serverIPTB.Text = "127.0.0.5";
             // 
             // usernameLabel
             // 
@@ -69,7 +70,7 @@ namespace Week04_TCP_Chatroom
             this.usernameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(0)))), ((int)(((byte)(95)))));
             this.usernameLabel.Location = new System.Drawing.Point(103, 99);
             this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(191, 29);
+            this.usernameLabel.Size = new System.Drawing.Size(186, 27);
             this.usernameLabel.TabIndex = 6;
             this.usernameLabel.Text = "Your username:";
             // 

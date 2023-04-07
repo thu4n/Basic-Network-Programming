@@ -19,16 +19,19 @@ namespace Week04_TCP_Chatroom
             InitializeComponent();
         }
         private delegate void UpdateStatusCallback(string strMessage);
+
+        bool check = false;
+
         private void listenBtn_Click(object sender, EventArgs e)
         {
-            
-            chatBox.AppendText("Start listening for connections... \r\n");
 
             try
             {
-
+                if (check)
+                    this.Close();
                 if (!isListening)
                 {
+                    chatBox.Text += "start listening for connections... \r\n";
                     // Chuyển đổi dạng dữ liệu của IP
                     IPAddress ipAddr = IPAddress.Parse(serverIPTB.Text);
                     ChatServer1 mainServer = new ChatServer1(ipAddr);
@@ -40,39 +43,40 @@ namespace Week04_TCP_Chatroom
                     isListening = true;
                     serverIPTB.ReadOnly = true;
                     serverIPTB.ForeColor = Color.Gray;
+
                 }
                 else
                 {
-                    // Code thêm đóng kết nối TCP tại đây
 
-                    listenBtn.Text = "Connect";
+                    listenBtn.Text = "Close";
                     isListening = false;
                     serverIPTB.ReadOnly = false;
                     serverIPTB.ForeColor = Color.White;
                     chatBox.Text += "Stopped listening. \r\n";
+                    check = true;
                 }
-
             }
             catch (Exception)
             {
-                MessageBox.Show("Không thể tạo server");
+                this.Close();
             }
         }
 
         public void mainServer_StatusChanged(object sender, StatusChangedEventArgs e)
         {
-            // gọi hàm update form
+            // Call the method that updates the form
             this.Invoke(new UpdateStatusCallback(this.UpdateStatus), new object[] { e.EventMessage });
         }
 
         private void UpdateStatus(string strMessage)
         {
-            // cập nhật thông tin gói tin vào chatbox
+            // Updates the log with the message
             chatBox.AppendText(strMessage + "\r\n");
         }
 
         private void Server_Load(object sender, EventArgs e)
         {
+            chatBox.Text += "Waiting for connection... \r\n";
             chatBox.ScrollBars = ScrollBars.Vertical;
         }
     }
