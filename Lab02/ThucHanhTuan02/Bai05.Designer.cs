@@ -48,6 +48,7 @@ namespace ThucHanhTuan02
             this.readBtn.TabIndex = 2;
             this.readBtn.Text = "Đọc File";
             this.readBtn.UseVisualStyleBackColor = false;
+            this.readBtn.Click += new System.EventHandler(this.readBtn_Click);
             // 
             // fileNameTB
             // 
@@ -72,6 +73,7 @@ namespace ThucHanhTuan02
             this.compressBtn.TabIndex = 17;
             this.compressBtn.Text = "Nén File";
             this.compressBtn.UseVisualStyleBackColor = false;
+            this.compressBtn.Click += new System.EventHandler(this.compressBtn_Click);
             // 
             // decompressBtn
             // 
@@ -86,6 +88,7 @@ namespace ThucHanhTuan02
             this.decompressBtn.TabIndex = 18;
             this.decompressBtn.Text = "Giải Nén File";
             this.decompressBtn.UseVisualStyleBackColor = false;
+            this.decompressBtn.Click += new System.EventHandler(this.decompressBtn_Click);
             // 
             // Bai05
             // 

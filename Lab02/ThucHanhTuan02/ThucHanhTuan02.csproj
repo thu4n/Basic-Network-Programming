@@ -35,6 +35,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -103,6 +105,9 @@
     <EmbeddedResource Include="Bai04.resx">
       <DependentUpon>Bai04.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Bai05.resx">
+      <DependentUpon>Bai05.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
@@ -127,6 +132,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Test Case Files\input1.txt" />
+    <Content Include="Test Case Files\input3.txt" />
+    <Content Include="Test Case Files\output1.txt" />
+    <Content Include="Test Case Files\output3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Output Files\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
