@@ -16,7 +16,6 @@ namespace ThucHanhTuan02
     {
         private FileStream fs;
         private BinaryFormatter bf;
-        private SaveFileDialog sfd;
         private SinhVien[] svOutput;
         public Bai04()
         {
@@ -84,30 +83,41 @@ namespace ThucHanhTuan02
                 int j = i * 7;
                 sinhvien[i] = new SinhVien(allInfos[j], allInfos[j + 1], allInfos[j + 2], allInfos[j + 3], allInfos[j + 4], allInfos[j + 5]);
             }
-            sfd = new SaveFileDialog();
-            sfd.ShowDialog();
-            fs = new FileStream(sfd.FileName, FileMode.OpenOrCreate);
-            bf = new BinaryFormatter();
-            bf.Serialize(fs, sinhvien);
-            fs.Close();
+            try
+            {
+                using(fs = new FileStream(@"..\..\Test Case Files\input4.txt", FileMode.OpenOrCreate))
+                {
+                    bf = new BinaryFormatter();
+                    bf.Serialize(fs, sinhvien);
+                    MessageBox.Show("Đã ghi vào file ở: " + fs.Name);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void readBtn_Click(object sender, EventArgs e)
         {
-            fs = File.OpenRead(sfd.FileName);
-            svOutput = (SinhVien[])bf.Deserialize(fs);
+            using (fs = File.OpenRead(@"..\..\Test Case Files\input4.txt"))
+            {
+                svOutput = (SinhVien[])bf.Deserialize(fs);
+            }
             string str = "";
             for(int i = 0; i < svOutput.Length; i++)
             {
                 str += svOutput[i].name + "\r\n" + svOutput[i].mssv.ToString() + "\r\n" + svOutput[i].phone + "\r\n" + svOutput[i].firstGrade.ToString() + "\r\n" + svOutput[i].secondGrade.ToString() + "\r\n" + svOutput[i].thirdGrade.ToString() + "\r\n" + svOutput[i].avgGrade().ToString();
             }
-            sfd = new SaveFileDialog();
-            sfd.ShowDialog();
-            fs = new FileStream(sfd.FileName, FileMode.OpenOrCreate);
-            StreamWriter sw = new StreamWriter(fs);
-            sw.Write(str);
-            sw.Close();
-            setInfo(svOutput, 1);
+            using (fs = new FileStream(@"..\..\Test Case Files\output4.txt", FileMode.OpenOrCreate))
+            {
+                using(StreamWriter sw = new StreamWriter(fs))
+                {
+                    sw.Write(str);
+                    setInfo(svOutput, 1);
+                }
+                MessageBox.Show("Đã đọc và ghi file kết quả ở: " + fs.Name);
+            }
         }
 
         private void backBtn_Click(object sender, EventArgs e)

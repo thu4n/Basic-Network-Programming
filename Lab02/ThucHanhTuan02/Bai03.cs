@@ -23,28 +23,40 @@ namespace ThucHanhTuan02
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.ShowDialog();
-            FileStream fs = new FileStream(ofd.FileName, FileMode.OpenOrCreate);
-            sr = new StreamReader(fs);
-            textBox.Text = sr.ReadToEnd();
-            sr.Close();
+            if (ofd.FileName != "")
+            {
+                try
+                {
+                    FileStream fs = new FileStream(ofd.FileName, FileMode.OpenOrCreate);
+                    sr = new StreamReader(fs);
+                    textBox.Text = sr.ReadToEnd();
+                    sr.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
         }
 
         private void writeBtn_Click(object sender, EventArgs e)
         {
-            string[] expressions = textBox.Text.Split('\n');
-            textBox.Text = "";
+            string[] expressions = textBox.Text.Split('\r');
+            string str = "";
             for (int i = 0; i < expressions.Length; i++)
             {
                 float res = stackProcessing(expressions[i]); ;
-                textBox.Text += expressions[i] + " = " + res.ToString() + "\r\n";
+                str += expressions[i] + " = " + res.ToString() + "\r\n";
             }
             subtextLabel.Text = "Hiển thị file vừa ghi:";
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.ShowDialog();
-            FileStream fs = new FileStream(sfd.FileName, FileMode.OpenOrCreate);
-            StreamWriter sw = new StreamWriter(fs);
-            sw.Write(textBox.Text);
-            sw.Close();
+            using (FileStream fs = new FileStream(@"..\..\Test Case Files\output3.txt", FileMode.OpenOrCreate))
+            {
+                using (StreamWriter sw = new StreamWriter(fs))
+                {
+                    sw.Write(str);
+                    MessageBox.Show("Đã ghi vào file ở " + fs.Name);
+                }
+            }
         }
         private float stackProcessing(string str)
         {   

@@ -14,6 +14,7 @@ namespace ThucHanhTuan02
     public partial class bai01 : Form
     {
         private StreamReader sr;
+        private FileStream fs;
         public bai01()
         {
             InitializeComponent();
@@ -28,20 +29,40 @@ namespace ThucHanhTuan02
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.ShowDialog();
-            FileStream fs = new FileStream(ofd.FileName, FileMode.OpenOrCreate);
-            sr = new StreamReader(fs);
-            textBox.Text = sr.ReadToEnd();
+            try
+            {
+                using (fs = new FileStream(ofd.FileName, FileMode.OpenOrCreate))
+                {
+                    using (sr = new StreamReader(fs))
+                    {
+                        textBox.Text = sr.ReadToEnd();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            
         }
 
         private void writeBtn_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.ShowDialog();
-            FileStream fs = new FileStream(sfd.FileName, FileMode.OpenOrCreate);
-            StreamWriter sw = new StreamWriter(fs);
-            sw.Write(textBox.Text.ToUpper());
-            sw.Close();
-            sr.Close();
+            try
+            {
+                using (fs = new FileStream(@"..\..\Test Case Files\output1.txt", FileMode.OpenOrCreate))
+                {
+                    using (StreamWriter sw = new StreamWriter(fs))
+                    {
+                        sw.Write(textBox.Text.ToUpper());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
         }
     }
 }
