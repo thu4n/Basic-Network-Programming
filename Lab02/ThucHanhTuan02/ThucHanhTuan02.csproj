@@ -84,6 +84,12 @@
     <Compile Include="Bai06.Designer.cs">
       <DependentUpon>Bai06.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bai5_NangCao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bai5_NangCao.Designer.cs">
+      <DependentUpon>Bai5_NangCao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bai05.resx">
       <DependentUpon>Bai05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bai06.resx">
+      <DependentUpon>Bai06.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bai5_NangCao.resx">
+      <DependentUpon>Bai5_NangCao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
@@ -134,13 +146,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\doc.png" />
+    <Content Include="Images\folder.png" />
+    <Content Include="Images\image.png" />
     <Content Include="Test Case Files\input1.txt" />
     <Content Include="Test Case Files\input3.txt" />
     <Content Include="Test Case Files\output1.txt" />
     <Content Include="Test Case Files\output3.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Output Files\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

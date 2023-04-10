@@ -12,22 +12,24 @@ using System.IO.Compression;
 
 namespace ThucHanhTuan02
 {
-    public partial class Bai05 : Form
+    public partial class Bai5_NangCao : Form
     {
+        BackgroundWorker backgroundWorker;
         private OpenFileDialog ofd;
         private FileStream fs;
         private FileInfo fi;
-        private string zipPath = @"..\..\Test Case Files\output5.zip";
-        public Bai05()
+        private string zipPath = @"..\..\Test Case Files\";
+        public Bai5_NangCao()
         {
             InitializeComponent();
+            backgroundWorker = new BackgroundWorker();
         }
 
         private void readBtn_Click(object sender, EventArgs e)
         {
             ofd = new OpenFileDialog();
             ofd.ShowDialog();
-            if (ofd.FileName!="")
+            if (ofd.FileName != "")
             {
                 fs = new FileStream(ofd.FileName, FileMode.OpenOrCreate);
                 fileNameTB.Text = ofd.SafeFileName;
@@ -40,12 +42,15 @@ namespace ThucHanhTuan02
             try
             {
                 using (fs = new FileStream(zipPath, FileMode.Create))
-                using (ZipArchive archive = new ZipArchive(fs, ZipArchiveMode.Create))
                 {
-                    archive.CreateEntryFromFile(ofd.FileName, ofd.SafeFileName);
-                    fi = new FileInfo(zipPath);
-                    MessageBox.Show("Đã nén file thành công, file được tạo ở: " + fi.FullName);
+                    using (ZipArchive archive = new ZipArchive(fs, ZipArchiveMode.Create))
+                    {
+                        archive.CreateEntryFromFile(ofd.FileName, ofd.SafeFileName);
+                        fi = new FileInfo(zipPath);
+                        MessageBox.Show("Đã nén file thành công, file được tạo ở: " + fi.FullName);
+                    }
                 }
+                
             }
             catch (Exception ex)
             {
@@ -60,20 +65,14 @@ namespace ThucHanhTuan02
                 using (ZipArchive archive = ZipFile.OpenRead(zipPath))
                 {
                     ZipArchiveEntry entry = archive.Entries[0];
-                    entry.ExtractToFile(Path.Combine( @"..\..\Test Case Files", "output5.txt"),true);
+                    entry.ExtractToFile(Path.Combine(@"..\..\Test Case Files", "output5.txt"), true);
                     MessageBox.Show("Đã nén file thành công, file được tạo ở: " + fi.FullName);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-        }
-
-        private void advanceBtn_Click(object sender, EventArgs e)
-        {
-            Bai5_NangCao nangCao = new Bai5_NangCao();
-            nangCao.Show();
         }
     }
 }

@@ -33,6 +33,7 @@ namespace ThucHanhTuan02
             this.fileNameTB = new System.Windows.Forms.TextBox();
             this.compressBtn = new System.Windows.Forms.Button();
             this.decompressBtn = new System.Windows.Forms.Button();
+            this.advanceBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // readBtn
@@ -90,12 +91,28 @@ namespace ThucHanhTuan02
             this.decompressBtn.UseVisualStyleBackColor = false;
             this.decompressBtn.Click += new System.EventHandler(this.decompressBtn_Click);
             // 
+            // advanceBtn
+            // 
+            this.advanceBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(71)))), ((int)(((byte)(94)))));
+            this.advanceBtn.FlatAppearance.BorderSize = 0;
+            this.advanceBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.advanceBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.advanceBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(191)))), ((int)(((byte)(243)))));
+            this.advanceBtn.Location = new System.Drawing.Point(180, 259);
+            this.advanceBtn.Name = "advanceBtn";
+            this.advanceBtn.Size = new System.Drawing.Size(307, 35);
+            this.advanceBtn.TabIndex = 19;
+            this.advanceBtn.Text = "Bài 5 nâng cao";
+            this.advanceBtn.UseVisualStyleBackColor = false;
+            this.advanceBtn.Click += new System.EventHandler(this.advanceBtn_Click);
+            // 
             // Bai05
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(40)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(666, 338);
+            this.Controls.Add(this.advanceBtn);
             this.Controls.Add(this.decompressBtn);
             this.Controls.Add(this.compressBtn);
             this.Controls.Add(this.fileNameTB);
@@ -113,5 +130,6 @@ namespace ThucHanhTuan02
         private System.Windows.Forms.TextBox fileNameTB;
         private System.Windows.Forms.Button compressBtn;
         private System.Windows.Forms.Button decompressBtn;
+        private System.Windows.Forms.Button advanceBtn;
     }
 }
