@@ -13,6 +13,7 @@ using Ionic.Zip;
 
 namespace ThucHanhTuan02
 {
+    // Chịu thua, rồi một ngày ta sẽ báo thù bài này :((
     public partial class Bai5_NangCao : Form
     {
         BackgroundWorker backgroundWorker;
