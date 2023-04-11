@@ -45,7 +45,7 @@ namespace ThucHanhTuan02
                 }
                 else if (i == 1 || i == 2)
                 {
-                    if (i == 2 && (vals[i][0] != '0' || vals[i].Length < 1))
+                    if (i == 2 && (vals[i][0] != '0' || vals[i].Length < 10))
                     {
                         MessageBox.Show("SĐT phải có số 0 ở đầu và có đủ 10 chữ số");
                         return;

@@ -61,7 +61,7 @@ namespace ThucHanhTuan02
                 {
                     ZipArchiveEntry entry = archive.Entries[0];
                     entry.ExtractToFile(Path.Combine( @"..\..\Test Case Files", "output5.txt"),true);
-                    MessageBox.Show("Đã nén file thành công, file được tạo ở: " + fi.FullName);
+                    MessageBox.Show("Đã nén file thành công, file được tạo ở: " + "output5.txt");
                 }
             }
             catch(Exception ex)

@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using System.IO.Compression;
+//using System.IO.Compression;
+using Ionic.Zip;
 
 namespace ThucHanhTuan02
 {
@@ -18,7 +19,7 @@ namespace ThucHanhTuan02
         private OpenFileDialog ofd;
         private FileStream fs;
         private FileInfo fi;
-        private string zipPath = @"..\..\Test Case Files\";
+        private string zipPath = @"..\..\Test Case Files\output5_advance.zip";
         public Bai5_NangCao()
         {
             InitializeComponent();
@@ -33,34 +34,54 @@ namespace ThucHanhTuan02
             {
                 fs = new FileStream(ofd.FileName, FileMode.OpenOrCreate);
                 fileNameTB.Text = ofd.SafeFileName;
-                fs.Close();
+                //fs.Close();
             }
         }
 
-        private void compressBtn_Click(object sender, EventArgs e)
+        private async void compressBtn_Click(object sender, EventArgs e)
         {
-            try
-            {
-                using (fs = new FileStream(zipPath, FileMode.Create))
+            await Task.Run(() => {
+                try
                 {
-                    using (ZipArchive archive = new ZipArchive(fs, ZipArchiveMode.Create))
+                    fi = new FileInfo(ofd.FileName);
+                    
+                    long totalBytes = fi.Length;
+                    long currentBytes = 0;
+
+                    using (ZipFile zipFile = new ZipFile())
                     {
-                        archive.CreateEntryFromFile(ofd.FileName, ofd.SafeFileName);
-                        fi = new FileInfo(zipPath);
-                        MessageBox.Show("Đã nén file thành công, file được tạo ở: " + fi.FullName);
+                        ZipEntry entry = zipFile.AddEntry(fi.Name, fs);
+                        //zipFile.AddFile(fi.FullName,"");
+                        //zipFile.Ad
+                        /*zipFile.SaveProgress += (o, args) =>
+                        {
+                            var percentage = (int)((1.0d / args.TotalBytesToTransfer) * args.BytesTransferred * 100.0d);
+                            //progressBar1.Value = percentage;
+                            MessageBox.Show(args.TotalBytesToTransfer.ToString());
+                            //progressBar1.Parent.Invoke(new MethodInvoker ( delegate { progressBar1.Value += 2; } ));
+                        };*/
+                        zipFile.Save(zipPath);
+                        fs.Close();
                     }
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        fs = new FileStream(zipPath, FileMode.Open);
+                        //ms.Seek
+                    }
+                    
+
                 }
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            });
+            
         }
 
         private void decompressBtn_Click(object sender, EventArgs e)
         {
-            try
+            /*try
             {
                 using (ZipArchive archive = ZipFile.OpenRead(zipPath))
                 {
@@ -72,7 +93,7 @@ namespace ThucHanhTuan02
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-            }
+            }*/
         }
     }
 }

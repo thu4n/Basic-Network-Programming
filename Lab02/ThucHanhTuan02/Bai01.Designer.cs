@@ -83,7 +83,7 @@ namespace ThucHanhTuan02
             this.Controls.Add(this.writeBtn);
             this.Controls.Add(this.readBtn);
             this.Name = "bai01";
-            this.Text = "Form1";
+            this.Text = "Bai01";
             this.Load += new System.EventHandler(this.bai01_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
