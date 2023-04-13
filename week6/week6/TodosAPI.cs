@@ -38,12 +38,13 @@ namespace week6
         {
             List<ListItem> list;
             HttpClient client = new HttpClient();
-            ProgressMessageHandler progressMessageHandler = new ProgressMessageHandler();
+            infoLabel.Text = "Đang lấy dữ liệu...";
             HttpResponseMessage response = await client.GetAsync(api);
             if(response.StatusCode == HttpStatusCode.OK)
             {
                 var res = await response.Content.ReadAsStringAsync();
                 list = JsonSerializer.Deserialize<List<ListItem>>(res);
+                infoLabel.Visible = false;
                 DisplayList(list);
             }
         }
