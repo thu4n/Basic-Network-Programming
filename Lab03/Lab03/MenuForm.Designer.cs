@@ -50,6 +50,7 @@ namespace Lab03
             this.bai1Btn.TabIndex = 0;
             this.bai1Btn.Text = "Bài 1";
             this.bai1Btn.UseVisualStyleBackColor = false;
+            this.bai1Btn.Click += new System.EventHandler(this.bai1Btn_Click);
             // 
             // titleLabel
             // 
@@ -75,6 +76,7 @@ namespace Lab03
             this.bai3Btn.TabIndex = 2;
             this.bai3Btn.Text = "Bài 3";
             this.bai3Btn.UseVisualStyleBackColor = false;
+            this.bai3Btn.Click += new System.EventHandler(this.bai3Btn_Click);
             // 
             // bai2Btn
             // 
@@ -90,6 +92,7 @@ namespace Lab03
             this.bai2Btn.TabIndex = 3;
             this.bai2Btn.Text = "Bài 2";
             this.bai2Btn.UseVisualStyleBackColor = false;
+            this.bai2Btn.Click += new System.EventHandler(this.bai2Btn_Click);
             // 
             // bai4Btn
             // 
@@ -105,6 +108,7 @@ namespace Lab03
             this.bai4Btn.TabIndex = 4;
             this.bai4Btn.Text = "Bài 4";
             this.bai4Btn.UseVisualStyleBackColor = false;
+            this.bai4Btn.Click += new System.EventHandler(this.bai4Btn_Click);
             // 
             // MenuForm
             // 
