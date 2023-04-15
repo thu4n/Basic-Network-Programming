@@ -61,6 +61,7 @@
             this.listenBtn.TabIndex = 13;
             this.listenBtn.Text = "Start listening";
             this.listenBtn.UseVisualStyleBackColor = true;
+            this.listenBtn.Click += new System.EventHandler(this.listenBtn_Click);
             // 
             // serverIPTB
             // 
@@ -98,6 +99,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Server";
             this.Text = "Server";
+            this.Load += new System.EventHandler(this.Server_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -52,6 +52,7 @@
             this.sendBtn.TabIndex = 19;
             this.sendBtn.Text = "Send";
             this.sendBtn.UseVisualStyleBackColor = true;
+            this.sendBtn.Click += new System.EventHandler(this.sendBtn_Click);
             // 
             // typeBox
             // 
@@ -91,6 +92,7 @@
             this.connectBtn.TabIndex = 16;
             this.connectBtn.Text = "Connect";
             this.connectBtn.UseVisualStyleBackColor = true;
+            this.connectBtn.Click += new System.EventHandler(this.connectBtn_Click);
             // 
             // usernameTB
             // 
