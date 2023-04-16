@@ -70,6 +70,18 @@
     <Compile Include="Bai4.Designer.cs">
       <DependentUpon>Bai4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bai4_Client.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bai4_Client.Designer.cs">
+      <DependentUpon>Bai4_Client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bai4_Server.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bai4_Server.Designer.cs">
+      <DependentUpon>Bai4_Server.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +101,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bai4.resx">
       <DependentUpon>Bai4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bai4_Client.resx">
+      <DependentUpon>Bai4_Client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bai4_Server.resx">
+      <DependentUpon>Bai4_Server.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuForm.resx">
       <DependentUpon>MenuForm.cs</DependentUpon>
