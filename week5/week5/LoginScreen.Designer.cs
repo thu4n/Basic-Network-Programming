@@ -70,6 +70,7 @@ namespace week5
             this.serverBtn.TabIndex = 5;
             this.serverBtn.Text = "Server";
             this.serverBtn.UseVisualStyleBackColor = true;
+            this.serverBtn.Click += new System.EventHandler(this.serverBtn_Click);
             // 
             // clientBtn
             // 
@@ -83,6 +84,7 @@ namespace week5
             this.clientBtn.TabIndex = 4;
             this.clientBtn.Text = "Client";
             this.clientBtn.UseVisualStyleBackColor = true;
+            this.clientBtn.Click += new System.EventHandler(this.clientBtn_Click);
             // 
             // LoginScreen
             // 

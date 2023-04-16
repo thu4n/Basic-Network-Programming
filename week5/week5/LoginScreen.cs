@@ -16,5 +16,17 @@ namespace week5
         {
             InitializeComponent();
         }
+
+        private void clientBtn_Click(object sender, EventArgs e)
+        {
+            var form = new Client();
+            form.Show();
+        }
+
+        private void serverBtn_Click(object sender, EventArgs e)
+        {
+            var form = new Server();
+            form.Show();
+        }
     }
 }
