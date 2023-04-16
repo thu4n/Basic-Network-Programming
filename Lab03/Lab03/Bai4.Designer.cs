@@ -29,31 +29,50 @@ namespace Lab03
         /// </summary>
         private void InitializeComponent()
         {
-            this.bai1Btn = new System.Windows.Forms.Button();
+            this.serverBtn = new System.Windows.Forms.Button();
+            this.clientBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // bai1Btn
+            // serverBtn
             // 
-            this.bai1Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(122)))), ((int)(((byte)(208)))));
-            this.bai1Btn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.bai1Btn.FlatAppearance.BorderSize = 0;
-            this.bai1Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bai1Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bai1Btn.ForeColor = System.Drawing.Color.White;
-            this.bai1Btn.Location = new System.Drawing.Point(316, 202);
-            this.bai1Btn.Name = "bai1Btn";
-            this.bai1Btn.Size = new System.Drawing.Size(169, 46);
-            this.bai1Btn.TabIndex = 2;
-            this.bai1Btn.Text = "Nút template";
-            this.bai1Btn.UseVisualStyleBackColor = false;
+            this.serverBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(122)))), ((int)(((byte)(208)))));
+            this.serverBtn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.serverBtn.FlatAppearance.BorderSize = 0;
+            this.serverBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.serverBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.serverBtn.ForeColor = System.Drawing.Color.White;
+            this.serverBtn.Location = new System.Drawing.Point(177, 104);
+            this.serverBtn.Name = "serverBtn";
+            this.serverBtn.Size = new System.Drawing.Size(169, 46);
+            this.serverBtn.TabIndex = 2;
+            this.serverBtn.Text = "I\'m a Server";
+            this.serverBtn.UseVisualStyleBackColor = false;
+            this.serverBtn.Click += new System.EventHandler(this.serverBtn_Click);
+            // 
+            // clientBtn
+            // 
+            this.clientBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(122)))), ((int)(((byte)(208)))));
+            this.clientBtn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.clientBtn.FlatAppearance.BorderSize = 0;
+            this.clientBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clientBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clientBtn.ForeColor = System.Drawing.Color.White;
+            this.clientBtn.Location = new System.Drawing.Point(177, 177);
+            this.clientBtn.Name = "clientBtn";
+            this.clientBtn.Size = new System.Drawing.Size(169, 46);
+            this.clientBtn.TabIndex = 3;
+            this.clientBtn.Text = "I\'m a Client";
+            this.clientBtn.UseVisualStyleBackColor = false;
+            this.clientBtn.Click += new System.EventHandler(this.clientBtn_Click);
             // 
             // Bai4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.bai1Btn);
+            this.ClientSize = new System.Drawing.Size(523, 327);
+            this.Controls.Add(this.clientBtn);
+            this.Controls.Add(this.serverBtn);
             this.Name = "Bai4";
             this.Text = "Bai4";
             this.ResumeLayout(false);
@@ -62,6 +81,7 @@ namespace Lab03
 
         #endregion
 
-        private System.Windows.Forms.Button bai1Btn;
+        private System.Windows.Forms.Button serverBtn;
+        private System.Windows.Forms.Button clientBtn;
     }
 }

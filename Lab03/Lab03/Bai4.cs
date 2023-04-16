@@ -16,5 +16,17 @@ namespace Lab03
         {
             InitializeComponent();
         }
+
+        private void clientBtn_Click(object sender, EventArgs e)
+        {
+            Bai4_Client client = new Bai4_Client();
+            client.Show();
+        }
+
+        private void serverBtn_Click(object sender, EventArgs e)
+        {
+            Bai4_Server server = new Bai4_Server();
+            server.Show();
+        }
     }
 }
