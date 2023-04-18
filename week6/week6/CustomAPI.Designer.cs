@@ -1,7 +1,7 @@
 ﻿
 namespace week6
 {
-    partial class Form1
+    partial class CustomAPI
     {
         /// <summary>
         /// Required designer variable.
@@ -29,13 +29,20 @@ namespace week6
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // CustomAPI
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.Name = "CustomAPI";
+            this.Text = "CustomAPI";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
     }
 }
-
