@@ -42,6 +42,7 @@ namespace Lab03
                 portNum = ((IPEndPoint)client.Client.LocalEndPoint).Port;
                 username = usernameTB.Text;
                 usernameTB.ReadOnly = true;
+                nwStream = client.GetStream();
                 getMsg();
             }
             catch(Exception ex)
@@ -51,7 +52,6 @@ namespace Lab03
         }
         private void getMsg()
         {
-            nwStream = client.GetStream();
             byte[] received = new byte[1024];
             Task.Run(async () =>
             {

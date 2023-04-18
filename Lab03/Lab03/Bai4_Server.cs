@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -46,26 +47,44 @@ namespace Lab03
         {
             listener = new TcpListener(IPAddress.Loopback, 16000);
             listener.Start();
-            byte[] buffer = new byte[1024];
             Task.Run(async () =>
             {
                 while (true)
                 {
                     client = await listener.AcceptTcpClientAsync();
-                    clients.Add(client);
-                    NetworkStream nwStream = client.GetStream();
-                    int byteCount = nwStream.Read(buffer, 0, buffer.Length);
-                    byte[] formatted = new byte[byteCount];
-                    Array.Copy(buffer, formatted, byteCount);
-                    string msg = Encoding.ASCII.GetString(formatted);
-                    Invoke(new MethodInvoker(delegate ()
+                    if (client.Connected)
                     {
-                        chatBox.Text += msg + "\r\n";
-                    }));
-                    broadcastMsg(clients, msg);
+                        Invoke(new MethodInvoker(delegate ()
+                        {
+                            //chatBox.Text += client.
+                        }));
+                    }
+                    Thread thread = new Thread(() => openSession(client)) 
+                    {
+                        IsBackground = true
+                    };
+                    thread.Start();
                 }
             });
             
+        }
+        private void openSession(TcpClient client)
+        {
+            clients.Add(client);
+            NetworkStream nwStream = client.GetStream();
+            byte[] buffer = new byte[1024];
+            while (client.Connected)
+            {
+                int byteCount = nwStream.Read(buffer, 0, buffer.Length);
+                byte[] formatted = new byte[byteCount];
+                Array.Copy(buffer, formatted, byteCount);
+                string msg = Encoding.ASCII.GetString(formatted);
+                Invoke(new MethodInvoker(delegate ()
+                {
+                    chatBox.Text += msg + "\r\n";
+                }));
+                broadcastMsg(clients, msg);
+            }
         }
         private void broadcastMsg(List<TcpClient> clients ,string msg)
         {
