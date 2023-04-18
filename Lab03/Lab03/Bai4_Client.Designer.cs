@@ -177,6 +177,7 @@ namespace Lab03
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(244, 360);
             this.listBox1.TabIndex = 14;
+            this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
             // 
             // Bai4_Client
             // 
