@@ -22,7 +22,6 @@ namespace week6
         {
             try
             {
-                // Tạo HttpClient để gửi yêu cầu lên API
                 using (HttpClient httpClient = new HttpClient())
                 {
                     // Gửi yêu cầu GET lên API
@@ -33,8 +32,6 @@ namespace week6
                     {
                         // Đọc dữ liệu JSON từ response
                         string json = await response.Content.ReadAsStringAsync();
-
-                        // Phân tích cú pháp dữ liệu JSON
                         dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
 
                         // Lấy URL hình ảnh từ dữ liệu JSON
@@ -43,16 +40,12 @@ namespace week6
                         // Gửi yêu cầu GET để tải hình ảnh chó về
                         HttpResponseMessage imageResponse = await httpClient.GetAsync(imageUrl);
 
-                        // Kiểm tra kết quả trả về từ API
                         if (imageResponse.IsSuccessStatusCode)
                         {
-                            // Đọc dữ liệu hình ảnh từ response
                             byte[] imageData = await imageResponse.Content.ReadAsByteArrayAsync();
-
-                            // Hiển thị hình ảnh lên PictureBox
                             using (var stream = new System.IO.MemoryStream(imageData))
                             {
-                                MyDogImage.Image = System.Drawing.Image.FromStream(stream);
+                                MyDogImage.Image = Image.FromStream(stream);
                             }
                         }
                         else
