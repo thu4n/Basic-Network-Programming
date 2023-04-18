@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Lab03.Bai4_Client;
 
 namespace Lab03
 {
@@ -40,6 +41,7 @@ namespace Lab03
                 MessageBox.Show("Server stopped listening");
                 isListening = false;
                 listener.Stop();
+                Bai4_TcpClient bai4;
             }
             
         }

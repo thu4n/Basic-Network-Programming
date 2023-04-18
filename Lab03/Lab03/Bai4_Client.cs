@@ -14,10 +14,28 @@ namespace Lab03
 {
     public partial class Bai4_Client : Form
     {
-        private TcpClient client;
-        private NetworkStream nwStream;
-        private string username;
-        private int portNum;
+
+        public class Bai4_TcpClient
+        {
+            public TcpClient client;
+            public NetworkStream nwStream;
+            public string username;
+            public int portNum;
+            public Bai4_TcpClient()
+            {
+                // Constructor mặc định, không dùng nên để rỗng
+            }
+            public Bai4_TcpClient(string str)
+            {
+                client = new TcpClient();
+                client.Connect(IPAddress.Loopback, 16000);
+                portNum = ((IPEndPoint)client.Client.LocalEndPoint).Port;
+                username = str;
+                nwStream = client.GetStream();
+            }
+
+        }
+        Bai4_TcpClient tcpClient;
         public Bai4_Client()
         {
             InitializeComponent();
@@ -37,12 +55,8 @@ namespace Lab03
             }
             try
             {
-                client = new TcpClient();
-                client.Connect(IPAddress.Loopback, 16000);
-                portNum = ((IPEndPoint)client.Client.LocalEndPoint).Port;
-                username = usernameTB.Text;
+                tcpClient = new Bai4_TcpClient(usernameTB.Text);
                 usernameTB.ReadOnly = true;
-                nwStream = client.GetStream();
                 getMsg();
             }
             catch(Exception ex)
@@ -57,7 +71,7 @@ namespace Lab03
             {
                 while (true)
                 {                    
-                    int byte_count = await nwStream.ReadAsync(received, 0, received.Length);
+                    int byte_count = await tcpClient.nwStream.ReadAsync(received, 0, received.Length);
                     byte[] formatted = new byte[byte_count];
                     Array.Copy(received, formatted, byte_count);
                     string msg = Encoding.ASCII.GetString(formatted);
@@ -71,9 +85,9 @@ namespace Lab03
         private void sendBtn_Click(object sender, EventArgs e)
         {
             if (textBox.Text == "") return;
-            string msg = username + "#" + portNum.ToString() + ": " + textBox.Text;
+            string msg = tcpClient.username + "#" + tcpClient.portNum.ToString() + ": " + textBox.Text;
             byte[] test = Encoding.ASCII.GetBytes(msg);
-            nwStream.Write(test, 0, test.Length);
+            tcpClient.nwStream.Write(test, 0, test.Length);
             textBox.Clear();
         }
     }
