@@ -10,8 +10,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text.Json;
-using static Lab03.Bai4_Client;
 
 namespace Lab03
 {
@@ -51,19 +49,15 @@ namespace Lab03
             listener.Start();
             Task.Run(async () =>
             {
-                while (true)
-                {
-                    client = await listener.AcceptTcpClientAsync();
-                    if (client.Connected)
+                    while (isListening)
                     {
-                       
+                        client = await listener.AcceptTcpClientAsync();
+                        Thread thread = new Thread(() => openSession(client)) // Mở một session cho mỗi client
+                        {
+                            IsBackground = true
+                        };
+                        thread.Start();
                     }
-                    Thread thread = new Thread(() => openSession(client)) 
-                    {
-                        IsBackground = true
-                    };
-                    thread.Start();
-                }
             });
             
         }
@@ -72,21 +66,35 @@ namespace Lab03
             clients.Add(client);
             NetworkStream nwStream = client.GetStream();
             byte[] buffer = new byte[1024];
-            while (client.Connected)
+            while (client.Connected && isListening)
             {
-                int byteCount = nwStream.Read(buffer, 0, buffer.Length);
-                byte[] formatted = new byte[byteCount];
-                Array.Copy(buffer, formatted, byteCount);
-                string msg = Encoding.ASCII.GetString(formatted);
-                Invoke(new MethodInvoker(delegate ()
+                try
                 {
-                    chatBox.Text += msg + "\r\n";
-                }));
-                broadcastMsg(clients, msg);
+                    if(nwStream.DataAvailable) // Có data trên stream thì mới đọc
+                    {
+                        int byteCount = nwStream.Read(buffer, 0, buffer.Length);
+                        byte[] formatted = new byte[byteCount];
+                        Array.Copy(buffer, formatted, byteCount);
+                        string msg = Encoding.ASCII.GetString(formatted);
+                        Invoke(new MethodInvoker(delegate ()
+                        {
+                            chatBox.Text += msg + "\r\n";
+                        }));
+                        broadcastMsg(clients, msg);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
+            nwStream.Close();
+            client.Close();
+            clients.Remove(client);
         }
         private void broadcastMsg(List<TcpClient> clients ,string msg)
         {
+            if (clients.Count == 0) return;
             foreach(var client in clients)
             {
                 NetworkStream nwStream = client.GetStream();
