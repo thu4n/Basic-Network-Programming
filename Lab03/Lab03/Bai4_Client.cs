@@ -157,7 +157,10 @@ namespace Lab03
         {
             if(listBox1.SelectedItem != null)
             {
-                MessageBox.Show("ok");
+                string[] tags = listBox1.SelectedItem.ToString().Split('#');
+                if (int.Parse(tags[1]) == tcpClient.portNum) return;
+                Bai4_Client_DM dm = new Bai4_Client_DM();
+                dm.Show();
             }
         }
         private void disconnect()
