@@ -106,7 +106,7 @@ namespace Lab03
                     int byte_count = await nwStream.ReadAsync(received, 0, received.Length);
                     byte[] formatted = new byte[byte_count];
                     Array.Copy(received, formatted, byte_count);
-                    string msg = Encoding.ASCII.GetString(formatted);
+                    string msg = Encoding.Unicode.GetString(formatted);
                     Invoke(new MethodInvoker(delegate ()
                     {
                         if (currentCount != clients.Count) // Cập nhật số client ở thread hiện tại
@@ -128,7 +128,7 @@ namespace Lab03
         }
         private void sendMsg(string msg)
         {
-            byte[] buffer = Encoding.ASCII.GetBytes(msg);
+            byte[] buffer = Encoding.Unicode.GetBytes(msg);
             nwStream.Write(buffer, 0, buffer.Length);
         }
         private void sendBtn_Click(object sender, EventArgs e)
@@ -159,7 +159,7 @@ namespace Lab03
             {
                 string[] tags = listBox1.SelectedItem.ToString().Split('#');
                 if (int.Parse(tags[1]) == tcpClient.portNum) return;
-                Bai4_Client_DM dm = new Bai4_Client_DM();
+                Bai4_Client_DM dm = new Bai4_Client_DM(tcpClient.portNum, nwStream);
                 dm.Show();
             }
         }

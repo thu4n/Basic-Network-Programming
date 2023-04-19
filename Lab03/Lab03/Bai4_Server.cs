@@ -77,7 +77,7 @@ namespace Lab03
                         int byteCount = nwStream.Read(buffer, 0, buffer.Length);
                         byte[] formatted = new byte[byteCount];
                         Array.Copy(buffer, formatted, byteCount);
-                        string msg = Encoding.ASCII.GetString(formatted);
+                        string msg = Encoding.Unicode.GetString(formatted);
                         Invoke(new MethodInvoker(delegate ()
                         {
                             chatBox.Text += msg + "\r\n";
@@ -102,7 +102,7 @@ namespace Lab03
             foreach(var client in clients)
             {
                 NetworkStream nwStream = client.GetStream();
-                byte[] buffer = Encoding.ASCII.GetBytes(msg);
+                byte[] buffer = Encoding.Unicode.GetBytes(msg);
                 nwStream.Write(buffer, 0, buffer.Length);
             }
         }
