@@ -37,7 +37,9 @@ namespace Lab03
             {
                 listenBtn.Text = "Start Listening";
                 listenBtn.BackColor = ColorTranslator.FromHtml("#457ad0");
-                MessageBox.Show("Server stopped listening");
+                string msg = "-- Server has stopped listening --";
+                broadcastMsg(clients, msg);
+                chatBox.Text += msg + "\r\n";
                 isListening = false;
                 listener.Stop();
             }
@@ -80,6 +82,10 @@ namespace Lab03
                         {
                             chatBox.Text += msg + "\r\n";
                         }));
+                        if (msg[0] == '!')
+                        {
+                            clients.Remove(client);
+                        }
                         broadcastMsg(clients, msg);
                     }
                 }
@@ -90,11 +96,10 @@ namespace Lab03
             }
             nwStream.Close();
             client.Close();
-            clients.Remove(client);
         }
         private void broadcastMsg(List<TcpClient> clients ,string msg)
         {
-            if (clients.Count == 0) return;
+            //if (clients.Count == 0) return;
             foreach(var client in clients)
             {
                 NetworkStream nwStream = client.GetStream();

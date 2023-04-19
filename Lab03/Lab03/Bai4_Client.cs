@@ -63,33 +63,37 @@ namespace Lab03
             {
                 try
                 {
-                    titleLabel0.Text = "You are connected to the server";
-                    titleLabel0.ForeColor = ColorTranslator.FromHtml("#457ad0");
-                    connected = true;
-                    connectBtn.Text = "Disconnect";
-                    connectBtn.BackColor = Color.Red;
                     tcpClient = new Bai4_TcpClient(usernameTB.Text);
-                    usernameTB.ReadOnly = true;
                     nwStream = tcpClient.client.GetStream();
                     clients.TryAdd(tcpClient.portNum, tcpClient.username);
                     sendMsg(tcpClient.nameTag() + " has joined the chat");
                     getMsg();
                     displayClients();
                 }
+                catch(SocketException se)
+                {
+                    if(se.SocketErrorCode == SocketError.ConnectionRefused)
+                    {
+                        MessageBox.Show("There is no server listening at the moment");
+                        return;
+                    }
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                 }
-
+                titleLabel0.Text = "You are connected to the server";
+                titleLabel0.ForeColor = ColorTranslator.FromHtml("#457ad0");
+                connected = true;
+                connectBtn.Text = "Disconnect";
+                connectBtn.BackColor = Color.Red;
+                usernameTB.ReadOnly = true;
             }
             else
             {
-                connected = false;
-                connectBtn.Text = "Connect";
-                connectBtn.BackColor = ColorTranslator.FromHtml("#457ad0");
-                sendMsg(tcpClient.nameTag() + " has left the chat");
-                nwStream.Close();
-                tcpClient.client.Close();
+                clients.TryRemove(tcpClient.portNum, out string temp);
+                sendMsg("!! " + tcpClient.nameTag() + " has left the chat !!");
+                disconnect();
             }
         }
         private void getMsg()
@@ -111,10 +115,15 @@ namespace Lab03
                         }
                         chatBox.Text += msg + "\r\n";
                     }));
+                    if (msg[0] == '-') 
+                    { 
+                        disconnect();
+                    }
+                    else if (msg[0] == '!') { displayClients(); }
                 }
+                clients.TryRemove(tcpClient.portNum, out string temp);
                 nwStream.Close();
                 tcpClient.client.Close();
-                clients.TryRemove(tcpClient.portNum, out string temp);
             });
         }
         private void sendMsg(string msg)
@@ -125,6 +134,11 @@ namespace Lab03
         private void sendBtn_Click(object sender, EventArgs e)
         {
             if (textBox.Text == "") return;
+            if (!connected)
+            {
+                textBox.Clear();
+                return;
+            }
             string msg = tcpClient.nameTag() + ": " + textBox.Text;
             sendMsg(msg);
             textBox.Clear();
@@ -145,6 +159,16 @@ namespace Lab03
             {
                 MessageBox.Show("ok");
             }
+        }
+        private void disconnect()
+        {
+            titleLabel0.Text = "You are not connected to the server";
+            titleLabel0.ForeColor = Color.Black;
+            connected = false;
+            connectBtn.Text = "Connect";
+            connectBtn.BackColor = ColorTranslator.FromHtml("#457ad0");
+            nwStream.Close();
+            tcpClient.client.Close();
         }
     }
 }
