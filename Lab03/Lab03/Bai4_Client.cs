@@ -170,5 +170,15 @@ namespace Lab03
             nwStream.Close();
             tcpClient.client.Close();
         }
+
+        private void Bai4_Client_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if(connected)
+            {
+                clients.TryRemove(tcpClient.portNum, out string temp);
+                sendMsg("!! " + tcpClient.nameTag() + " has left the chat !!");
+                disconnect();
+            }
+        }
     }
 }

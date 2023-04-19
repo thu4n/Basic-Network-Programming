@@ -111,7 +111,7 @@ namespace Lab03
             this.titleLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleLabel1.Location = new System.Drawing.Point(272, 28);
             this.titleLabel1.Name = "titleLabel1";
-            this.titleLabel1.Size = new System.Drawing.Size(301, 32);
+            this.titleLabel1.Size = new System.Drawing.Size(300, 32);
             this.titleLabel1.TabIndex = 9;
             this.titleLabel1.Text = "You are chatting with";
             this.titleLabel1.Visible = false;
@@ -123,7 +123,7 @@ namespace Lab03
             this.titleLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(122)))), ((int)(((byte)(208)))));
             this.titleLabel2.Location = new System.Drawing.Point(569, 28);
             this.titleLabel2.Name = "titleLabel2";
-            this.titleLabel2.Size = new System.Drawing.Size(159, 32);
+            this.titleLabel2.Size = new System.Drawing.Size(158, 32);
             this.titleLabel2.TabIndex = 10;
             this.titleLabel2.Text = "titleLabel2";
             this.titleLabel2.Visible = false;
@@ -151,7 +151,7 @@ namespace Lab03
             this.titleLabel0.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleLabel0.Location = new System.Drawing.Point(251, 28);
             this.titleLabel0.Name = "titleLabel0";
-            this.titleLabel0.Size = new System.Drawing.Size(498, 32);
+            this.titleLabel0.Size = new System.Drawing.Size(497, 32);
             this.titleLabel0.TabIndex = 12;
             this.titleLabel0.Text = "You are not connected to the server";
             // 
@@ -200,6 +200,7 @@ namespace Lab03
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Bai4_Client";
             this.Text = "Bai4_Client";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Bai4_Client_FormClosed);
             this.Load += new System.EventHandler(this.Bai4_Client_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

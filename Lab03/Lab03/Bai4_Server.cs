@@ -99,7 +99,6 @@ namespace Lab03
         }
         private void broadcastMsg(List<TcpClient> clients ,string msg)
         {
-            //if (clients.Count == 0) return;
             foreach(var client in clients)
             {
                 NetworkStream nwStream = client.GetStream();
@@ -112,6 +111,17 @@ namespace Lab03
         {
             chatBox.Text = "";
             isListening = false;
+        }
+
+        private void Bai4_Server_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if(isListening)
+            {
+                string msg = "-- Server has stopped listening --";
+                broadcastMsg(clients, msg);
+                isListening = false;
+                listener.Stop();
+            }
         }
     }
 }
