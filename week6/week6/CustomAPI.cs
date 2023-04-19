@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace week6
 {
-    public partial class Form1 : Form
+    public partial class CustomAPI : Form
     {
-        public Form1()
+        public CustomAPI()
         {
             InitializeComponent();
         }
