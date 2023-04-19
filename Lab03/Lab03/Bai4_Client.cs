@@ -167,6 +167,7 @@ namespace Lab03
             connected = false;
             connectBtn.Text = "Connect";
             connectBtn.BackColor = ColorTranslator.FromHtml("#457ad0");
+            usernameTB.ReadOnly = false;
             nwStream.Close();
             tcpClient.client.Close();
         }

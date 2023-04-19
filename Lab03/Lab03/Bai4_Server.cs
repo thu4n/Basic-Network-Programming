@@ -30,8 +30,8 @@ namespace Lab03
             {
                 listenBtn.Text = "Stop listening";
                 listenBtn.BackColor = Color.Red;
-                monitorConnection();
                 isListening = true;
+                monitorConnection();
             }
             else
             {
