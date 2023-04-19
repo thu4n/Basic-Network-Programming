@@ -122,6 +122,7 @@ namespace Lab03
                 isListening = false;
                 listener.Stop();
             }
+            Bai4.serverOpen = false;
         }
     }
 }

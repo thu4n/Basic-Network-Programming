@@ -12,6 +12,7 @@ namespace Lab03
 {
     public partial class Bai4 : Form
     {
+        public static bool serverOpen;
         public Bai4()
         {
             InitializeComponent();
@@ -25,8 +26,17 @@ namespace Lab03
 
         private void serverBtn_Click(object sender, EventArgs e)
         {
-            Bai4_Server server = new Bai4_Server();
-            server.Show();
+            if(!serverOpen) 
+            {
+                Bai4_Server server = new Bai4_Server();
+                server.Show();
+                serverOpen = true;
+            }
+            else
+            {
+                MessageBox.Show("There is already one server running");
+                return;
+            }
         }
     }
 }
