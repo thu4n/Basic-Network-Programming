@@ -17,7 +17,12 @@ namespace Lab03
             InitializeComponent();
         }
 
-        private void bai1Btn_Click(object sender, EventArgs e)
+
+        private void Udp_C_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void Udp_S_Click(object sender, EventArgs e)
         {
 
         }
