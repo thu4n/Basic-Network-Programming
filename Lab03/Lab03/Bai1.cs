@@ -20,11 +20,13 @@ namespace Lab03
 
         private void Udp_C_Click(object sender, EventArgs e)
         {
-
+            Bai1_Client client = new Bai1_Client();
+            client.Show();
         }
         private void Udp_S_Click(object sender, EventArgs e)
         {
-
+            Bai1_Server Server = new Bai1_Server();
+            Server.Show();
         }
     }
 }

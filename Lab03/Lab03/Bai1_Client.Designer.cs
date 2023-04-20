@@ -95,6 +95,7 @@
             this.Sendbtn.TabIndex = 6;
             this.Sendbtn.Text = "Send";
             this.Sendbtn.UseVisualStyleBackColor = true;
+            this.Sendbtn.Click += new System.EventHandler(this.Sendbtn_Click);
             // 
             // Bai1_Client
             // 
