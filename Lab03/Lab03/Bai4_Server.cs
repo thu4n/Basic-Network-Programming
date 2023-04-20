@@ -19,6 +19,7 @@ namespace Lab03
         private TcpListener listener;
         private TcpClient client;
         private List<TcpClient> clients = new List<TcpClient>();
+        private Dictionary<int,TcpClient> tempClients = new Dictionary<int,TcpClient>();
         public Bai4_Server()
         {
             InitializeComponent();
@@ -65,7 +66,10 @@ namespace Lab03
         }
         private void openSession(TcpClient client)
         {
+            int portNum = ((IPEndPoint)client.Client.RemoteEndPoint).Port;
             clients.Add(client);
+            //MessageBox.Show(portNum.ToString());
+            tempClients.Add(portNum, client);
             NetworkStream nwStream = client.GetStream();
             byte[] buffer = new byte[1024];
             while (client.Connected && isListening)
@@ -82,11 +86,20 @@ namespace Lab03
                         {
                             chatBox.Text += msg + "\r\n";
                         }));
-                        if (msg[0] == '!')
+                        if (Char.IsDigit(msg[0]))
                         {
-                            clients.Remove(client);
+                            string[] packets = msg.Split('<');
+                            directMsg(int.Parse(packets[0]), packets[1]);
                         }
-                        broadcastMsg(clients, msg);
+                        else
+                        {
+                            if (msg[0] == '!')
+                            {
+                                clients.Remove(client);
+                                tempClients.Remove(portNum);
+                            }
+                            broadcastMsg(clients, msg);
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -106,11 +119,20 @@ namespace Lab03
                 nwStream.Write(buffer, 0, buffer.Length);
             }
         }
+        private void directMsg(int num, string msg)
+        {
+            TcpClient recpt = tempClients[num];
+            NetworkStream nwStream = recpt.GetStream();
+            msg = ">" + msg;
+            byte[] buffer = Encoding.Unicode.GetBytes(msg);
+            nwStream.Write(buffer, 0, buffer.Length);
+        }
 
         private void Bai4_Server_Load(object sender, EventArgs e)
         {
             chatBox.Text = "";
             isListening = false;
+            tempClients.Clear();
         }
 
         private void Bai4_Server_FormClosed(object sender, FormClosedEventArgs e)

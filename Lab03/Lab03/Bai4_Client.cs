@@ -26,12 +26,12 @@ namespace Lab03
             public string username { get; set; }
             public int portNum { get; set; }
             public Bai4_TcpClient() { }
-            public Bai4_TcpClient(string str)
+            public Bai4_TcpClient(string name)
             {
                 client = new TcpClient();
                 client.Connect(IPAddress.Loopback, 16000);
                 portNum = ((IPEndPoint)client.Client.LocalEndPoint).Port;
-                username = str;
+                username = name;
             }
             public string nameTag()
             {
@@ -119,6 +119,15 @@ namespace Lab03
                     { 
                         disconnect();
                     }
+                    /*else if (msg[0] == '>')
+                    {
+                        // Nếu để đoạn code này chạy thì cứ mỗi lần nhận DM là lại mở một cửa sổ mới, cần fix vụ này trước
+                        string dm = msg.Substring(1, msg.Length - 1);
+                        string senderInfo = dm.Substring(0, dm.IndexOf(':')-1);
+                        string[] arr = senderInfo.Split('#');
+                        int port = int.Parse(arr[1]);
+                        Bai4_Client_DM reply = new Bai4_Client_DM(tcpClient.nameTag(), port, nwStream, senderInfo);
+                    }*/
                     else if (msg[0] == '!') { displayClients(); }
                 }
                 clients.TryRemove(tcpClient.portNum, out string temp);
@@ -158,8 +167,10 @@ namespace Lab03
             if(listBox1.SelectedItem != null)
             {
                 string[] tags = listBox1.SelectedItem.ToString().Split('#');
-                if (int.Parse(tags[1]) == tcpClient.portNum) return;
-                Bai4_Client_DM dm = new Bai4_Client_DM(tcpClient.portNum, nwStream);
+                string recptInfo = listBox1.SelectedItems.ToString();
+                int port = int.Parse(tags[1]);
+                if (port == tcpClient.portNum) return;
+                Bai4_Client_DM dm = new Bai4_Client_DM(tcpClient.nameTag(),port, nwStream, recptInfo);
                 dm.Show();
             }
         }
