@@ -121,12 +121,10 @@ namespace Lab03
                     }
                     /*else if (msg[0] == '>')
                     {
-                        // Nếu để đoạn code này chạy thì cứ mỗi lần nhận DM là lại mở một cửa sổ mới, cần fix vụ này trước
-                        string dm = msg.Substring(1, msg.Length - 1);
-                        string senderInfo = dm.Substring(0, dm.IndexOf(':')-1);
-                        string[] arr = senderInfo.Split('#');
-                        int port = int.Parse(arr[1]);
-                        Bai4_Client_DM reply = new Bai4_Client_DM(tcpClient.nameTag(), port, nwStream, senderInfo);
+                        Dùng một dictionary để lưu những client đang dm với key là số port
+                        với mỗi tin nhắn riêng, check xem client có trong dict chưa
+                            - nếu chưa, add vào dict và mở một form dm mới cho bên nhận
+                            - nếu có rồi, gửi tin nhắn thẳng vào form đang mở có chứa số port đó
                     }*/
                     else if (msg[0] == '!') { displayClients(); }
                 }
@@ -167,7 +165,7 @@ namespace Lab03
             if(listBox1.SelectedItem != null)
             {
                 string[] tags = listBox1.SelectedItem.ToString().Split('#');
-                string recptInfo = listBox1.SelectedItems.ToString();
+                string recptInfo = listBox1.SelectedItem.ToString();
                 int port = int.Parse(tags[1]);
                 if (port == tcpClient.portNum) return;
                 Bai4_Client_DM dm = new Bai4_Client_DM(tcpClient.nameTag(),port, nwStream, recptInfo);

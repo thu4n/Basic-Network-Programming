@@ -30,26 +30,26 @@ namespace Lab03
             senderInfo = nameTag;
             recptInfo = recpt;
             titleLabel0.Text = "You are chatting with " + recptInfo;
+            Text = recptInfo;
         }
 
 
         private void sendBtn_Click(object sender, EventArgs e)
         {
+            if (textBox.Text == "") return;
             string msg = textBox.Text;
             string packet = destPort.ToString() + "<" + senderInfo + ": " + msg;
-            string[] arr = packet.Split('<');
-            byte[] buffer = new byte[packet.Length];
-            buffer = Encoding.Unicode.GetBytes(packet);
+            byte[] buffer = Encoding.Unicode.GetBytes(packet);
             nwStream.Write(buffer,0,buffer.Length);
             textBox.Clear();
-            //MessageBox.Show(arr[0] + " " + arr[1]);
         }
 
         private void Bai4_Client_DM_Load(object sender, EventArgs e)
         {
-            /*string msg = "yup yup";
-            byte[] buffer = Encoding.ASCII.GetBytes(msg);
-            nwStream.Write(buffer, 0, buffer.Length);*/
+            /*
+                Bên đây cần một task con chạy ngầm để liên tục lắng nghe tin nhắn dm khi form được mở
+                Load form lên là cho chạy task đó
+             */
         }
     }
 }
