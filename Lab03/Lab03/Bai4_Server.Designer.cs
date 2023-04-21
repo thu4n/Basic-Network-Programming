@@ -72,6 +72,7 @@ namespace Lab03
             this.Controls.Add(this.listenBtn);
             this.Name = "Bai4_Server";
             this.Text = "Bai4_Server";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Bai4_Server_FormClosed);
             this.Load += new System.EventHandler(this.Bai4_Server_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

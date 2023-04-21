@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,6 +19,7 @@ namespace Lab03
         private TcpListener listener;
         private TcpClient client;
         private List<TcpClient> clients = new List<TcpClient>();
+        private Dictionary<int,TcpClient> tempClients = new Dictionary<int,TcpClient>();
         public Bai4_Server()
         {
             InitializeComponent();
@@ -29,14 +31,16 @@ namespace Lab03
             {
                 listenBtn.Text = "Stop listening";
                 listenBtn.BackColor = Color.Red;
-                monitorConnection();
                 isListening = true;
+                monitorConnection();
             }
             else
             {
                 listenBtn.Text = "Start Listening";
                 listenBtn.BackColor = ColorTranslator.FromHtml("#457ad0");
-                MessageBox.Show("Server stopped listening");
+                string msg = "-- Server has stopped listening --";
+                broadcastMsg(clients, msg);
+                chatBox.Text += msg + "\r\n";
                 isListening = false;
                 listener.Stop();
             }
@@ -46,41 +50,101 @@ namespace Lab03
         {
             listener = new TcpListener(IPAddress.Loopback, 16000);
             listener.Start();
-            byte[] buffer = new byte[1024];
             Task.Run(async () =>
             {
-                while (true)
-                {
-                    client = await listener.AcceptTcpClientAsync();
-                    clients.Add(client);
-                    NetworkStream nwStream = client.GetStream();
-                    int byteCount = nwStream.Read(buffer, 0, buffer.Length);
-                    byte[] formatted = new byte[byteCount];
-                    Array.Copy(buffer, formatted, byteCount);
-                    string msg = Encoding.ASCII.GetString(formatted);
-                    Invoke(new MethodInvoker(delegate ()
+                    while (isListening)
                     {
-                        chatBox.Text += msg + "\r\n";
-                    }));
-                    broadcastMsg(clients, msg);
-                }
+                        client = await listener.AcceptTcpClientAsync();
+                        Thread thread = new Thread(() => openSession(client)) // Mở một session cho mỗi client
+                        {
+                            IsBackground = true
+                        };
+                        thread.Start();
+                    }
             });
             
+        }
+        private void openSession(TcpClient client)
+        {
+            int portNum = ((IPEndPoint)client.Client.RemoteEndPoint).Port;
+            clients.Add(client);
+            //MessageBox.Show(portNum.ToString());
+            tempClients.Add(portNum, client);
+            NetworkStream nwStream = client.GetStream();
+            byte[] buffer = new byte[1024];
+            while (client.Connected && isListening)
+            {
+                try
+                {
+                    if(nwStream.DataAvailable) // Có data trên stream thì mới đọc
+                    {
+                        int byteCount = nwStream.Read(buffer, 0, buffer.Length);
+                        byte[] formatted = new byte[byteCount];
+                        Array.Copy(buffer, formatted, byteCount);
+                        string msg = Encoding.Unicode.GetString(formatted);
+                        Invoke(new MethodInvoker(delegate ()
+                        {
+                            chatBox.Text += msg + "\r\n";
+                        }));
+                        if (Char.IsDigit(msg[0]))
+                        {
+                            string[] packets = msg.Split('<');
+                            directMsg(int.Parse(packets[0]), packets[1]);
+                        }
+                        else
+                        {
+                            if (msg[0] == '!')
+                            {
+                                clients.Remove(client);
+                                tempClients.Remove(portNum);
+                            }
+                            broadcastMsg(clients, msg);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+            nwStream.Close();
+            client.Close();
         }
         private void broadcastMsg(List<TcpClient> clients ,string msg)
         {
             foreach(var client in clients)
             {
                 NetworkStream nwStream = client.GetStream();
-                byte[] buffer = Encoding.ASCII.GetBytes(msg);
+                byte[] buffer = Encoding.Unicode.GetBytes(msg);
                 nwStream.Write(buffer, 0, buffer.Length);
             }
+        }
+        private void directMsg(int num, string msg)
+        {
+            TcpClient recpt = tempClients[num];
+            NetworkStream nwStream = recpt.GetStream();
+            msg = ">" + msg;
+            byte[] buffer = Encoding.Unicode.GetBytes(msg);
+            nwStream.Write(buffer, 0, buffer.Length);
         }
 
         private void Bai4_Server_Load(object sender, EventArgs e)
         {
             chatBox.Text = "";
             isListening = false;
+            tempClients.Clear();
+        }
+
+        private void Bai4_Server_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if(isListening)
+            {
+                string msg = "-- Server has stopped listening --";
+                broadcastMsg(clients, msg);
+                isListening = false;
+                listener.Stop();
+            }
+            Bai4.serverOpen = false;
         }
     }
 }
