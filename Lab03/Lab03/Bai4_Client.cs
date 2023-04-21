@@ -18,8 +18,10 @@ namespace Lab03
     {
         private NetworkStream nwStream;
         private static ConcurrentDictionary<int, string> clients = new ConcurrentDictionary<int, string>(); //Sử dụng ConcurrentDictionary vì dữ liệu của type này là thread-safe
+        private Dictionary<int, string> dmClients = new Dictionary<int, string>();
         private int currentCount = 0;
         private bool connected = false;
+        private Bai4_Client_DM dm;
         public class Bai4_TcpClient
         {
             public TcpClient client { get; set; }
@@ -113,20 +115,46 @@ namespace Lab03
                         {
                             displayClients();
                         }
-                        chatBox.Text += msg + "\r\n";
+                        
+                        if (msg[0] == '>')
+                        {
+                            int start = msg.IndexOf('#') + 1;
+                            int end = msg.IndexOf(':') - start;
+                            int name = msg.IndexOf(':') - 1;
+                            string portString = msg.Substring(start,end);
+                            string nameString = msg.Substring(1,name);
+                            int port = int.Parse(portString);
+                            if (dmClients.TryGetValue(port, out string rcv))
+                            {
+                                dm.getMsg(msg);
+                                return;
+                            }
+                            else
+                            {
+                                dmClients.Add(port, nameString);
+                                dm = new Bai4_Client_DM(tcpClient.nameTag(), port, nwStream, nameString);
+                                dm.Show();
+                                dm.openForm = true;
+                                dm.getMsg(msg);
+                            }
+                            //MessageBox.Show(portString);
+                        }
+                        else chatBox.Text += msg + "\r\n";
                     }));
                     if (msg[0] == '-') 
                     { 
                         disconnect();
                     }
-                    /*else if (msg[0] == '>')
-                    {
-                        Dùng một dictionary để lưu những client đang dm với key là số port
-                        với mỗi tin nhắn riêng, check xem client có trong dict chưa
-                            - nếu chưa, add vào dict và mở một form dm mới cho bên nhận
-                            - nếu có rồi, gửi tin nhắn thẳng vào form đang mở có chứa số port đó
-                    }*/
-                    else if (msg[0] == '!') { displayClients(); }
+                    else if (msg[0] == '!')
+                    { 
+                        displayClients();
+                        if(dm.openForm)
+                        {
+                            /* Dự định là check coi form nào đang mở khi nhận đc thông báo có người out
+                             nhưng mà quên tính trường hợp có nhiều form đang mở khi ib với nhiều thằng, nhờ anh Phát cả nhé
+                             */
+                        }
+                    }
                 }
                 clients.TryRemove(tcpClient.portNum, out string temp);
                 nwStream.Close();
@@ -168,12 +196,15 @@ namespace Lab03
                 string recptInfo = listBox1.SelectedItem.ToString();
                 int port = int.Parse(tags[1]);
                 if (port == tcpClient.portNum) return;
-                Bai4_Client_DM dm = new Bai4_Client_DM(tcpClient.nameTag(),port, nwStream, recptInfo);
+                dm = new Bai4_Client_DM(tcpClient.nameTag(),port, nwStream, recptInfo);
                 dm.Show();
+                dmClients.Add(port, recptInfo);
+                dm.openForm = true;
             }
         }
         private void disconnect()
         {
+            dm.Close();
             titleLabel0.Text = "You are not connected to the server";
             titleLabel0.ForeColor = Color.Black;
             connected = false;
@@ -188,6 +219,7 @@ namespace Lab03
         {
             if(connected)
             {
+                dm.Close();
                 clients.TryRemove(tcpClient.portNum, out string temp);
                 sendMsg("!! " + tcpClient.nameTag() + " has left the chat !!");
                 disconnect();

@@ -81,7 +81,7 @@ namespace Lab03
             // 
             this.titleLabel0.AutoSize = true;
             this.titleLabel0.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel0.Location = new System.Drawing.Point(49, 32);
+            this.titleLabel0.Location = new System.Drawing.Point(40, 44);
             this.titleLabel0.Name = "titleLabel0";
             this.titleLabel0.Size = new System.Drawing.Size(227, 32);
             this.titleLabel0.TabIndex = 13;

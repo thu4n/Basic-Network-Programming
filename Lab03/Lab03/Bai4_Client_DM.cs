@@ -18,6 +18,8 @@ namespace Lab03
         private NetworkStream nwStream;
         private string senderInfo = "";
         private string recptInfo = "";
+        public bool openForm = false;
+        public bool newMsg = false;
         public Bai4_Client_DM()
         {
             InitializeComponent();
@@ -29,8 +31,8 @@ namespace Lab03
             nwStream = stream;
             senderInfo = nameTag;
             recptInfo = recpt;
-            titleLabel0.Text = "You are chatting with " + recptInfo;
-            Text = recptInfo;
+            titleLabel0.Text = "From " + senderInfo + " to " + recptInfo;
+            Text = "From " + senderInfo + " to " + recptInfo;
         }
 
 
@@ -41,9 +43,20 @@ namespace Lab03
             string packet = destPort.ToString() + "<" + senderInfo + ": " + msg;
             byte[] buffer = Encoding.Unicode.GetBytes(packet);
             nwStream.Write(buffer,0,buffer.Length);
+            chatBox.Text += senderInfo + ": " + msg + "\r\n";
             textBox.Clear();
         }
 
+        public void getMsg(string msg)
+        {
+            msg = msg.Remove(0, 1);
+            chatBox.Text += msg + "\r\n";
+        }
+
+        public void clientQuit()
+        {
+            Close();
+        }
         private void Bai4_Client_DM_Load(object sender, EventArgs e)
         {
             /*
