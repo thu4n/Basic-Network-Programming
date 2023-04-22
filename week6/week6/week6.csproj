@@ -80,12 +80,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomAPI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CustomAPI.Designer.cs">
-      <DependentUpon>CustomAPI.cs</DependentUpon>
-    </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,9 +100,6 @@
     <Compile Include="TodosAPI.Designer.cs">
       <DependentUpon>TodosAPI.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="CustomAPI.resx">
-      <DependentUpon>CustomAPI.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
