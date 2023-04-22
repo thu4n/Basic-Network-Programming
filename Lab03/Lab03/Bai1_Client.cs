@@ -13,6 +13,7 @@ namespace Lab03
 {
     public partial class Bai1_Client : Form
     {
+
         public Bai1_Client()
         {
             InitializeComponent();
