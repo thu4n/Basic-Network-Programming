@@ -47,7 +47,7 @@ namespace Lab03
                 do
                 {
                     bytesReceived = clientSocket.Receive(recv);
-                    text += Encoding.ASCII.GetString(recv);
+                    text += Encoding.UTF8.GetString(recv);
                 } while (text[text.Length - 1] != '\n');
                 lst_mess.Items.Add(new ListViewItem(text));
             }

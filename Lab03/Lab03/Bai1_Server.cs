@@ -27,7 +27,7 @@ namespace Lab03
             {
                 IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
                 Byte[] receiveBytes = server.Receive(ref RemoteIpEndPoint);
-                string returnData = Encoding.ASCII.GetString(receiveBytes);
+                string returnData = Encoding.UTF8.GetString(receiveBytes);
                 string mess = RemoteIpEndPoint.Address.ToString() + ":" +
                 returnData.ToString();
                 InfoMessage(mess);
