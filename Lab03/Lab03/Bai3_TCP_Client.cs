@@ -20,7 +20,6 @@ namespace Lab03
         private NetworkStream nwStream;
         private static ConcurrentDictionary<int, string> clients = new ConcurrentDictionary<int, string>();
         private Dictionary<int, string> dmClients = new Dictionary<int, string>();
-        private int currentCount = 0;
         private bool connected = false;
         private Bai3_TCP_Client cl;
         public class Bai3_Client
@@ -32,7 +31,7 @@ namespace Lab03
             public Bai3_Client(string name)
             {
                 client = new TcpClient();
-                client.Connect(IPAddress.Loopback, 80);
+                client.Connect(IPAddress.Loopback, 8000);
                 portNum = ((IPEndPoint)client.Client.LocalEndPoint).Port;
                 username = name;
             }
@@ -42,33 +41,65 @@ namespace Lab03
         {
             InitializeComponent();
         }
+        string user = "Client";
         private void Connect()
         {
-            string user = "Client";
             tcpClient = new Bai3_Client(user);
             nwStream = tcpClient.client.GetStream();
             clients.TryAdd(tcpClient.portNum, tcpClient.username);
-            sendMsg(user + " has joined the chat");
+            SendMsg("Connection accepted from " + IPAddress.Loopback+":"+tcpClient.portNum);
+        }
+        private void Disconnect()
+        {
+            SendMsg(IPAddress.Loopback + ":" + tcpClient.portNum+" has left");
+            nwStream.Close();
+            tcpClient.client.Close();
+            
         }
         private void btn_Connect_Click(object sender, EventArgs e)
         {
             Connect();
             btn_Connect.Enabled = false;
+            connected = true;
+            btn_Disconnect.Enabled = true;
             
         }
-            private void sendMsg(string msg)
+            private void SendMsg(string msg)
         {
-            byte[] buffer = Encoding.UTF8.GetBytes(msg);
-            nwStream.Write(buffer, 0, buffer.Length);
+            byte[] buffer = Encoding.Unicode.GetBytes(msg);
+             nwStream.Write(buffer, 0, buffer.Length);
         }
         private void btn_Disconnect_Click(object sender, EventArgs e)
         {
-            
+            Disconnect();
+            connected = false;
+            btn_Connect.Enabled = true;
+            btn_Disconnect.Enabled = false;
         }
 
         private void btn_Send_Click(object sender, EventArgs e)
         {
-          
+            if (Txting.Text == "") return;
+            if (connected==true)
+            {
+                SendMsg("From Client : "+Txting.Text);
+                Txting.Clear();
+            }
+          else
+            {
+                Txting.Clear();
+                return;
+            }
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Bai3_TCP_Client_Load(object sender, EventArgs e)
+        {
+            btn_Disconnect.Enabled = false;
         }
     }
 }

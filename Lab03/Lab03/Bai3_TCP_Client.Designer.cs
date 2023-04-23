@@ -31,7 +31,7 @@
             this.btn_Connect = new System.Windows.Forms.Button();
             this.btn_Send = new System.Windows.Forms.Button();
             this.btn_Disconnect = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.Txting = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // btn_Connect
@@ -64,25 +64,27 @@
             this.btn_Disconnect.UseVisualStyleBackColor = true;
             this.btn_Disconnect.Click += new System.EventHandler(this.btn_Disconnect_Click);
             // 
-            // richTextBox1
+            // Txting
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(49, 34);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(584, 180);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
+            this.Txting.Location = new System.Drawing.Point(49, 34);
+            this.Txting.Name = "Txting";
+            this.Txting.Size = new System.Drawing.Size(584, 180);
+            this.Txting.TabIndex = 4;
+            this.Txting.Text = "";
+            this.Txting.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // Bai3_TCP_Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 250);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.Txting);
             this.Controls.Add(this.btn_Disconnect);
             this.Controls.Add(this.btn_Send);
             this.Controls.Add(this.btn_Connect);
             this.Name = "Bai3_TCP_Client";
             this.Text = "TCP_Client";
+            this.Load += new System.EventHandler(this.Bai3_TCP_Client_Load);
             this.ResumeLayout(false);
 
         }
@@ -91,6 +93,6 @@
         private System.Windows.Forms.Button btn_Connect;
         private System.Windows.Forms.Button btn_Send;
         private System.Windows.Forms.Button btn_Disconnect;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox Txting;
     }
 }

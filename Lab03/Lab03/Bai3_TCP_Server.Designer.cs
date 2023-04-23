@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btn_Listen = new System.Windows.Forms.Button();
-            this.lst_mess = new System.Windows.Forms.ListBox();
+            this.mess_Txt = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // btn_Listen
@@ -42,21 +42,20 @@
             this.btn_Listen.UseVisualStyleBackColor = true;
             this.btn_Listen.Click += new System.EventHandler(this.btn_Listen_Click);
             // 
-            // lst_mess
+            // mess_Txt
             // 
-            this.lst_mess.FormattingEnabled = true;
-            this.lst_mess.ItemHeight = 16;
-            this.lst_mess.Location = new System.Drawing.Point(35, 106);
-            this.lst_mess.Name = "lst_mess";
-            this.lst_mess.Size = new System.Drawing.Size(722, 308);
-            this.lst_mess.TabIndex = 1;
+            this.mess_Txt.Location = new System.Drawing.Point(68, 97);
+            this.mess_Txt.Name = "mess_Txt";
+            this.mess_Txt.Size = new System.Drawing.Size(689, 329);
+            this.mess_Txt.TabIndex = 1;
+            this.mess_Txt.Text = "";
             // 
             // Bai3_TCP_Server
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lst_mess);
+            this.Controls.Add(this.mess_Txt);
             this.Controls.Add(this.btn_Listen);
             this.Name = "Bai3_TCP_Server";
             this.Text = "Bai3_TCP_Server";
@@ -67,6 +66,6 @@
         #endregion
 
         private System.Windows.Forms.Button btn_Listen;
-        private System.Windows.Forms.ListBox lst_mess;
+        private System.Windows.Forms.RichTextBox mess_Txt;
     }
 }

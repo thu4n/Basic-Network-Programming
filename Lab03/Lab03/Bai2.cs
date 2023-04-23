@@ -40,16 +40,16 @@ namespace Lab03
             listenerSocket.Bind(ipepServer);
             listenerSocket.Listen(-1);
             clientSocket = listenerSocket.Accept();
-            lst_mess.Items.Add(new ListViewItem("Telnet running on "+IPAddress.Any+":8080"));
+            Mess_txt.Text+="Telnet running on "+IPAddress.Any+":8080"+Environment.NewLine;
             while (clientSocket.Connected)
             {
                 string text = "";
                 do
                 {
                     bytesReceived = clientSocket.Receive(recv);
-                    text += Encoding.UTF8.GetString(recv);
+                    text += Encoding.Unicode.GetString(recv);
                 } while (text[text.Length - 1] != '\n');
-                lst_mess.Items.Add(new ListViewItem(text));
+                Mess_txt.Text += text;
             }
             listenerSocket.Close();
         }
