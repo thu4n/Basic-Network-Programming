@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,14 +53,21 @@ namespace Lab03
             msg = msg.Remove(0, 1);
             chatBox.Text += msg + "\r\n";
         }
-
-        public void clientQuit()
-        {
-            Close();
-        }
         private void Bai4_Client_DM_Load(object sender, EventArgs e)
         {
 
         }
+        private void closed()
+        {
+            string msg = "@has left the room chat@";
+            string packet = destPort.ToString() + "<" + senderInfo + ": " + msg;
+            byte[] buffer = Encoding.Unicode.GetBytes(packet);
+            nwStream.Write(buffer, 0, buffer.Length);
+        }
+        private void Bai4_Client_DM_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            closed();
+        }
     }
+
 }

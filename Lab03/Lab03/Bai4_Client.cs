@@ -116,15 +116,28 @@ namespace Lab03
                         {
                             displayClients();
                         }
-                        
+
                         if (msg[0] == '>')
                         {
                             int start = msg.IndexOf('#') + 1;
                             int end = msg.IndexOf(':') - start;
                             int name = msg.IndexOf(':') - 1;
-                            string portString = msg.Substring(start,end);
-                            string nameString = msg.Substring(1,name);
+                            int data1 = msg.IndexOf(':') + 2;
+                            string portString = msg.Substring(start, end);
+                            string nameString = msg.Substring(1, name);
                             int port = int.Parse(portString);
+                            string data = " ";
+                            try
+                            { data = msg.Substring(data1); }
+                            catch { };
+                            if (data == "@has left the room chat@")
+                            {
+                              //  MessageBox.Show(data);
+                                dmClients.Remove(port);
+                                dm.Close();
+                                chatBox.Text += msg + "\r\n";
+                                return;
+                            }
                             if (dmClients.TryGetValue(port, out string rcv))
                             {
                                 dm.getMsg(msg);
@@ -137,6 +150,14 @@ namespace Lab03
                                 dm.Show();
                                 dm.openForm = true;
                                 dm.getMsg(msg);
+                            }
+                            // kiểm tra xem đã đóng form room chat chưa, nếu rồi thì ta xóa nó khỏi cái dmClients
+                            if (data == "@has left the room chat@")
+                            {
+                                MessageBox.Show(data);
+                                dmClients.Remove(port);
+                                dm.Close();
+                                chatBox.Text += msg + "\r\n";
                             }
                             //MessageBox.Show(portString);
                         }
@@ -199,7 +220,14 @@ namespace Lab03
                 if (port == tcpClient.portNum) return;
                 dm = new Bai4_Client_DM(tcpClient.nameTag(),port, nwStream, recptInfo);
                 dm.Show();
-                dmClients.Add(port, recptInfo);
+                try
+                {
+                   dmClients.Add(port, recptInfo);
+                }
+                catch 
+                { 
+                    dmClients.Remove(port);
+                }
                 dmOpen = true;
             }
         }
