@@ -22,6 +22,7 @@ namespace Lab03
         private int currentCount = 0;
         private bool connected = false;
         private Bai4_Client_DM dm;
+        private bool dmOpen = false;
         public class Bai4_TcpClient
         {
             public TcpClient client { get; set; }
@@ -199,12 +200,12 @@ namespace Lab03
                 dm = new Bai4_Client_DM(tcpClient.nameTag(),port, nwStream, recptInfo);
                 dm.Show();
                 dmClients.Add(port, recptInfo);
-                dm.openForm = true;
+                dmOpen = true;
             }
         }
         private void disconnect()
         {
-            dm.Close();
+            if(dmOpen) dm.Close();
             titleLabel0.Text = "You are not connected to the server";
             titleLabel0.ForeColor = Color.Black;
             connected = false;
@@ -219,7 +220,7 @@ namespace Lab03
         {
             if(connected)
             {
-                dm.Close();
+                if(dmOpen) dm.Close();
                 clients.TryRemove(tcpClient.portNum, out string temp);
                 sendMsg("!! " + tcpClient.nameTag() + " has left the chat !!");
                 disconnect();

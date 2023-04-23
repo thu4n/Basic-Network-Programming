@@ -59,10 +59,7 @@ namespace Lab03
         }
         private void Bai4_Client_DM_Load(object sender, EventArgs e)
         {
-            /*
-                Bên đây cần một task con chạy ngầm để liên tục lắng nghe tin nhắn dm khi form được mở
-                Load form lên là cho chạy task đó
-             */
+
         }
     }
 }
