@@ -16,5 +16,17 @@ namespace Lab03
         {
             InitializeComponent();
         }
+
+        private void TCP_Client_Click(object sender, EventArgs e)
+        {
+            Bai3_TCP_Client client = new Bai3_TCP_Client();
+            client.Show();
+        }
+
+        private void TCP_Server_Click(object sender, EventArgs e)
+        {
+            Bai3_TCP_Server server = new Bai3_TCP_Server();
+            server.Show();
+        }
     }
 }
