@@ -47,6 +47,7 @@
             this.Received_Mess.Location = new System.Drawing.Point(117, 187);
             this.Received_Mess.Multiline = true;
             this.Received_Mess.Name = "Received_Mess";
+            this.Received_Mess.ReadOnly = true;
             this.Received_Mess.Size = new System.Drawing.Size(553, 220);
             this.Received_Mess.TabIndex = 1;
             // 

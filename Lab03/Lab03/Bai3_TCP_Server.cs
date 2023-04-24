@@ -20,6 +20,7 @@ namespace Lab03
         private TcpClient client;
         private List<TcpClient> clients = new List<TcpClient>();
         private Dictionary<int, TcpClient> tempClients = new Dictionary<int, TcpClient>();
+        
         public Bai3_TCP_Server()
         {
             InitializeComponent();
@@ -27,10 +28,22 @@ namespace Lab03
 
         private void btn_Listen_Click(object sender, EventArgs e)
         {
-            mess_Txt.Text += "Server started!" + Environment.NewLine;
-            btn_Listen.Enabled = false;
-            isListening = true;
-            monitorConnection();
+            if (!isListening)
+            {
+                mess_Txt.Text += "Server started!" + Environment.NewLine;
+                
+                isListening = true;
+                monitorConnection();
+                btn_Listen.Text = "Stop Listening";
+            }
+            else
+            {
+                    btn_Listen.Text = "Listening";
+                    string msg = "-- Server has stopped listening --";
+                    mess_Txt.Text += msg + "\r\n";
+                    isListening = false;
+                    listener.Stop();
+            }
         }
         private void monitorConnection()
         {
@@ -80,6 +93,16 @@ namespace Lab03
             }
             nwStream.Close();
             client.Close();
+        }
+
+        private void Bai3_TCP_Server_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (isListening)
+            {
+                isListening = false;
+                listener.Stop();
+            }
+            
         }
     }
 }

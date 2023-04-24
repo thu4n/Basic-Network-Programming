@@ -46,6 +46,7 @@
             // 
             this.mess_Txt.Location = new System.Drawing.Point(68, 97);
             this.mess_Txt.Name = "mess_Txt";
+            this.mess_Txt.ReadOnly = true;
             this.mess_Txt.Size = new System.Drawing.Size(689, 329);
             this.mess_Txt.TabIndex = 1;
             this.mess_Txt.Text = "";
@@ -59,6 +60,7 @@
             this.Controls.Add(this.btn_Listen);
             this.Name = "Bai3_TCP_Server";
             this.Text = "Bai3_TCP_Server";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Bai3_TCP_Server_FormClosing);
             this.ResumeLayout(false);
 
         }
