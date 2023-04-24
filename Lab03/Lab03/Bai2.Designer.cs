@@ -47,6 +47,7 @@ namespace Lab03
             // 
             this.Mess_txt.Location = new System.Drawing.Point(76, 118);
             this.Mess_txt.Name = "Mess_txt";
+            this.Mess_txt.ReadOnly = true;
             this.Mess_txt.Size = new System.Drawing.Size(675, 298);
             this.Mess_txt.TabIndex = 2;
             this.Mess_txt.Text = "";
