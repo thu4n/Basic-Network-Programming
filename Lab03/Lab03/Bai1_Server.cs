@@ -10,34 +10,41 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
-
 namespace Lab03
 {
     public partial class Bai1_Server : Form
     {
-        
+        bool isListening=false;
         public Bai1_Server()
         {
             InitializeComponent();
         }
         public void serverThread()
         {
-            UdpClient server = new UdpClient(int.Parse(Port_txt.Text));
-            while (true)
+            try
             {
-                IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
-                Byte[] receiveBytes = server.Receive(ref RemoteIpEndPoint);
-                string returnData = Encoding.UTF8.GetString(receiveBytes);
-                string mess = RemoteIpEndPoint.Address.ToString() + ":" +
-                returnData.ToString();
-                InfoMessage(mess);
+                UdpClient server = new UdpClient(int.Parse(Port_txt.Text));
+                Received_Mess.Text += "Server started" + Environment.NewLine;
+                while (true)
+                {
+                    IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
+                    Byte[] receiveBytes = server.Receive(ref RemoteIpEndPoint);
+                    string returnData = Encoding.UTF8.GetString(receiveBytes);
+                    string mess = RemoteIpEndPoint.Address.ToString() + ":" +
+                    returnData.ToString();
+                    InfoMessage(mess);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);    
             }
         }
         private void btn_Listen_Click(object sender, EventArgs e)
         {
             CheckForIllegalCrossThreadCalls = false;
-            Thread thdUDPServer = new Thread(new ThreadStart(serverThread));
-            thdUDPServer.Start();
+            Thread thdUDPServer = new Thread(new ThreadStart(serverThread)); 
+                thdUDPServer.Start();
         }
         private void InfoMessage(string mess)
         {

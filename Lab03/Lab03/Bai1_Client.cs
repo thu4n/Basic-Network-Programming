@@ -26,11 +26,19 @@ namespace Lab03
 
         private void Sendbtn_Click(object sender, EventArgs e)
         {
-            UdpClient udpClient = new UdpClient();
-            Byte[] sendBytes = Encoding.UTF8.GetBytes(Mess_txt.Text);
-            udpClient.Send(sendBytes, sendBytes.Length, Ip_txt.Text, int.Parse(Port_txt.Text));
-            MessageBox.Show("Gửi thành công");
-            Mess_txt.Clear();
+            try
+            {
+                UdpClient udpClient = new UdpClient();
+                if (Mess_txt.Text == "") return;
+                Byte[] sendBytes = Encoding.UTF8.GetBytes(Mess_txt.Text);
+                udpClient.Send(sendBytes, sendBytes.Length, Ip_txt.Text, int.Parse(Port_txt.Text));
+                MessageBox.Show("Gửi thành công");
+                Mess_txt.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

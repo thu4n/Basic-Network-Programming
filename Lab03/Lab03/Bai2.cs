@@ -30,6 +30,7 @@ namespace Lab03
         {
             int bytesReceived = 0;
             byte[] recv = new byte[1];
+            Mess_txt.Text = "Server started";
             Socket clientSocket;
             Socket listenerSocket = new Socket(
             AddressFamily.InterNetwork,
@@ -47,7 +48,7 @@ namespace Lab03
                 do
                 {
                     bytesReceived = clientSocket.Receive(recv);
-                    text += Encoding.Unicode.GetString(recv);
+                    text += Encoding.UTF8.GetString(recv);
                 } while (text[text.Length - 1] != '\n');
                 Mess_txt.Text += text;
             }

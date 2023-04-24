@@ -21,7 +21,6 @@ namespace Lab03
         private static ConcurrentDictionary<int, string> clients = new ConcurrentDictionary<int, string>();
         private Dictionary<int, string> dmClients = new Dictionary<int, string>();
         private bool connected = false;
-        private Bai3_TCP_Client cl;
         public class Bai3_Client
         {
             public TcpClient client { get; set; }
@@ -42,12 +41,21 @@ namespace Lab03
             InitializeComponent();
         }
         string user = "Client";
-        private void Connect()
+        private bool Connect()
         {
-            tcpClient = new Bai3_Client(user);
-            nwStream = tcpClient.client.GetStream();
-            clients.TryAdd(tcpClient.portNum, tcpClient.username);
-            SendMsg("Connection accepted from " + IPAddress.Loopback+":"+tcpClient.portNum);
+            try
+            {
+                tcpClient = new Bai3_Client(user);
+                nwStream = tcpClient.client.GetStream();
+                clients.TryAdd(tcpClient.portNum, tcpClient.username);
+                SendMsg("Connection accepted from " + IPAddress.Loopback + ":" + tcpClient.portNum);
+            }
+            catch (SocketException)
+            {
+                MessageBox.Show("There is no server listening at the moment");
+                return false;
+            }
+            return true;
         }
         private void Disconnect()
         {
@@ -58,11 +66,12 @@ namespace Lab03
         }
         private void btn_Connect_Click(object sender, EventArgs e)
         {
-            Connect();
-            btn_Connect.Enabled = false;
-            connected = true;
-            btn_Disconnect.Enabled = true;
-            
+            if (Connect() == true)
+            {
+                btn_Connect.Enabled = false;
+                connected = true;
+                btn_Disconnect.Enabled = true;
+            }
         }
             private void SendMsg(string msg)
         {
