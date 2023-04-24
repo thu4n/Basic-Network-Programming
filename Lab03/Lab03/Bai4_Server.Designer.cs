@@ -59,7 +59,7 @@ namespace Lab03
             this.chatBox.Multiline = true;
             this.chatBox.Name = "chatBox";
             this.chatBox.ReadOnly = true;
-            this.chatBox.Size = new System.Drawing.Size(721, 350);
+            this.chatBox.Size = new System.Drawing.Size(733, 350);
             this.chatBox.TabIndex = 5;
             // 
             // Bai4_Server

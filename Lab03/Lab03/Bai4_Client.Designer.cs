@@ -40,6 +40,13 @@ namespace Lab03
             this.titleLabel0 = new System.Windows.Forms.Label();
             this.usersLabel = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.SendFile = new System.Windows.Forms.Button();
+            this.File_Receive = new System.Windows.Forms.Label();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.ExitFile = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // sendBtn
@@ -53,7 +60,7 @@ namespace Lab03
             this.sendBtn.Location = new System.Drawing.Point(744, 508);
             this.sendBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.sendBtn.Name = "sendBtn";
-            this.sendBtn.Size = new System.Drawing.Size(211, 49);
+            this.sendBtn.Size = new System.Drawing.Size(113, 49);
             this.sendBtn.TabIndex = 3;
             this.sendBtn.Text = "Send";
             this.sendBtn.UseVisualStyleBackColor = false;
@@ -76,12 +83,12 @@ namespace Lab03
             this.chatBox.BackColor = System.Drawing.SystemColors.Control;
             this.chatBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.chatBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chatBox.Location = new System.Drawing.Point(46, 138);
+            this.chatBox.Location = new System.Drawing.Point(46, 128);
             this.chatBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.chatBox.Multiline = true;
             this.chatBox.Name = "chatBox";
             this.chatBox.ReadOnly = true;
-            this.chatBox.Size = new System.Drawing.Size(690, 363);
+            this.chatBox.Size = new System.Drawing.Size(690, 373);
             this.chatBox.TabIndex = 5;
             // 
             // usernameLabel
@@ -159,7 +166,7 @@ namespace Lab03
             // 
             this.usersLabel.AutoSize = true;
             this.usersLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usersLabel.Location = new System.Drawing.Point(739, 110);
+            this.usersLabel.Location = new System.Drawing.Point(744, 100);
             this.usersLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.usersLabel.Name = "usersLabel";
             this.usersLabel.Size = new System.Drawing.Size(131, 25);
@@ -173,11 +180,87 @@ namespace Lab03
             this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 18;
-            this.listBox1.Location = new System.Drawing.Point(744, 138);
+            this.listBox1.Location = new System.Drawing.Point(743, 128);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(244, 360);
+            this.listBox1.Size = new System.Drawing.Size(244, 162);
             this.listBox1.TabIndex = 14;
             this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
+            // 
+            // SendFile
+            // 
+            this.SendFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(122)))), ((int)(((byte)(208)))));
+            this.SendFile.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.SendFile.FlatAppearance.BorderSize = 0;
+            this.SendFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SendFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SendFile.ForeColor = System.Drawing.Color.White;
+            this.SendFile.Location = new System.Drawing.Point(865, 508);
+            this.SendFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.SendFile.Name = "SendFile";
+            this.SendFile.Size = new System.Drawing.Size(123, 49);
+            this.SendFile.TabIndex = 15;
+            this.SendFile.Text = "Send file";
+            this.SendFile.UseVisualStyleBackColor = false;
+            this.SendFile.Click += new System.EventHandler(this.SendFile_Click);
+            // 
+            // File_Receive
+            // 
+            this.File_Receive.AutoSize = true;
+            this.File_Receive.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.File_Receive.Location = new System.Drawing.Point(744, 293);
+            this.File_Receive.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.File_Receive.Name = "File_Receive";
+            this.File_Receive.Size = new System.Drawing.Size(130, 25);
+            this.File_Receive.TabIndex = 16;
+            this.File_Receive.Text = "File Receive";
+            // 
+            // listBox2
+            // 
+            this.listBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.listBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 18;
+            this.listBox2.Location = new System.Drawing.Point(743, 321);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(244, 180);
+            this.listBox2.TabIndex = 1;
+            this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(46, 128);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(690, 373);
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.Location = new System.Drawing.Point(46, 128);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(690, 374);
+            this.richTextBox1.TabIndex = 19;
+            this.richTextBox1.Text = "";
+            // 
+            // ExitFile
+            // 
+            this.ExitFile.BackColor = System.Drawing.Color.Red;
+            this.ExitFile.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.ExitFile.FlatAppearance.BorderSize = 0;
+            this.ExitFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExitFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExitFile.ForeColor = System.Drawing.Color.White;
+            this.ExitFile.Location = new System.Drawing.Point(703, 97);
+            this.ExitFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.ExitFile.Name = "ExitFile";
+            this.ExitFile.Size = new System.Drawing.Size(33, 31);
+            this.ExitFile.TabIndex = 20;
+            this.ExitFile.Text = "X";
+            this.ExitFile.UseVisualStyleBackColor = false;
+            this.ExitFile.Visible = false;
+            this.ExitFile.Click += new System.EventHandler(this.ExitFile_Click);
             // 
             // Bai4_Client
             // 
@@ -185,6 +268,10 @@ namespace Lab03
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1000, 577);
+            this.Controls.Add(this.ExitFile);
+            this.Controls.Add(this.listBox2);
+            this.Controls.Add(this.File_Receive);
+            this.Controls.Add(this.SendFile);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.usersLabel);
             this.Controls.Add(this.titleLabel0);
@@ -196,12 +283,15 @@ namespace Lab03
             this.Controls.Add(this.chatBox);
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.sendBtn);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.richTextBox1);
             this.Font = new System.Drawing.Font("Vivaldi", 8.25F);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Bai4_Client";
             this.Text = "Bai4_Client";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Bai4_Client_FormClosed);
             this.Load += new System.EventHandler(this.Bai4_Client_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,5 +310,11 @@ namespace Lab03
         private System.Windows.Forms.Label titleLabel0;
         private System.Windows.Forms.Label usersLabel;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button SendFile;
+        private System.Windows.Forms.Label File_Receive;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button ExitFile;
     }
 }

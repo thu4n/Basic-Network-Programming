@@ -33,6 +33,7 @@ namespace Lab03
             this.textBox = new System.Windows.Forms.TextBox();
             this.sendBtn = new System.Windows.Forms.Button();
             this.titleLabel0 = new System.Windows.Forms.Label();
+            this.Exit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // chatBox
@@ -99,6 +100,7 @@ namespace Lab03
             this.Controls.Add(this.sendBtn);
             this.Name = "Bai4_Client_DM";
             this.Text = "Bai4_Client_DM";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Bai4_Client_DM_FormClosed);
             this.Load += new System.EventHandler(this.Bai4_Client_DM_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -111,5 +113,6 @@ namespace Lab03
         private System.Windows.Forms.TextBox textBox;
         private System.Windows.Forms.Button sendBtn;
         private System.Windows.Forms.Label titleLabel0;
+        private System.Windows.Forms.Button Exit;
     }
 }
