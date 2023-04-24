@@ -323,17 +323,20 @@ namespace Lab03
                         pictureBox1.Visible = false;
                         ExitFile.Visible = true;
                       }
+                      stream.Close();
                     }
                     else
                     {
                         Stream stream = new MemoryStream(FilesData[a].getData());
                         var img = Bitmap.FromStream(stream);
                         pictureBox1.Image = img;
+                        stream.Close();
                         richTextBox1.Visible = false;
                         chatBox.Visible = false;
                         pictureBox1.Visible = true;
                         ExitFile.Visible = true;
                     }
+                    
                }
                catch { MessageBox.Show("lỗi file"); }
             }
