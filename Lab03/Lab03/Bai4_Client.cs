@@ -11,6 +11,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.Json;
+using System.IO;
+using System.Numerics;
+using System.IO.Pipes;
 
 namespace Lab03
 {
@@ -22,6 +25,11 @@ namespace Lab03
         private int currentCount = 0;
         private bool connected = false;
         private Bai4_Client_DM dm;
+        private string[] files = new string[10];
+        private int fileCount = 0;
+        private int check = 0;
+        FileData [] FilesData = new FileData[10]; // tạo class lưu dữ liệu
+        MemoryStream []MemFile = new MemoryStream[10];
         public class Bai4_TcpClient
         {
             public TcpClient client { get; set; }
@@ -71,6 +79,7 @@ namespace Lab03
                     sendMsg(tcpClient.nameTag() + " has joined the chat");
                     getMsg();
                     displayClients();
+                    displayFile();
                 }
                 catch(SocketException se)
                 {
@@ -100,22 +109,23 @@ namespace Lab03
         }
         private void getMsg()
         {
-            byte[] received = new byte[1024];
+            byte[] received = new byte[10000000]; // chỉnh độ dài
             Task.Run(async () =>
             {
                 while (tcpClient.client.Connected)
-                {                    
-                    int byte_count = await nwStream.ReadAsync(received, 0, received.Length);
+                {
+                    int byte_count =  await nwStream.ReadAsync(received, 0, received.Length);
                     byte[] formatted = new byte[byte_count];
                     Array.Copy(received, formatted, byte_count);
                     string msg = Encoding.Unicode.GetString(formatted);
+                    string data = "";
                     Invoke(new MethodInvoker(delegate ()
                     {
                         if (currentCount != clients.Count) // Cập nhật số client ở thread hiện tại
                         {
                             displayClients();
                         }
-
+                            displayFile();
                         if (msg[0] == '>')
                         {
                             int start = msg.IndexOf('#') + 1;
@@ -125,13 +135,12 @@ namespace Lab03
                             string portString = msg.Substring(start, end);
                             string nameString = msg.Substring(1, name);
                             int port = int.Parse(portString);
-                            string data = " ";
                             try
                             { data = msg.Substring(data1); }
                             catch { };
+                            // kiểm tra xem đã đóng form room chat chưa, nếu rồi thì ta xóa nó khỏi cái dmClients
                             if (data == "@has left the room chat@")
                             {
-                              //  MessageBox.Show(data);
                                 dmClients.Remove(port);
                                 dm.Close();
                                 chatBox.Text += msg + "\r\n";
@@ -150,32 +159,42 @@ namespace Lab03
                                 dm.openForm = true;
                                 dm.getMsg(msg);
                             }
-                            // kiểm tra xem đã đóng form room chat chưa, nếu rồi thì ta xóa nó khỏi cái dmClients
-                            if (data == "@has left the room chat@")
-                            {
-                                MessageBox.Show(data);
-                                dmClients.Remove(port);
-                                dm.Close();
-                                chatBox.Text += msg + "\r\n";
-                            }
                             //MessageBox.Show(portString);
                         }
-                        else chatBox.Text += msg + "\r\n";
+                        else if(check == 1)
+                        { 
+                            check  = 0;
+                            MemFile[fileCount - 1] = new MemoryStream(formatted);  // lưu data stream vào MemFile để lưu trữ
+                        } 
+                        else
+                            chatBox.Text += msg + "\r\n";
                     }));
-                    if (msg[0] == '-') 
-                    { 
+                    int data2 = msg.IndexOf(':') + 2;
+                    try
+                    { data = msg.Substring(data2); }
+                    catch { };
+
+                    if (msg[0] == '-')
+                    {
                         disconnect();
                     }
                     else if (msg[0] == '!')
-                    { 
+                    {
                         displayClients();
-                        if(dm.openForm)
+                        if (dm.openForm)
                         {
                             /* Dự định là check coi form nào đang mở khi nhận đc thông báo có người out
                              nhưng mà quên tính trường hợp có nhiều form đang mở khi ib với nhiều thằng, nhờ anh Phát cả nhé
                              */
                         }
                     }
+                    else if (msg[0] == '+')
+                    {
+                        files[fileCount] = data;
+                        FilesData[fileCount] = new FileData(formatted);
+                        fileCount += 1;
+                        check = 1;
+                    } 
                 }
                 clients.TryRemove(tcpClient.portNum, out string temp);
                 nwStream.Close();
@@ -208,7 +227,17 @@ namespace Lab03
             }
             currentCount = clients.Count;
         }
-
+        private void displayFile()
+        {
+            listBox2.Items.Clear();
+            if (fileCount > 0)
+            {
+                for (int i = 0; i < fileCount; i++)
+                {
+                    listBox2.Items.Add(files[i]);
+                }
+            }
+        }
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
             if(listBox1.SelectedItem != null)
@@ -233,7 +262,9 @@ namespace Lab03
         }
         private void disconnect()
         {
-            dm.Close();
+            try
+            { dm.Close(); }
+            catch { }
             titleLabel0.Text = "You are not connected to the server";
             titleLabel0.ForeColor = Color.Black;
             connected = false;
@@ -248,11 +279,102 @@ namespace Lab03
         {
             if(connected)
             {
-                dm.Close();
+                try
+                { dm.Close(); }
+                catch { } // lỗi nếu ko mở dm thì nó sẽ bị null nên không thể close được
                 clients.TryRemove(tcpClient.portNum, out string temp);
                 sendMsg("!! " + tcpClient.nameTag() + " has left the chat !!");
                 disconnect();
             }
+        }
+
+        private void SendFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Filter = "Files (*.PNG;*.JPG;*.txt)|*.PNG;*.JPG;*.txt|All files (*.*)|*.*";
+                ofd.ShowDialog();
+                string path = "";
+                path = ofd.FileName;
+                FileInfo fileInfo = new FileInfo(path);
+                string name = fileInfo.Name;
+                // khởi tạo mảng byte data 
+                byte[] data = new byte[fileInfo.Length];
+
+                // mở dilestream để lưu dữ liệu file được chọn vào data
+                using (FileStream fs = fileInfo.OpenRead())
+                {
+                    fs.Read(data, 0, data.Length);
+                }
+                // gửi file
+                sendMsg("++ " + tcpClient.nameTag() + " has send file: " + name );
+                nwStream.Write(data, 0, data.Length);
+            }
+            catch (Exception) { MessageBox.Show(" File Send Fail pls try again ");}
+        }
+
+        private void listBox2_DoubleClick(object sender, EventArgs e)
+        {
+            if (listBox2.SelectedItem != null)
+            {
+                
+                int a = listBox2.SelectedIndex;
+                try
+                {
+                    if (listBox2.Items[listBox2.SelectedIndex].ToString().Contains(".txt"))
+                    {
+                        Stream stream = MemFile[a];
+                        // đọc dữ liệu trong  MemoryStream sử dụng StreamReader.
+                        using (StreamReader memReader = new StreamReader(stream))
+                        {
+                            string memContents = memReader.ReadToEnd();
+                            richTextBox1.Text = memContents.ToString();
+                            richTextBox1.Visible = true;
+                            chatBox.Visible = false;
+                            pictureBox1.Visible = false;
+                            ExitFile.Visible = true;
+                        }
+                        stream.Close();
+                    } 
+                    else
+                    {
+                        Stream filestream = MemFile[a];
+                        var img = Bitmap.FromStream(filestream);
+                        pictureBox1.Image = img;
+                        richTextBox1.Visible = false;
+                        chatBox.Visible = false;
+                        pictureBox1.Visible = true;
+                        ExitFile.Visible = true;                
+                    } 
+                }
+                catch { MessageBox.Show("lỗi file"); }
+            }
+        }
+        private void ExitFile_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Visible = false;
+            richTextBox1.Visible = false;
+            chatBox.Visible = true;
+            richTextBox1.Clear();
+            ExitFile.Visible = false;
+        }
+    }
+    public class FileData
+    {
+        public byte[] data;
+        public FileData(byte[] data1)
+        {
+            data = new byte[data1.Length];
+            data = data1;   
+        }
+        public byte[] getData()
+        {
+            return data;
+        }
+        public int getLength()
+        {
+            return data.Length;
         }
     }
 }
