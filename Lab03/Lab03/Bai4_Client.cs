@@ -28,8 +28,7 @@ namespace Lab03
         private string[] files = new string[10];
         private int fileCount = 0;
         private int check = 0;
-        FileData [] FilesData = new FileData[10]; // tạo class lưu dữ liệu
-        MemoryStream []MemFile = new MemoryStream[10];
+        MemoryStream[] MemFile = new MemoryStream[10];
         private bool dmOpen = false;
 
         public class Bai4_TcpClient
@@ -66,7 +65,7 @@ namespace Lab03
 
         private void connectBtn_Click(object sender, EventArgs e)
         {
-            if(usernameTB.Text == "")
+            if (usernameTB.Text == "")
             {
                 MessageBox.Show("Username cannot be empty");
                 return;
@@ -83,9 +82,9 @@ namespace Lab03
                     displayClients();
                     displayFile();
                 }
-                catch(SocketException se)
+                catch (SocketException se)
                 {
-                    if(se.SocketErrorCode == SocketError.ConnectionRefused)
+                    if (se.SocketErrorCode == SocketError.ConnectionRefused)
                     {
                         MessageBox.Show("There is no server listening at the moment");
                         return;
@@ -116,7 +115,7 @@ namespace Lab03
             {
                 while (tcpClient.client.Connected)
                 {
-                    int byte_count =  await nwStream.ReadAsync(received, 0, received.Length);
+                    int byte_count = await nwStream.ReadAsync(received, 0, received.Length);
                     byte[] formatted = new byte[byte_count];
                     Array.Copy(received, formatted, byte_count);
                     string msg = Encoding.Unicode.GetString(formatted);
@@ -127,7 +126,7 @@ namespace Lab03
                         {
                             displayClients();
                         }
-                            displayFile();
+                        displayFile();
                         if (msg[0] == '>')
                         {
                             int start = msg.IndexOf('#') + 1;
@@ -163,11 +162,11 @@ namespace Lab03
                             }
                             //MessageBox.Show(portString);
                         }
-                        else if(check == 1)
-                        { 
-                            check  = 0;
+                        else if (check == 1)
+                        {
+                            check = 0;
                             MemFile[fileCount - 1] = new MemoryStream(formatted);  // lưu data stream vào MemFile để lưu trữ
-                        } 
+                        }
                         else
                             chatBox.Text += msg + "\r\n";
                     }));
@@ -193,10 +192,9 @@ namespace Lab03
                     else if (msg[0] == '+')
                     {
                         files[fileCount] = data;
-                        FilesData[fileCount] = new FileData(formatted);
                         fileCount += 1;
                         check = 1;
-                    } 
+                    }
                 }
                 clients.TryRemove(tcpClient.portNum, out string temp);
                 nwStream.Close();
@@ -223,7 +221,7 @@ namespace Lab03
         private void displayClients()
         {
             listBox1.Items.Clear();
-            foreach(var client in clients)
+            foreach (var client in clients)
             {
                 listBox1.Items.Add(client.Value + "#" + client.Key.ToString());
             }
@@ -242,20 +240,20 @@ namespace Lab03
         }
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
-            if(listBox1.SelectedItem != null)
+            if (listBox1.SelectedItem != null)
             {
                 string[] tags = listBox1.SelectedItem.ToString().Split('#');
                 string recptInfo = listBox1.SelectedItem.ToString();
                 int port = int.Parse(tags[1]);
                 if (port == tcpClient.portNum) return;
-                dm = new Bai4_Client_DM(tcpClient.nameTag(),port, nwStream, recptInfo);
+                dm = new Bai4_Client_DM(tcpClient.nameTag(), port, nwStream, recptInfo);
                 dm.Show();
                 try
                 {
-                   dmClients.Add(port, recptInfo);
+                    dmClients.Add(port, recptInfo);
                 }
-                catch 
-                { 
+                catch
+                {
                     dmClients.Remove(port);
                 }
                 dmOpen = true;
@@ -263,7 +261,7 @@ namespace Lab03
         }
         private void disconnect()
         {
-            if(dmOpen) dm.Close();
+            if (dmOpen) dm.Close();
             titleLabel0.Text = "You are not connected to the server";
             titleLabel0.ForeColor = Color.Black;
             connected = false;
@@ -276,9 +274,9 @@ namespace Lab03
 
         private void Bai4_Client_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if(connected)
+            if (connected)
             {
-                if(dmOpen) dm.Close();
+                if (dmOpen) dm.Close();
                 clients.TryRemove(tcpClient.portNum, out string temp);
                 sendMsg("!! " + tcpClient.nameTag() + " has left the chat !!");
                 disconnect();
@@ -305,17 +303,17 @@ namespace Lab03
                     fs.Read(data, 0, data.Length);
                 }
                 // gửi file
-                sendMsg("++ " + tcpClient.nameTag() + " has send file: " + name );
+                sendMsg("++ " + tcpClient.nameTag() + " has send file: " + name);
                 nwStream.Write(data, 0, data.Length);
             }
-            catch (Exception) { MessageBox.Show(" File Send Fail pls try again ");}
+            catch (Exception) { MessageBox.Show(" File Send Fail pls try again "); }
         }
 
         private void listBox2_DoubleClick(object sender, EventArgs e)
         {
             if (listBox2.SelectedItem != null)
             {
-                
+
                 int a = listBox2.SelectedIndex;
                 try
                 {
@@ -333,7 +331,7 @@ namespace Lab03
                             ExitFile.Visible = true;
                         }
                         stream.Close();
-                    } 
+                    }
                     else
                     {
                         Stream filestream = MemFile[a];
@@ -342,8 +340,8 @@ namespace Lab03
                         richTextBox1.Visible = false;
                         chatBox.Visible = false;
                         pictureBox1.Visible = true;
-                        ExitFile.Visible = true;                
-                    } 
+                        ExitFile.Visible = true;
+                    }
                 }
                 catch { MessageBox.Show("lỗi file"); }
             }
@@ -355,23 +353,6 @@ namespace Lab03
             chatBox.Visible = true;
             richTextBox1.Clear();
             ExitFile.Visible = false;
-        }
-    }
-    public class FileData
-    {
-        public byte[] data;
-        public FileData(byte[] data1)
-        {
-            data = new byte[data1.Length];
-            data = data1;   
-        }
-        public byte[] getData()
-        {
-            return data;
-        }
-        public int getLength()
-        {
-            return data.Length;
         }
     }
 }
