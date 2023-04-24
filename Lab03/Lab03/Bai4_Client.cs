@@ -29,7 +29,6 @@ namespace Lab03
         private int fileCount = 0;
         private int check = 0;
         private bool dmOpen = false;
-        private byte[] huhu;
         FileData[] FilesData = new FileData[10]; // tạo class lưu dữ liệu
         public class Bai4_TcpClient
         {
@@ -164,8 +163,6 @@ namespace Lab03
                         else if (check == 1)
                         {
                             check = 0;
-                            huhu = new byte[formatted.Length];
-                            huhu = formatted;
                             // lưu dữ liệu vào FilesData
                             FilesData[fileCount - 1] = new FileData(formatted);
                         }
@@ -292,7 +289,6 @@ namespace Lab03
                 string name = fileInfo.Name;
                 // khởi tạo mảng byte data 
                 byte[] data = new byte[fileInfo.Length];
-
                 // mở dilestream để lưu dữ liệu file được chọn vào data
                 using (FileStream fs = fileInfo.OpenRead())
                 {
