@@ -30,7 +30,7 @@ namespace Lab03
         {
             int bytesReceived = 0;
             byte[] recv = new byte[1];
-            Mess_txt.Text = "Server started";
+            Mess_txt.Text += "Server started"+Environment.NewLine;
             Socket clientSocket;
             Socket listenerSocket = new Socket(
             AddressFamily.InterNetwork,
@@ -41,7 +41,7 @@ namespace Lab03
             listenerSocket.Bind(ipepServer);
             listenerSocket.Listen(-1);
             clientSocket = listenerSocket.Accept();
-            Mess_txt.Text+="Telnet running on "+IPAddress.Any+":8080"+Environment.NewLine;
+            Mess_txt.Text+="Telnet running on "+IPAddress.Loopback+":8080"+Environment.NewLine;
             while (clientSocket.Connected)
             {
                 string text = "";
