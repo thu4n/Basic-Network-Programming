@@ -35,8 +35,6 @@ namespace Lab03
             titleLabel0.Text = "From " + senderInfo + " to " + recptInfo;
             Text = "From " + senderInfo + " to " + recptInfo;
         }
-
-
         private void sendBtn_Click(object sender, EventArgs e)
         {
             if (textBox.Text == "") return;
@@ -47,7 +45,6 @@ namespace Lab03
             chatBox.Text += senderInfo + ": " + msg + "\r\n";
             textBox.Clear();
         }
-
         public void getMsg(string msg)
         {
             msg = msg.Remove(0, 1);

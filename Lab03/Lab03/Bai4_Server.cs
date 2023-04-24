@@ -71,10 +71,9 @@ namespace Lab03
             int check = 2; // biến xét điều kiện gửi file
             int portNum = ((IPEndPoint)client.Client.RemoteEndPoint).Port;
             clients.Add(client);
-            //MessageBox.Show(portNum.ToString());
             tempClients.Add(portNum, client);
             NetworkStream nwStream = client.GetStream();
-            byte[] buffer = new byte[1000000000];
+            byte[] buffer = new byte[100000000];
             while (client.Connected && isListening)
             {
                 try
