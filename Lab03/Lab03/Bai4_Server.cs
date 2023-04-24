@@ -73,7 +73,7 @@ namespace Lab03
             clients.Add(client);
             tempClients.Add(portNum, client);
             NetworkStream nwStream = client.GetStream();
-            byte[] buffer = new byte[100000000];
+            byte[] buffer = new byte[10000000];
             while (client.Connected && isListening)
             {
                 try
