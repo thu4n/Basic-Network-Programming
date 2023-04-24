@@ -30,6 +30,8 @@ namespace Lab03
         private int check = 0;
         FileData [] FilesData = new FileData[10]; // tạo class lưu dữ liệu
         MemoryStream []MemFile = new MemoryStream[10];
+        private bool dmOpen = false;
+
         public class Bai4_TcpClient
         {
             public TcpClient client { get; set; }
@@ -256,15 +258,12 @@ namespace Lab03
                 { 
                     dmClients.Remove(port);
                 }
-                dm.openForm = true;
-               
+                dmOpen = true;
             }
         }
         private void disconnect()
         {
-            try
-            { dm.Close(); }
-            catch { }
+            if(dmOpen) dm.Close();
             titleLabel0.Text = "You are not connected to the server";
             titleLabel0.ForeColor = Color.Black;
             connected = false;
@@ -279,9 +278,7 @@ namespace Lab03
         {
             if(connected)
             {
-                try
-                { dm.Close(); }
-                catch { } // lỗi nếu ko mở dm thì nó sẽ bị null nên không thể close được
+                if(dmOpen) dm.Close();
                 clients.TryRemove(tcpClient.portNum, out string temp);
                 sendMsg("!! " + tcpClient.nameTag() + " has left the chat !!");
                 disconnect();
