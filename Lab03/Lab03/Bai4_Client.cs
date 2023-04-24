@@ -28,9 +28,9 @@ namespace Lab03
         private string[] files = new string[10];
         private int fileCount = 0;
         private int check = 0;
-        MemoryStream[] MemFile = new MemoryStream[10];
         private bool dmOpen = false;
-
+        private byte[] huhu;
+        FileData[] FilesData = new FileData[10]; // tạo class lưu dữ liệu
         public class Bai4_TcpClient
         {
             public TcpClient client { get; set; }
@@ -160,12 +160,14 @@ namespace Lab03
                                 dm.openForm = true;
                                 dm.getMsg(msg);
                             }
-                            //MessageBox.Show(portString);
                         }
                         else if (check == 1)
                         {
                             check = 0;
-                            MemFile[fileCount - 1] = new MemoryStream(formatted);  // lưu data stream vào MemFile để lưu trữ
+                            huhu = new byte[formatted.Length];
+                            huhu = formatted;
+                            // lưu dữ liệu vào FilesData
+                            FilesData[fileCount - 1] = new FileData(formatted);
                         }
                         else
                             chatBox.Text += msg + "\r\n";
@@ -182,12 +184,6 @@ namespace Lab03
                     else if (msg[0] == '!')
                     {
                         displayClients();
-                        if (dm.openForm)
-                        {
-                            /* Dự định là check coi form nào đang mở khi nhận đc thông báo có người out
-                             nhưng mà quên tính trường hợp có nhiều form đang mở khi ib với nhiều thằng, nhờ anh Phát cả nhé
-                             */
-                        }
                     }
                     else if (msg[0] == '+')
                     {
@@ -319,31 +315,31 @@ namespace Lab03
                 {
                     if (listBox2.Items[listBox2.SelectedIndex].ToString().Contains(".txt"))
                     {
-                        Stream stream = MemFile[a];
-                        // đọc dữ liệu trong  MemoryStream sử dụng StreamReader.
-                        using (StreamReader memReader = new StreamReader(stream))
-                        {
-                            string memContents = memReader.ReadToEnd();
-                            richTextBox1.Text = memContents.ToString();
-                            richTextBox1.Visible = true;
-                            chatBox.Visible = false;
-                            pictureBox1.Visible = false;
-                            ExitFile.Visible = true;
-                        }
-                        stream.Close();
+                     // tạo luồng với dữ liệu file đã lưu
+                       Stream stream = new MemoryStream(FilesData[a].getData());
+                    // đọc dữ liệu trong  MemoryStream sử dụng StreamReader.
+                      using (StreamReader memReader = new StreamReader(stream))
+                      {
+                        string memContents = memReader.ReadToEnd();
+                        richTextBox1.Text = memContents.ToString();
+                        richTextBox1.Visible = true;
+                        chatBox.Visible = false;
+                        pictureBox1.Visible = false;
+                        ExitFile.Visible = true;
+                      }
                     }
                     else
                     {
-                        Stream filestream = MemFile[a];
-                        var img = Bitmap.FromStream(filestream);
+                        Stream stream = new MemoryStream(FilesData[a].getData());
+                        var img = Bitmap.FromStream(stream);
                         pictureBox1.Image = img;
                         richTextBox1.Visible = false;
                         chatBox.Visible = false;
                         pictureBox1.Visible = true;
                         ExitFile.Visible = true;
                     }
-                }
-                catch { MessageBox.Show("lỗi file"); }
+               }
+               catch { MessageBox.Show("lỗi file"); }
             }
         }
         private void ExitFile_Click(object sender, EventArgs e)
@@ -353,6 +349,19 @@ namespace Lab03
             chatBox.Visible = true;
             richTextBox1.Clear();
             ExitFile.Visible = false;
+        }
+    }
+    public class FileData
+    {
+        public byte[] data;
+        public FileData(byte[] data1)
+        {
+            data = new byte[data1.Length];
+            data = data1;
+        }
+        public byte[] getData()
+        {
+            return data;
         }
     }
 }
