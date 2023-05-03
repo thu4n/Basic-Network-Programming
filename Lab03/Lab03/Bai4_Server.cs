@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
@@ -51,8 +52,11 @@ namespace Lab03
         }
         private void monitorConnection()
         {
-            listener = new TcpListener(IPAddress.Loopback, 16000);
+            string str = GetLocalIPAddress();
+            IPAddress localIP = IPAddress.Parse(str);
+            listener = new TcpListener(localIP, 16000);
             listener.Start();
+            MessageBox.Show(str);
             Task.Run(async () =>
             {
                     while (isListening)
@@ -65,6 +69,25 @@ namespace Lab03
                         thread.Start();
                     }
             });
+        }
+
+        public static string GetLocalIPAddress()
+        {
+            var interfaces = NetworkInterface.GetAllNetworkInterfaces();
+            foreach (var adapter in interfaces.Where(x => x.OperationalStatus == OperationalStatus.Up)) // Dam bao trang thai interface la Up
+            {
+                if (adapter.Name.ToLower() == "wi-fi")
+                {
+                    var props = adapter.GetIPProperties();
+                    var result = props.UnicastAddresses.FirstOrDefault(x => x.Address.AddressFamily == AddressFamily.InterNetwork);
+                    if (result != null)
+                    {
+                        var ip = result.Address.ToString();
+                        return ip;
+                    }
+                }
+            }
+            return null;
         }
         private void openSession(TcpClient client)
         {
