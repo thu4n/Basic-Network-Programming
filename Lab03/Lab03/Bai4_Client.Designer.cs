@@ -45,6 +45,7 @@ namespace Lab03
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.ExitFile = new System.Windows.Forms.Button();
             this.ipTB = new System.Windows.Forms.TextBox();
+            this.IPServer = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -132,7 +133,7 @@ namespace Lab03
             // 
             this.titleLabel0.AutoSize = true;
             this.titleLabel0.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel0.Location = new System.Drawing.Point(39, 37);
+            this.titleLabel0.Location = new System.Drawing.Point(39, 31);
             this.titleLabel0.Name = "titleLabel0";
             this.titleLabel0.Size = new System.Drawing.Size(497, 32);
             this.titleLabel0.TabIndex = 12;
@@ -243,10 +244,21 @@ namespace Lab03
             this.ipTB.BackColor = System.Drawing.SystemColors.Control;
             this.ipTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ipTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ipTB.Location = new System.Drawing.Point(542, 43);
+            this.ipTB.Location = new System.Drawing.Point(542, 40);
             this.ipTB.Name = "ipTB";
             this.ipTB.Size = new System.Drawing.Size(169, 23);
             this.ipTB.TabIndex = 21;
+            // 
+            // IPServer
+            // 
+            this.IPServer.AutoSize = true;
+            this.IPServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IPServer.Location = new System.Drawing.Point(718, 44);
+            this.IPServer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.IPServer.Name = "IPServer";
+            this.IPServer.Size = new System.Drawing.Size(113, 20);
+            this.IPServer.TabIndex = 22;
+            this.IPServer.Text = "( IP Server )";
             // 
             // Bai4_Client
             // 
@@ -254,6 +266,7 @@ namespace Lab03
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1000, 577);
+            this.Controls.Add(this.IPServer);
             this.Controls.Add(this.ipTB);
             this.Controls.Add(this.ExitFile);
             this.Controls.Add(this.listBox2);
@@ -300,5 +313,6 @@ namespace Lab03
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button ExitFile;
         private System.Windows.Forms.TextBox ipTB;
+        private System.Windows.Forms.Label IPServer;
     }
 }
