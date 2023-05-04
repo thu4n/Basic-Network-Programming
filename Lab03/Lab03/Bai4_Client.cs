@@ -101,6 +101,7 @@ namespace Lab03
                 titleLabel0.ForeColor = ColorTranslator.FromHtml("#457ad0");
                 connected = true;
                 connectBtn.Text = "Disconnect";
+                ipTB.ReadOnly = true;
                 connectBtn.BackColor = Color.Red;
                 usernameTB.ReadOnly = true;
             }
@@ -110,24 +111,6 @@ namespace Lab03
                 sendMsg("!! " + tcpClient.nameTag() + " has left the chat !!");
                 disconnect();
             }
-        }
-        public static string GetLocalIPAddress()
-        {
-            var interfaces = NetworkInterface.GetAllNetworkInterfaces();
-            foreach (var adapter in interfaces.Where(x => x.OperationalStatus == OperationalStatus.Up)) // Dam bao trang thai interface la Up
-            {
-                if (adapter.Name.ToLower() == "wi-fi")
-                {
-                    var props = adapter.GetIPProperties();
-                    var result = props.UnicastAddresses.FirstOrDefault(x => x.Address.AddressFamily == AddressFamily.InterNetwork);
-                    if (result != null)
-                    {
-                        var ip = result.Address.ToString();
-                        return ip;
-                    }
-                }
-            }
-            return null;
         }
         private void getMsg()
         {
@@ -282,6 +265,7 @@ namespace Lab03
             connected = false;
             connectBtn.Text = "Connect";
             connectBtn.BackColor = ColorTranslator.FromHtml("#457ad0");
+            ipTB.ReadOnly = false;
             usernameTB.ReadOnly = false;
             nwStream.Close();
             tcpClient.client.Close();

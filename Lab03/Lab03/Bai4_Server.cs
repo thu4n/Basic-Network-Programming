@@ -56,7 +56,7 @@ namespace Lab03
             IPAddress localIP = IPAddress.Parse(str);
             listener = new TcpListener(localIP, 16000);
             listener.Start();
-            MessageBox.Show(str);
+            MessageBox.Show("Server's IP address is " + str);
             Task.Run(async () =>
             {
                     while (isListening)
