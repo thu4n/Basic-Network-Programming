@@ -34,8 +34,6 @@ namespace Lab03
             this.chatBox = new System.Windows.Forms.TextBox();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.usernameTB = new System.Windows.Forms.TextBox();
-            this.titleLabel1 = new System.Windows.Forms.Label();
-            this.titleLabel2 = new System.Windows.Forms.Label();
             this.connectBtn = new System.Windows.Forms.Button();
             this.titleLabel0 = new System.Windows.Forms.Label();
             this.usersLabel = new System.Windows.Forms.Label();
@@ -46,6 +44,7 @@ namespace Lab03
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.ExitFile = new System.Windows.Forms.Button();
+            this.ipTB = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,29 +111,6 @@ namespace Lab03
             this.usernameTB.Size = new System.Drawing.Size(169, 23);
             this.usernameTB.TabIndex = 8;
             // 
-            // titleLabel1
-            // 
-            this.titleLabel1.AutoSize = true;
-            this.titleLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel1.Location = new System.Drawing.Point(272, 28);
-            this.titleLabel1.Name = "titleLabel1";
-            this.titleLabel1.Size = new System.Drawing.Size(300, 32);
-            this.titleLabel1.TabIndex = 9;
-            this.titleLabel1.Text = "You are chatting with";
-            this.titleLabel1.Visible = false;
-            // 
-            // titleLabel2
-            // 
-            this.titleLabel2.AutoSize = true;
-            this.titleLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(122)))), ((int)(((byte)(208)))));
-            this.titleLabel2.Location = new System.Drawing.Point(569, 28);
-            this.titleLabel2.Name = "titleLabel2";
-            this.titleLabel2.Size = new System.Drawing.Size(158, 32);
-            this.titleLabel2.TabIndex = 10;
-            this.titleLabel2.Text = "titleLabel2";
-            this.titleLabel2.Visible = false;
-            // 
             // connectBtn
             // 
             this.connectBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(122)))), ((int)(((byte)(208)))));
@@ -156,7 +132,7 @@ namespace Lab03
             // 
             this.titleLabel0.AutoSize = true;
             this.titleLabel0.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel0.Location = new System.Drawing.Point(251, 28);
+            this.titleLabel0.Location = new System.Drawing.Point(39, 37);
             this.titleLabel0.Name = "titleLabel0";
             this.titleLabel0.Size = new System.Drawing.Size(497, 32);
             this.titleLabel0.TabIndex = 12;
@@ -262,12 +238,23 @@ namespace Lab03
             this.ExitFile.Visible = false;
             this.ExitFile.Click += new System.EventHandler(this.ExitFile_Click);
             // 
+            // ipTB
+            // 
+            this.ipTB.BackColor = System.Drawing.SystemColors.Control;
+            this.ipTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ipTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ipTB.Location = new System.Drawing.Point(542, 43);
+            this.ipTB.Name = "ipTB";
+            this.ipTB.Size = new System.Drawing.Size(169, 23);
+            this.ipTB.TabIndex = 21;
+            // 
             // Bai4_Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1000, 577);
+            this.Controls.Add(this.ipTB);
             this.Controls.Add(this.ExitFile);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.File_Receive);
@@ -276,8 +263,6 @@ namespace Lab03
             this.Controls.Add(this.usersLabel);
             this.Controls.Add(this.titleLabel0);
             this.Controls.Add(this.connectBtn);
-            this.Controls.Add(this.titleLabel2);
-            this.Controls.Add(this.titleLabel1);
             this.Controls.Add(this.usernameTB);
             this.Controls.Add(this.usernameLabel);
             this.Controls.Add(this.chatBox);
@@ -304,8 +289,6 @@ namespace Lab03
         private System.Windows.Forms.TextBox chatBox;
         private System.Windows.Forms.Label usernameLabel;
         private System.Windows.Forms.TextBox usernameTB;
-        private System.Windows.Forms.Label titleLabel1;
-        private System.Windows.Forms.Label titleLabel2;
         private System.Windows.Forms.Button connectBtn;
         private System.Windows.Forms.Label titleLabel0;
         private System.Windows.Forms.Label usersLabel;
@@ -316,5 +299,6 @@ namespace Lab03
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button ExitFile;
+        private System.Windows.Forms.TextBox ipTB;
     }
 }
