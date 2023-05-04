@@ -14,6 +14,7 @@ using System.Text.Json;
 using System.IO;
 using System.Numerics;
 using System.IO.Pipes;
+using System.Net.NetworkInformation;
 
 namespace Lab03
 {
@@ -36,12 +37,13 @@ namespace Lab03
             public string username { get; set; }
             public int portNum { get; set; }
             public Bai4_TcpClient() { }
-            public Bai4_TcpClient(string name)
+            public Bai4_TcpClient(string name, IPAddress ip)
             {
                 client = new TcpClient();
-                client.Connect(IPAddress.Loopback, 16000);
+                client.Connect(ip, 16000);
                 portNum = ((IPEndPoint)client.Client.LocalEndPoint).Port;
                 username = name;
+                MessageBox.Show(ip.ToString());
             }
             public string nameTag()
             {
@@ -73,7 +75,9 @@ namespace Lab03
             {
                 try
                 {
-                    tcpClient = new Bai4_TcpClient(usernameTB.Text);
+                    string str = ipTB.Text;
+                    IPAddress localIP = IPAddress.Parse(str);
+                    tcpClient = new Bai4_TcpClient(usernameTB.Text, localIP);
                     nwStream = tcpClient.client.GetStream();
                     clients.TryAdd(tcpClient.portNum, tcpClient.username);
                     sendMsg(tcpClient.nameTag() + " has joined the chat");
@@ -97,6 +101,7 @@ namespace Lab03
                 titleLabel0.ForeColor = ColorTranslator.FromHtml("#457ad0");
                 connected = true;
                 connectBtn.Text = "Disconnect";
+                ipTB.ReadOnly = true;
                 connectBtn.BackColor = Color.Red;
                 usernameTB.ReadOnly = true;
             }
@@ -260,6 +265,7 @@ namespace Lab03
             connected = false;
             connectBtn.Text = "Connect";
             connectBtn.BackColor = ColorTranslator.FromHtml("#457ad0");
+            ipTB.ReadOnly = false;
             usernameTB.ReadOnly = false;
             nwStream.Close();
             tcpClient.client.Close();
