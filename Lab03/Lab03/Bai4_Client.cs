@@ -43,7 +43,6 @@ namespace Lab03
                 client.Connect(ip, 16000);
                 portNum = ((IPEndPoint)client.Client.LocalEndPoint).Port;
                 username = name;
-                MessageBox.Show(ip.ToString());
             }
             public string nameTag()
             {
@@ -108,7 +107,7 @@ namespace Lab03
             else
             {
                 //clients.TryRemove(tcpClient.portNum, out string temp);
-                sendMsg("!" + tcpClient.nameTag() + " has left the chat !!");
+                sendMsg("!" + tcpClient.nameTag() + " has left the chat !");
                 disconnect();
             }
         }
@@ -135,12 +134,9 @@ namespace Lab03
                         displayFile();
                         if (msg[0] == '^')
                         {
-                            string newUser = msg.Substring(1, msg.Length - 3);
+                            string newUser = msg.Substring(1, msg.Length - 1);
                             displayClients(newUser);
                         }
-                        else if(check == 1)
-                        { }    
-                          else  chatBox.Text += msg + "\r\n";
                         if (msg[0] == '<')
                         {
                             msg = msg.TrimStart('<');
@@ -187,7 +183,8 @@ namespace Lab03
                             FilesData[fileCount - 1] = new FileData(formatted);
                             
                         }
-                        
+                        else chatBox.Text += msg + "\r\n";
+
                     }));
                     int data2 = msg.IndexOf(':') + 2;
                     try
@@ -250,12 +247,9 @@ namespace Lab03
         }
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItem != null)
+            if (listBox1.SelectedItem != null && listBox1.SelectedItem.ToString() != tcpClient.nameTag())
             {
-                string[] tags = listBox1.SelectedItem.ToString().Split('#');
                 string recptInfo = listBox1.SelectedItem.ToString();
-                int port = int.Parse(tags[1]);
-                if (port == tcpClient.portNum) return;
                 dm = new Bai4_Client_DM(tcpClient.nameTag(), nwStream, recptInfo);
                 dm.Show();
                 dmOpen = true;
