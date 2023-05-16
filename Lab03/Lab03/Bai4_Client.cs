@@ -257,17 +257,6 @@ namespace Lab03
                 dm = new Bai4_Client_DM(tcpClient.nameTag(), nwStream, recptInfo);
                 dm.Show();
                 dmOpen = true;
-                /*dm = new Bai4_Client_DM(tcpClient.nameTag(), port, nwStream, recptInfo);
-                dm.Show();
-                try
-                {
-                    dmClients.Add(port, recptInfo);
-                }
-                catch
-                {
-                    dmClients.Remove(port);
-                }
-                dmOpen = true;*/
             }
         }
         private void disconnect()
