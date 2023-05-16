@@ -138,8 +138,9 @@ namespace Lab03
                             string newUser = msg.Substring(1, msg.Length - 3);
                             displayClients(newUser);
                         }
-                        else
-                            chatBox.Text += msg + "\r\n";
+                        else if(check == 1)
+                        { }    
+                          else  chatBox.Text += msg + "\r\n";
                         if (msg[0] == '<')
                         {
                             msg = msg.TrimStart('<');
@@ -184,6 +185,7 @@ namespace Lab03
                             check = 0;
                             // lưu dữ liệu vào FilesData
                             FilesData[fileCount - 1] = new FileData(formatted);
+                            
                         }
                         
                     }));

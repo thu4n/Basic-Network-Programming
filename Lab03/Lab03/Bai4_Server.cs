@@ -24,6 +24,7 @@ namespace Lab03
         private TcpClient client;
         private Dictionary<int,TcpClient> tempClients = new Dictionary<int,TcpClient>();
         public Dictionary<string, TcpClient> clients = new Dictionary<string, TcpClient>();
+        public string CheckFile = "+-+";
         public Bai4_Server()
         {
             InitializeComponent();
@@ -110,7 +111,7 @@ namespace Lab03
                         if (msg[0] == '<')
                         {
                             directMsg(msg);
-                        }
+                        }    
                         else
                         {
                             
@@ -122,7 +123,7 @@ namespace Lab03
                             // tạo điều kiện gửi file 
                             else if (check == -1)
                             {
-                                //broadcastMsgFile(clients, formatted);         
+                                broadcastMsgFile(clients, formatted);         
                                 check = 0;
                                 continue;
                             }
@@ -142,7 +143,6 @@ namespace Lab03
                             if (check == 0)
                             {
                                 check = 2;
-
                             }
                             else
                             {
@@ -189,11 +189,11 @@ namespace Lab03
         }
 
         // gửi data file
-        private void broadcastMsgFile(List<TcpClient> clients, byte[] data)
+        private void broadcastMsgFile(Dictionary<string, TcpClient> clients, byte[] data)
         {
             foreach (var client in clients)
             {
-                NetworkStream nwStream = client.GetStream();
+                NetworkStream nwStream = client.Value.GetStream();
                 byte[] buffer = data;
                 nwStream.Write(buffer, 0, buffer.Length);
             }
@@ -222,7 +222,7 @@ namespace Lab03
             byte[] buffer = Encoding.Unicode.GetBytes(msg);
             nwStream.Write(buffer, 0, buffer.Length);
         }
-
+        
         private void Bai4_Server_Load(object sender, EventArgs e)
         {
             chatBox.Text = "";
