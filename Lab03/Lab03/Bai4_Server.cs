@@ -22,8 +22,8 @@ namespace Lab03
         private bool isListening;
         private TcpListener listener;
         private TcpClient client;
-        private List<TcpClient> clients = new List<TcpClient>();
         private Dictionary<int,TcpClient> tempClients = new Dictionary<int,TcpClient>();
+        public Dictionary<string, TcpClient> clients = new Dictionary<string, TcpClient>();
         public Bai4_Server()
         {
             InitializeComponent();
@@ -93,7 +93,6 @@ namespace Lab03
         {
             int check = 2; // biến xét điều kiện gửi file
             int portNum = ((IPEndPoint)client.Client.RemoteEndPoint).Port;
-            clients.Add(client);
             tempClients.Add(portNum, client);
             NetworkStream nwStream = client.GetStream();
             byte[] buffer = new byte[10000000];
@@ -107,25 +106,29 @@ namespace Lab03
                         byte[] formatted = new byte[byteCount];
                         Array.Copy(buffer, formatted, byteCount);
                         string msg = Encoding.Unicode.GetString(formatted);
-                        if (Char.IsDigit(msg[0]))
+                        
+                        if (msg[0] == '<')
                         {
-                            string[] packets = msg.Split('<');
-                            directMsg(int.Parse(packets[0]), packets[1]);
+                            directMsg(msg);
                         }
                         else
                         {
                             
                             if (msg[0] == '!')
                             {
-                                clients.Remove(client);
                                 tempClients.Remove(portNum);
+                                removeClient(msg);
                             }
                             // tạo điều kiện gửi file 
-                            if (check == -1)
+                            else if (check == -1)
                             {
-                                broadcastMsgFile(clients, formatted);         
+                                //broadcastMsgFile(clients, formatted);         
                                 check = 0;
                                 continue;
+                            }
+                            else if (msg[0] == '$')
+                            {
+                                addClient(client, msg);
                             }
                             broadcastMsg(clients, msg);
                             if (msg[0] == '+')
@@ -139,6 +142,7 @@ namespace Lab03
                             if (check == 0)
                             {
                                 check = 2;
+
                             }
                             else
                             {
@@ -155,6 +159,35 @@ namespace Lab03
             nwStream.Close();
             client.Close();
         }
+        private void addClient(TcpClient client, string msg)
+        {
+            // Tách tên người dùng ra trong đây
+            int end = msg.IndexOf(' ');
+            string userName = msg.Substring(1, end - 1);
+            clients.Add(userName, client);
+            updateClient();
+        }
+        private void removeClient(string msg)
+        {
+            int end = msg.IndexOf(' ');
+            string userName = msg.Substring(1, end);
+            MessageBox.Show(userName);
+            clients.Remove(userName);
+            updateClient();
+        }
+        private void updateClient()
+        {
+            string clientList = "^";
+            // Cap nhat roi broadcast cai string nay cho ben client
+            foreach(var client in clients)
+            {
+                clientList += client.Key + ",";
+            }
+            clientList = clientList.TrimEnd(',');
+            MessageBox.Show(clientList);
+            broadcastMsg(clients, clientList);
+        }
+
         // gửi data file
         private void broadcastMsgFile(List<TcpClient> clients, byte[] data)
         {
@@ -165,20 +198,27 @@ namespace Lab03
                 nwStream.Write(buffer, 0, buffer.Length);
             }
         }
-        private void broadcastMsg(List<TcpClient> clients ,string msg)
+        private void broadcastMsg(Dictionary<string,TcpClient> clients ,string msg)
         {
             foreach(var client in clients)
             {
-                NetworkStream nwStream = client.GetStream();
+                NetworkStream nwStream = client.Value.GetStream();
                 byte[] buffer = Encoding.Unicode.GetBytes(msg);
                 nwStream.Write(buffer, 0, buffer.Length);
+                IPEndPoint remote = client.Value.Client.RemoteEndPoint as IPEndPoint;
+                //MessageBox.Show("remote address is: " + remote.Address.ToString()); // Luu dia chi nay vo dau do
+
             }
         }
-        private void directMsg(int num, string msg)
+        private void directMsg(string packet)
         {
-            TcpClient recpt = tempClients[num];
+            packet = packet.TrimStart('<');
+            MessageBox.Show($"{packet}");
+            string[] packets = packet.Split(',');
+            string rcpt = packets[1];
+            TcpClient recpt = clients[rcpt];
             NetworkStream nwStream = recpt.GetStream();
-            msg = ">" + msg;
+            string msg = "<" + packets[0] + ": " + packets[2];    
             byte[] buffer = Encoding.Unicode.GetBytes(msg);
             nwStream.Write(buffer, 0, buffer.Length);
         }

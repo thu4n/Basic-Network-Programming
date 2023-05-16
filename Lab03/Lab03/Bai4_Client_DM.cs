@@ -25,12 +25,11 @@ namespace Lab03
         {
             InitializeComponent();
         }
-        public Bai4_Client_DM(string nameTag, int port, NetworkStream stream, string recpt)
+        public Bai4_Client_DM(string sender, NetworkStream stream, string recpt)
         {
             InitializeComponent();
-            destPort = port;
             nwStream = stream;
-            senderInfo = nameTag;
+            senderInfo = sender;
             recptInfo = recpt;
             titleLabel0.Text = "From " + senderInfo + " to " + recptInfo;
             Text = "From " + senderInfo + " to " + recptInfo;
@@ -39,7 +38,7 @@ namespace Lab03
         {
             if (textBox.Text == "") return;
             string msg = textBox.Text;
-            string packet = destPort.ToString() + "<" + senderInfo + ": " + msg;
+            string packet = "<" + senderInfo + "," + recptInfo + "," + msg;
             byte[] buffer = Encoding.Unicode.GetBytes(packet);
             nwStream.Write(buffer,0,buffer.Length);
             chatBox.Text += senderInfo + ": " + msg + "\r\n";
@@ -47,7 +46,6 @@ namespace Lab03
         }
         public void getMsg(string msg)
         {
-            msg = msg.Remove(0, 1);
             chatBox.Text += msg + "\r\n";
         }
         private void Bai4_Client_DM_Load(object sender, EventArgs e)
