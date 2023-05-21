@@ -32,9 +32,10 @@ namespace Lab04
 
         private void DownLoad_Click(object sender, EventArgs e)
         {
+            string filename = "test";
             WebClient myClient = new WebClient();
             Stream response = myClient.OpenRead(URL.Text);
-            myClient.DownloadFile(URL.Text, HTML.Text);
+            myClient.DownloadFile(URL.Text, HTML.Text + filename);
             richTextBox1.Text = GetHTML(URL.Text);
         }
     }
