@@ -22,6 +22,7 @@ namespace Lab04
             b1.Show();
         }
 
+
         private void Bai2_Click(object sender, EventArgs e)
         {
             Bài_2 b2 = new Bài_2();
@@ -51,5 +52,6 @@ namespace Lab04
             Bài_6 b6 = new Bài_6();
             b6.Show();
         }
+
     }
 }
