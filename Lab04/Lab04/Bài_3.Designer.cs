@@ -34,6 +34,8 @@
             this.GoFoward = new System.Windows.Forms.Button();
             this.GoBack = new System.Windows.Forms.Button();
             this.Refresh = new System.Windows.Forms.Button();
+            this.DownFile = new System.Windows.Forms.Button();
+            this.DownResource = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // URL
@@ -81,7 +83,6 @@
             // 
             // GoBack
             // 
-            this.GoBack.AutoSize = true;
             this.GoBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GoBack.Location = new System.Drawing.Point(125, 48);
             this.GoBack.Name = "GoBack";
@@ -93,7 +94,6 @@
             // 
             // Refresh
             // 
-            this.Refresh.AutoSize = true;
             this.Refresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Refresh.Location = new System.Drawing.Point(243, 48);
             this.Refresh.Name = "Refresh";
@@ -103,11 +103,34 @@
             this.Refresh.UseVisualStyleBackColor = true;
             this.Refresh.Click += new System.EventHandler(this.Refresh_Click);
             // 
+            // DownFile
+            // 
+            this.DownFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DownFile.Location = new System.Drawing.Point(507, 48);
+            this.DownFile.Name = "DownFile";
+            this.DownFile.Size = new System.Drawing.Size(110, 30);
+            this.DownFile.TabIndex = 9;
+            this.DownFile.Text = "Down File";
+            this.DownFile.UseVisualStyleBackColor = true;
+            this.DownFile.Click += new System.EventHandler(this.DownFile_Click);
+            // 
+            // DownResource
+            // 
+            this.DownResource.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DownResource.Location = new System.Drawing.Point(633, 48);
+            this.DownResource.Name = "DownResource";
+            this.DownResource.Size = new System.Drawing.Size(157, 30);
+            this.DownResource.TabIndex = 10;
+            this.DownResource.Text = "Down Resource";
+            this.DownResource.UseVisualStyleBackColor = true;
+            // 
             // Bai3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(802, 452);
+            this.Controls.Add(this.DownResource);
+            this.Controls.Add(this.DownFile);
             this.Controls.Add(this.Refresh);
             this.Controls.Add(this.GoBack);
             this.Controls.Add(this.GoFoward);
@@ -128,5 +151,7 @@
         private System.Windows.Forms.Button GoFoward;
         private System.Windows.Forms.Button GoBack;
         private System.Windows.Forms.Button Refresh;
+        private System.Windows.Forms.Button DownFile;
+        private System.Windows.Forms.Button DownResource;
     }
 }
