@@ -12,23 +12,35 @@ namespace Lab04
 {
     public partial class Bai3 : Form
     {
-        WebBrowser webBrowser;
         public Bai3() 
         { 
             InitializeComponent(); 
         }
 
-        private void Bai3_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void Load_Click(object sender, EventArgs e)
         {
-            webBrowser = new WebBrowser();
-            webBrowser.Width = 700;
-            webBrowser.Height = 500;
-            panelWeb.Controls.Add(webBrowser); 
+            string link = URL.Text;
+            webBrowser1.Navigate(link);
+        }
+
+        private void webBrowser1_Navigated(object sender, WebBrowserNavigatedEventArgs e)
+        {
+            URL.Text = webBrowser1.Url.ToString();
+        }
+
+        private void GoFoward_Click(object sender, EventArgs e)
+        {
+            webBrowser1.GoForward();
+        }
+
+        private void GoBack_Click(object sender, EventArgs e)
+        {
+            webBrowser1.GoBack();
+        }
+
+        private void Refresh_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Refresh();  
         }
     }
 }
