@@ -36,9 +36,10 @@
             // 
             // DownLoad
             // 
-            this.DownLoad.Location = new System.Drawing.Point(553, 36);
+            this.DownLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DownLoad.Location = new System.Drawing.Point(482, 59);
             this.DownLoad.Name = "DownLoad";
-            this.DownLoad.Size = new System.Drawing.Size(97, 23);
+            this.DownLoad.Size = new System.Drawing.Size(117, 53);
             this.DownLoad.TabIndex = 1;
             this.DownLoad.Text = "Download";
             this.DownLoad.UseVisualStyleBackColor = true;
@@ -46,25 +47,27 @@
             // 
             // URL
             // 
-            this.URL.Location = new System.Drawing.Point(96, 36);
+            this.URL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.URL.Location = new System.Drawing.Point(58, 37);
             this.URL.Name = "URL";
-            this.URL.Size = new System.Drawing.Size(415, 22);
+            this.URL.Size = new System.Drawing.Size(400, 30);
             this.URL.TabIndex = 2;
             this.URL.Text = "http://uit.edu.vn";
             // 
             // HTML
             // 
-            this.HTML.Location = new System.Drawing.Point(96, 91);
+            this.HTML.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HTML.Location = new System.Drawing.Point(58, 82);
             this.HTML.Name = "HTML";
-            this.HTML.Size = new System.Drawing.Size(415, 22);
+            this.HTML.Size = new System.Drawing.Size(400, 30);
             this.HTML.TabIndex = 3;
-            this.HTML.Text = "D:/test.html";
+            this.HTML.Text = "C:\\Users\\ACER\\Downloads\\huhuhu.html";
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(96, 140);
+            this.richTextBox1.Location = new System.Drawing.Point(58, 140);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(415, 268);
+            this.richTextBox1.Size = new System.Drawing.Size(541, 268);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.Text = "";
             // 
@@ -72,7 +75,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(658, 450);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.HTML);
             this.Controls.Add(this.URL);

@@ -19,19 +19,13 @@ namespace Lab04
             InitializeComponent();
         }
         
-        private string getHTML(string szURL)
+        private string GetHTML(string URL)
         {
-            // Create a request for the URL.
-            WebRequest request = WebRequest.Create(szURL);
-            // Get the response.
+            WebRequest request = WebRequest.Create(URL);
             WebResponse response = request.GetResponse();
-            // Get the stream containing content returned by the server.
             Stream dataStream = response.GetResponseStream();
-            // Open the stream using a StreamReader for easy access.
             StreamReader reader = new StreamReader(dataStream);
-            // Read the content.
             string responseFromServer = reader.ReadToEnd();
-            // Close the response.
             response.Close();
             return responseFromServer;
         }
@@ -41,19 +35,7 @@ namespace Lab04
             WebClient myClient = new WebClient();
             Stream response = myClient.OpenRead(URL.Text);
             myClient.DownloadFile(URL.Text, HTML.Text);
-            richTextBox1.Text = getHTML(URL.Text);
-
-            OpenFileDialog ofd = new OpenFileDialog();
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            ofd.ShowDialog();
-            FileStream fs = new FileStream(ofd.FileName, FileMode.OpenOrCreate);
-            string data = richTextBox1.Text;
-            using (StreamWriter sw = new StreamWriter(fs))
-            {
-                sw.Write(data); ;
-            }
-            fs.Close();
-            saveFileDialog1.ShowDialog();
+            richTextBox1.Text = GetHTML(URL.Text);
         }
     }
 }
