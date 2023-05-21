@@ -45,15 +45,16 @@ namespace Lab04
         {
             webBrowser1.Refresh();  
         }
-        public int stt = 0;
         private void DownFile_Click(object sender, EventArgs e)
         {
             try
             {
-                string filename = "File"+ stt + ".html";stt++;
+                SaveFileDialog Sfd = new SaveFileDialog();
+                Sfd.ShowDialog();
+                string filename = Sfd.FileName + ".html";
                 WebClient myClient = new WebClient();
                 Stream response = myClient.OpenRead(URL.Text);
-                myClient.DownloadFile(URL.Text, "C:\\Users\\ACER\\Downloads\\" + filename);
+                myClient.DownloadFile(URL.Text,filename);
                 MessageBox.Show("Download thành công");
             }
             catch (Exception) { MessageBox.Show("Download thất bại"); }
