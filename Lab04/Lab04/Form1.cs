@@ -30,7 +30,7 @@ namespace Lab04
 
         private void Bai3_Click_1(object sender, EventArgs e)
         {
-            var b3 = new Bài_3();
+            var b3 = new Bai3();
             b3.Show();
         }
     }
