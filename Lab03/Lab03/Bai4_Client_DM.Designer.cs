@@ -34,6 +34,7 @@ namespace Lab03
             this.sendBtn = new System.Windows.Forms.Button();
             this.titleLabel0 = new System.Windows.Forms.Label();
             this.Exit = new System.Windows.Forms.Button();
+            this.SendFile = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // chatBox
@@ -41,12 +42,12 @@ namespace Lab03
             this.chatBox.BackColor = System.Drawing.SystemColors.Control;
             this.chatBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.chatBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chatBox.Location = new System.Drawing.Point(46, 79);
+            this.chatBox.Location = new System.Drawing.Point(46, 80);
             this.chatBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.chatBox.Multiline = true;
             this.chatBox.Name = "chatBox";
             this.chatBox.ReadOnly = true;
-            this.chatBox.Size = new System.Drawing.Size(690, 363);
+            this.chatBox.Size = new System.Drawing.Size(702, 363);
             this.chatBox.TabIndex = 8;
             // 
             // textBox
@@ -58,7 +59,7 @@ namespace Lab03
             this.textBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBox.Multiline = true;
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(471, 49);
+            this.textBox.Size = new System.Drawing.Size(450, 49);
             this.textBox.TabIndex = 7;
             // 
             // sendBtn
@@ -69,10 +70,10 @@ namespace Lab03
             this.sendBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sendBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sendBtn.ForeColor = System.Drawing.Color.White;
-            this.sendBtn.Location = new System.Drawing.Point(525, 448);
+            this.sendBtn.Location = new System.Drawing.Point(504, 448);
             this.sendBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.sendBtn.Name = "sendBtn";
-            this.sendBtn.Size = new System.Drawing.Size(211, 49);
+            this.sendBtn.Size = new System.Drawing.Size(104, 49);
             this.sendBtn.TabIndex = 6;
             this.sendBtn.Text = "Send";
             this.sendBtn.UseVisualStyleBackColor = false;
@@ -88,12 +89,37 @@ namespace Lab03
             this.titleLabel0.TabIndex = 13;
             this.titleLabel0.Text = "Chatting with ...";
             // 
+            // Exit
+            // 
+            this.Exit.Location = new System.Drawing.Point(0, 0);
+            this.Exit.Name = "Exit";
+            this.Exit.Size = new System.Drawing.Size(75, 23);
+            this.Exit.TabIndex = 0;
+            // 
+            // SendFile
+            // 
+            this.SendFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(122)))), ((int)(((byte)(208)))));
+            this.SendFile.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.SendFile.FlatAppearance.BorderSize = 0;
+            this.SendFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SendFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SendFile.ForeColor = System.Drawing.Color.White;
+            this.SendFile.Location = new System.Drawing.Point(616, 448);
+            this.SendFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.SendFile.Name = "SendFile";
+            this.SendFile.Size = new System.Drawing.Size(132, 49);
+            this.SendFile.TabIndex = 14;
+            this.SendFile.Text = "SendFIle";
+            this.SendFile.UseVisualStyleBackColor = false;
+            this.SendFile.Click += new System.EventHandler(this.SendFile_Click);
+            // 
             // Bai4_Client_DM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(775, 539);
+            this.ClientSize = new System.Drawing.Size(814, 539);
+            this.Controls.Add(this.SendFile);
             this.Controls.Add(this.titleLabel0);
             this.Controls.Add(this.chatBox);
             this.Controls.Add(this.textBox);
@@ -114,5 +140,6 @@ namespace Lab03
         private System.Windows.Forms.Button sendBtn;
         private System.Windows.Forms.Label titleLabel0;
         private System.Windows.Forms.Button Exit;
+        private System.Windows.Forms.Button SendFile;
     }
 }

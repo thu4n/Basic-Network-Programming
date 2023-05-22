@@ -10,11 +10,25 @@ using System.Windows.Forms;
 
 namespace Lab04
 {
-    public partial class Bài_3 : Form
+    public partial class Bai3 : Form
     {
-        public Bài_3()
+        WebBrowser webBrowser;
+        public Bai3() 
+        { 
+            InitializeComponent(); 
+        }
+
+        private void Bai3_Load(object sender, EventArgs e)
         {
-            InitializeComponent();
+
+        }
+
+        private void Load_Click(object sender, EventArgs e)
+        {
+            webBrowser = new WebBrowser();
+            webBrowser.Width = 700;
+            webBrowser.Height = 500;
+            panelWeb.Controls.Add(webBrowser); 
         }
     }
 }

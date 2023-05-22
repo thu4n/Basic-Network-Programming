@@ -59,8 +59,7 @@
             this.Bai2.TabIndex = 1;
             this.Bai2.Text = "Bài 2";
             this.Bai2.UseVisualStyleBackColor = false;
-            this.Bai2.Click += new System.EventHandler(this.Bai2_Click);
-            // 
+            this.Bai2.Click += new System.EventHandler(this.Bai2_Click);            // 
             // Bai3
             // 
             this.Bai3.BackColor = System.Drawing.SystemColors.Desktop;

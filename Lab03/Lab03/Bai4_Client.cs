@@ -21,7 +21,7 @@ namespace Lab03
     public partial class Bai4_Client : Form
     {
         private NetworkStream nwStream;
-        private static ConcurrentDictionary<int, string> clients = new ConcurrentDictionary<int, string>(); //Sử dụng ConcurrentDictionary vì dữ liệu của type này là thread-safe
+        private static List<string> clients = new List<string>(); //Sử dụng ConcurrentDictionary vì dữ liệu của type này là thread-safe
         private Dictionary<int, string> dmClients = new Dictionary<int, string>();
         private int currentCount = 0;
         private bool connected = false;
@@ -43,7 +43,6 @@ namespace Lab03
                 client.Connect(ip, 16000);
                 portNum = ((IPEndPoint)client.Client.LocalEndPoint).Port;
                 username = name;
-                MessageBox.Show(ip.ToString());
             }
             public string nameTag()
             {
@@ -79,10 +78,10 @@ namespace Lab03
                     IPAddress localIP = IPAddress.Parse(str);
                     tcpClient = new Bai4_TcpClient(usernameTB.Text, localIP);
                     nwStream = tcpClient.client.GetStream();
-                    clients.TryAdd(tcpClient.portNum, tcpClient.username);
-                    sendMsg(tcpClient.nameTag() + " has joined the chat");
+                    //clients.TryAdd(tcpClient.portNum, tcpClient.username);
+                    sendMsg("$" + tcpClient.nameTag() + " has joined the chat");
                     getMsg();
-                    displayClients();
+                    //displayClients();
                     displayFile();
                 }
                 catch (SocketException se)
@@ -107,8 +106,8 @@ namespace Lab03
             }
             else
             {
-                clients.TryRemove(tcpClient.portNum, out string temp);
-                sendMsg("!! " + tcpClient.nameTag() + " has left the chat !!");
+                //clients.TryRemove(tcpClient.portNum, out string temp);
+                sendMsg("!" + tcpClient.nameTag() + " has left the chat !");
                 disconnect();
             }
         }
@@ -124,21 +123,30 @@ namespace Lab03
                     Array.Copy(received, formatted, byte_count);
                     string msg = Encoding.Unicode.GetString(formatted);
                     string data = "";
+                    string portString = "";
+                    string nameString = "";
                     Invoke(new MethodInvoker(delegate ()
                     {
                         if (currentCount != clients.Count) // Cập nhật số client ở thread hiện tại
                         {
-                            displayClients();
+                            //displayClients();
                         }
                         displayFile();
-                        if (msg[0] == '>')
+                        if (msg[0] == '^')
                         {
+                            string newUser = msg.Substring(1, msg.Length - 1);
+                            displayClients(newUser);
+                        }
+                        if (msg[0] == '<')
+                        {
+                            msg = msg.TrimStart('<');
+                            string[] packets = msg.Split(':');
                             int start = msg.IndexOf('#') + 1;
                             int end = msg.IndexOf(':') - start;
                             int name = msg.IndexOf(':') - 1;
                             int data1 = msg.IndexOf(':') + 2;
-                            string portString = msg.Substring(start, end);
-                            string nameString = msg.Substring(1, name);
+                            portString = msg.Substring(start, end);
+                            nameString = msg.Substring(1, name);
                             int port = int.Parse(portString);
                             try
                             { data = msg.Substring(data1); }
@@ -159,9 +167,12 @@ namespace Lab03
                             else
                             {
                                 dmClients.Add(port, nameString);
-                                dm = new Bai4_Client_DM(tcpClient.nameTag(), port, nwStream, nameString);
-                                dm.Show();
-                                dm.openForm = true;
+                                if (!dmOpen)
+                                {
+                                    dm = new Bai4_Client_DM(tcpClient.nameTag(), nwStream, packets[0]);
+                                    dm.Show();
+                                    dmOpen = true;
+                                }
                                 dm.getMsg(msg);
                             }
                         }
@@ -170,9 +181,10 @@ namespace Lab03
                             check = 0;
                             // lưu dữ liệu vào FilesData
                             FilesData[fileCount - 1] = new FileData(formatted);
+                            
                         }
-                        else
-                            chatBox.Text += msg + "\r\n";
+                        else chatBox.Text += msg + "\r\n";
+
                     }));
                     int data2 = msg.IndexOf(':') + 2;
                     try
@@ -183,10 +195,6 @@ namespace Lab03
                     {
                         disconnect();
                     }
-                    else if (msg[0] == '!')
-                    {
-                        displayClients();
-                    }
                     else if (msg[0] == '+')
                     {
                         files[fileCount] = data;
@@ -194,7 +202,7 @@ namespace Lab03
                         check = 1;
                     }
                 }
-                clients.TryRemove(tcpClient.portNum, out string temp);
+                //clients.TryRemove(tcpClient.portNum, out string temp);
                 nwStream.Close();
                 tcpClient.client.Close();
             });
@@ -216,12 +224,13 @@ namespace Lab03
             sendMsg(msg);
             textBox.Clear();
         }
-        private void displayClients()
+        private void displayClients(string clientList)
         {
             listBox1.Items.Clear();
-            foreach (var client in clients)
+            string[] arr = clientList.Split(',');
+            foreach (var client in arr)
             {
-                listBox1.Items.Add(client.Value + "#" + client.Key.ToString());
+                listBox1.Items.Add(client);
             }
             currentCount = clients.Count;
         }
@@ -238,22 +247,11 @@ namespace Lab03
         }
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItem != null)
+            if (listBox1.SelectedItem != null && listBox1.SelectedItem.ToString() != tcpClient.nameTag())
             {
-                string[] tags = listBox1.SelectedItem.ToString().Split('#');
                 string recptInfo = listBox1.SelectedItem.ToString();
-                int port = int.Parse(tags[1]);
-                if (port == tcpClient.portNum) return;
-                dm = new Bai4_Client_DM(tcpClient.nameTag(), port, nwStream, recptInfo);
+                dm = new Bai4_Client_DM(tcpClient.nameTag(), nwStream, recptInfo);
                 dm.Show();
-                try
-                {
-                    dmClients.Add(port, recptInfo);
-                }
-                catch
-                {
-                    dmClients.Remove(port);
-                }
                 dmOpen = true;
             }
         }
@@ -276,8 +274,8 @@ namespace Lab03
             if (connected)
             {
                 if (dmOpen) dm.Close();
-                clients.TryRemove(tcpClient.portNum, out string temp);
-                sendMsg("!! " + tcpClient.nameTag() + " has left the chat !!");
+                //clients.TryRemove(tcpClient.portNum, out string temp);
+                sendMsg("!" + tcpClient.nameTag() + " has left the chat !!");
                 disconnect();
             }
         }
