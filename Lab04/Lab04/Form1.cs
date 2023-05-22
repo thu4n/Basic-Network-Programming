@@ -33,5 +33,16 @@ namespace Lab04
             var b3 = new Bai3();
             b3.Show();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Bai5_Click(object sender, EventArgs e)
+        {
+            var b5 = new Bai5();
+            b5.Show();
+        }
     }
 }
