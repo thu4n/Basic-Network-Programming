@@ -42,14 +42,15 @@ namespace Lab04
                 //Xóa dữ liệu trước đó
                 htmlData = htmlData.Substring(index);
                 //TÌm vị trí đánh dấu của ảnh
-                int brackedEnd = htmlData.IndexOf('>'); //kiểm tra dữ liệu ở trong tag image
+                int brackedEnd = htmlData.IndexOf('>'); //make sure data will be inside img tag
                 int start = htmlData.IndexOf(imageSrcCode) + imageSrcCode.Length;
                 int end = htmlData.IndexOf('"', start + 1);
+                string test = "https"; string test1 = "http";
                 //lưu đường dẫn  .
                 if (end > start && start < brackedEnd)
                 {
                     string loc = htmlData.Substring(start, end - start);
-                    if (loc.Contains("https") || loc.Contains("http"))
+                    if (loc.Contains(test) || loc.Contains(test1))
                         imageList.Add(loc);
                 }
                 // kiểm tra xem đã duyệt hết dữ liệu hay chưa.
