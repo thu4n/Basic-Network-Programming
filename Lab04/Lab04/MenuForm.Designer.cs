@@ -59,7 +59,7 @@
             this.Bai2.TabIndex = 1;
             this.Bai2.Text = "Bài 2";
             this.Bai2.UseVisualStyleBackColor = false;
-            this.Bai2.Click += new System.EventHandler(this.Bai2_Click);            // 
+            this.Bai2.Click += new System.EventHandler(this.Bai2_Click_1);            // 
             // Bai3
             // 
             this.Bai3.BackColor = System.Drawing.SystemColors.Desktop;
@@ -70,7 +70,7 @@
             this.Bai3.TabIndex = 2;
             this.Bai3.Text = "Bài 3";
             this.Bai3.UseVisualStyleBackColor = false;
-            this.Bai3.Click += new System.EventHandler(this.Bai3_Click);
+            this.Bai3.Click += new System.EventHandler(this.Bai3_Click_1);
             // 
             // Bai4
             // 
@@ -83,7 +83,7 @@
             this.Bai4.Text = "Bài 4";
             this.Bai4.UseVisualStyleBackColor = false;
             this.Bai4.Click += new System.EventHandler(this.Bai4_Click);
-            // 
+             /*
             // Bai5
             // 
             this.Bai5.BackColor = System.Drawing.SystemColors.Desktop;
@@ -94,10 +94,10 @@
             this.Bai5.TabIndex = 4;
             this.Bai5.Text = "Bài 5";
             this.Bai5.UseVisualStyleBackColor = false;
-            this.Bai5.Click += new System.EventHandler(this.Bai5_Click);
+            this.Bai5.Click += new System.EventHandler(this.Bai5);
             // 
             // Bai6
-            // 
+            //
             this.Bai6.BackColor = System.Drawing.SystemColors.Desktop;
             this.Bai6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Bai6.Location = new System.Drawing.Point(570, 299);
@@ -106,7 +106,7 @@
             this.Bai6.TabIndex = 5;
             this.Bai6.Text = "Bài 6";
             this.Bai6.UseVisualStyleBackColor = false;
-            this.Bai6.Click += new System.EventHandler(this.Bai6_Click);
+            this.Bai6.Click += new System.EventHandler(this.Bai6_Click); */
             // 
             // label1
             // 
