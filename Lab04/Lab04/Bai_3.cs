@@ -13,9 +13,9 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Lab04
 {
-    public partial class Bai3 : Form
+    public partial class Bai_3 : Form
     {
-        public Bai3() 
+        public Bai_3() 
         { 
             InitializeComponent(); 
         }
@@ -25,22 +25,20 @@ namespace Lab04
             string link = URL.Text;
             webBrowser1.Navigate(link);
         }
-
         private void webBrowser1_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
             URL.Text = webBrowser1.Url.ToString();
+            webBrowser1.ScriptErrorsSuppressed = true; // bỏ qua kiểm tra lỗi script
         }
-
         private void GoFoward_Click(object sender, EventArgs e)
         {
             webBrowser1.GoForward();
+            webView21.GoForward();
         }
-
         private void GoBack_Click(object sender, EventArgs e)
         {
             webBrowser1.GoBack();
         }
-
         private void Refresh_Click(object sender, EventArgs e)
         {
             webBrowser1.Refresh();  
@@ -58,6 +56,14 @@ namespace Lab04
                 MessageBox.Show("Download thành công");
             }
             catch (Exception) { MessageBox.Show("Download thất bại"); }
+        }
+
+        private void DownResource_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog Sfd = new SaveFileDialog();
+            Sfd.ShowDialog();
+            var DownResouce = new Bai_3_1(URL.Text,Sfd.FileName);
+            DownResouce.Show();
         }
     }
 }

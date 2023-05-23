@@ -1,6 +1,6 @@
 ﻿namespace Lab04
 {
-    partial class Bai3
+    partial class Bai_3
     {
         /// <summary>
         /// Required designer variable.
@@ -36,10 +36,14 @@
             this.Refresh = new System.Windows.Forms.Button();
             this.DownFile = new System.Windows.Forms.Button();
             this.DownResource = new System.Windows.Forms.Button();
+            this.webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
+            ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.SuspendLayout();
             // 
             // URL
             // 
+            this.URL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.URL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.URL.Location = new System.Drawing.Point(125, 12);
             this.URL.Name = "URL";
@@ -105,6 +109,7 @@
             // 
             // DownFile
             // 
+            this.DownFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.DownFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DownFile.Location = new System.Drawing.Point(507, 48);
             this.DownFile.Name = "DownFile";
@@ -116,6 +121,7 @@
             // 
             // DownResource
             // 
+            this.DownResource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.DownResource.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DownResource.Location = new System.Drawing.Point(633, 48);
             this.DownResource.Name = "DownResource";
@@ -123,12 +129,25 @@
             this.DownResource.TabIndex = 10;
             this.DownResource.Text = "Down Resource";
             this.DownResource.UseVisualStyleBackColor = true;
+            this.DownResource.Click += new System.EventHandler(this.DownResource_Click);
             // 
-            // Bai3
+            // webView21
+            // 
+            this.webView21.AllowExternalDrop = true;
+            this.webView21.CreationProperties = null;
+            this.webView21.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.webView21.Location = new System.Drawing.Point(182, 210);
+            this.webView21.Name = "webView21";
+            this.webView21.Size = new System.Drawing.Size(75, 23);
+            this.webView21.TabIndex = 11;
+            this.webView21.ZoomFactor = 1D;
+            // 
+            // Bai_3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(802, 452);
+            this.Controls.Add(this.webView21);
             this.Controls.Add(this.DownResource);
             this.Controls.Add(this.DownFile);
             this.Controls.Add(this.Refresh);
@@ -137,8 +156,9 @@
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.Load);
             this.Controls.Add(this.URL);
-            this.Name = "Bai3";
+            this.Name = "Bai_3";
             this.Text = "Bài 3";
+            ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,5 +173,6 @@
         private System.Windows.Forms.Button Refresh;
         private System.Windows.Forms.Button DownFile;
         private System.Windows.Forms.Button DownResource;
+        private Microsoft.Web.WebView2.WinForms.WebView2 webView21;
     }
 }

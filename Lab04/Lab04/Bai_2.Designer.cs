@@ -1,6 +1,6 @@
 ﻿namespace Lab04
 {
-    partial class Bài_2
+    partial class Bai_2
     {
         /// <summary>
         /// Required designer variable.
@@ -30,16 +30,17 @@
         {
             this.DownLoad = new System.Windows.Forms.Button();
             this.URL = new System.Windows.Forms.TextBox();
-            this.HTML = new System.Windows.Forms.TextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // DownLoad
             // 
-            this.DownLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DownLoad.Location = new System.Drawing.Point(482, 59);
+            this.DownLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.DownLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DownLoad.Location = new System.Drawing.Point(613, 24);
             this.DownLoad.Name = "DownLoad";
-            this.DownLoad.Size = new System.Drawing.Size(117, 53);
+            this.DownLoad.Size = new System.Drawing.Size(117, 32);
             this.DownLoad.TabIndex = 1;
             this.DownLoad.Text = "Download";
             this.DownLoad.UseVisualStyleBackColor = true;
@@ -47,40 +48,44 @@
             // 
             // URL
             // 
-            this.URL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.URL.Location = new System.Drawing.Point(58, 37);
+            this.URL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.URL.Location = new System.Drawing.Point(58, 24);
             this.URL.Name = "URL";
-            this.URL.Size = new System.Drawing.Size(400, 30);
+            this.URL.Size = new System.Drawing.Size(528, 26);
             this.URL.TabIndex = 2;
             this.URL.Text = "http://uit.edu.vn";
             // 
-            // HTML
-            // 
-            this.HTML.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HTML.Location = new System.Drawing.Point(58, 82);
-            this.HTML.Name = "HTML";
-            this.HTML.Size = new System.Drawing.Size(400, 30);
-            this.HTML.TabIndex = 3;
-            this.HTML.Text = "C:\\Users\\ACER\\Downloads\\huhuhu.html";
-            // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(58, 140);
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.Location = new System.Drawing.Point(58, 81);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(541, 268);
+            this.richTextBox1.Size = new System.Drawing.Size(672, 336);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.Text = "";
             // 
-            // Bài_2
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(9, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 20);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "URL";
+            // 
+            // Bai_2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(658, 450);
+            this.ClientSize = new System.Drawing.Size(751, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.HTML);
             this.Controls.Add(this.URL);
             this.Controls.Add(this.DownLoad);
-            this.Name = "Bài_2";
+            this.Name = "Bai_2";
             this.Text = "Bài_2";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -91,7 +96,7 @@
 
         private System.Windows.Forms.Button DownLoad;
         private System.Windows.Forms.TextBox URL;
-        private System.Windows.Forms.TextBox HTML;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label label1;
     }
 }
