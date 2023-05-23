@@ -1,6 +1,6 @@
 ﻿namespace Lab04
 {
-    partial class Form1
+    partial class MenuForm
     {
         /// <summary>
         /// Required designer variable.
@@ -32,6 +32,7 @@
             this.Bai2 = new System.Windows.Forms.Button();
             this.Bai3 = new System.Windows.Forms.Button();
             this.Bai4 = new System.Windows.Forms.Button();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
             // Bai1
@@ -72,17 +73,27 @@
             this.Bai4.TabIndex = 3;
             this.Bai4.Text = "button4";
             this.Bai4.UseVisualStyleBackColor = true;
+            this.Bai4.Click += new System.EventHandler(this.Bai4_Click);
             // 
-            // Form1
+            // webBrowser1
+            // 
+            this.webBrowser1.Location = new System.Drawing.Point(511, 246);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(175, 97);
+            this.webBrowser1.TabIndex = 4;
+            // 
+            // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.Bai4);
             this.Controls.Add(this.Bai3);
             this.Controls.Add(this.Bai2);
             this.Controls.Add(this.Bai1);
-            this.Name = "Form1";
+            this.Name = "MenuForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
 
@@ -94,6 +105,7 @@
         private System.Windows.Forms.Button Bai2;
         private System.Windows.Forms.Button Bai3;
         private System.Windows.Forms.Button Bai4;
+        private System.Windows.Forms.WebBrowser webBrowser1;
     }
 }
 
