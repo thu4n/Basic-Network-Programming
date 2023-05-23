@@ -107,6 +107,18 @@
     <Compile Include="Bai_3.Designer.cs">
       <DependentUpon>Bai_3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bai_6_Article.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Bai_6_Article.Designer.cs">
+      <DependentUpon>Bai_6_Article.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bai_6_Article_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bai_6_Article_View.Designer.cs">
+      <DependentUpon>Bai_6_Article_View.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +153,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bai_6.resx">
       <DependentUpon>Bai_6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bai_6_Article.resx">
+      <DependentUpon>Bai_6_Article.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bai_6_Article_View.resx">
+      <DependentUpon>Bai_6_Article_View.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuForm.resx">
       <DependentUpon>MenuForm.cs</DependentUpon>
