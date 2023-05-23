@@ -1,5 +1,4 @@
-﻿using HtmlAgilityPack;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,49 +16,41 @@ namespace Lab04
         {
             InitializeComponent();
         }
-        private void Bai1_Click(object sender, EventArgs e)
+
+        private void Bai1Btn_Click(object sender, EventArgs e)
         {
-            var b1 = new Bài_1();
-            b1.Show();
-        }
- 
-        private void Bai2_Click_1(object sender, EventArgs e)
-        {
-            var b2 = new Bài_2();
-            b2.Show();
+            var form = new Bai_1();
+            form.Show();
         }
 
-        private void Bai3_Click_1(object sender, EventArgs e)
+        private void Bai2Btn_Click(object sender, EventArgs e)
         {
-            var b3 = new Bai3();
-            b3.Show();
+            var form = new Bai_2();
+            form.Show();
         }
 
-        private void Bai4_Click(object sender, EventArgs e)
+        private void Bai3Btn_Click(object sender, EventArgs e)
         {
-            HtmlWeb htmlWeb = new HtmlWeb()
-            {
-                AutoDetectEncoding = false,
-                OverrideEncoding = Encoding.UTF8  //Set UTF8 để hiển thị tiếng Việt
-            };
+            var form = new Bai_3();
+            form.Show();
+        }
 
-            //Load trang web, nạp html vào document
-            HtmlAgilityPack.HtmlDocument document = htmlWeb.Load("http://www.webtretho.com/forum/f26/");
+        private void Bai4Btn_Click(object sender, EventArgs e)
+        {
+            var form = new Bai_4();
+            form.Show();
+        }
 
-            //Load các tag li trong tag ul
-                var threadItems = document.DocumentNode.SelectNodes("").ToList();
+        private void Bai5Btn_Click(object sender, EventArgs e)
+        {
+            var form = new Bai_5();
+            form.Show();
+        }
 
-            var items = new List<object>();
-            foreach (var item in threadItems)
-            {
-                //Extract các giá trị từ các tag con của tag li
-                var linkNode = item.SelectSingleNode(".//a[contains(@class,'title')]");
-                var link = linkNode.Attributes["href"].Value;
-                var text = linkNode.InnerText;
-                var readCount = item.SelectSingleNode(".//div[@class='folTypPost']/ul/li/b").InnerText;
-
-                items.Add(new { text, readCount, link });
-            }
+        private void Bai6Btn_Click(object sender, EventArgs e)
+        {
+            var form = new Bai_6();
+            form.Show();
         }
     }
 }

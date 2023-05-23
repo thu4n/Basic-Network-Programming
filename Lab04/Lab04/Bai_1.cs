@@ -13,9 +13,9 @@ using System.Windows.Forms;
 
 namespace Lab04
 {
-    public partial class Bài_1 : Form
+    public partial class Bai_1 : Form
     {
-        public Bài_1()
+        public Bai_1()
         {
             InitializeComponent();
         }

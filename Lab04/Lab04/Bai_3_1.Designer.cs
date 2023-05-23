@@ -1,6 +1,6 @@
 ﻿namespace Lab04
 {
-    partial class Bài_3_1
+    partial class Bai_3_1
     {
         /// <summary>
         /// Required designer variable.
@@ -40,7 +40,7 @@
             this.ListFile.FormattingEnabled = true;
             this.ListFile.ItemHeight = 20;
             this.ListFile.Location = new System.Drawing.Point(15, 65);
-            this.ListFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ListFile.Margin = new System.Windows.Forms.Padding(4);
             this.ListFile.Name = "ListFile";
             this.ListFile.Size = new System.Drawing.Size(408, 344);
             this.ListFile.TabIndex = 2;
@@ -52,7 +52,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.picImages.Location = new System.Drawing.Point(431, 65);
-            this.picImages.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.picImages.Margin = new System.Windows.Forms.Padding(4);
             this.picImages.Name = "picImages";
             this.picImages.Size = new System.Drawing.Size(632, 344);
             this.picImages.TabIndex = 4;
@@ -79,7 +79,7 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Show file";
             // 
-            // Bài_3_1
+            // Bai_3_1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -89,8 +89,8 @@
             this.Controls.Add(this.picImages);
             this.Controls.Add(this.ListFile);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "Bài_3_1";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "Bai_3_1";
             this.Text = "Bài_3";
             this.Load += new System.EventHandler(this.Bài_3_1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picImages)).EndInit();

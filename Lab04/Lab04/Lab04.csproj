@@ -51,7 +51,7 @@
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -65,53 +65,53 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bài_1.cs">
+    <Compile Include="Bai_1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bài_1.Designer.cs">
-      <DependentUpon>Bài_1.cs</DependentUpon>
+    <Compile Include="Bai_1.Designer.cs">
+      <DependentUpon>Bai_1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bài_2.cs">
+    <Compile Include="Bai_2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bài_2.Designer.cs">
-      <DependentUpon>Bài_2.cs</DependentUpon>
+    <Compile Include="Bai_2.Designer.cs">
+      <DependentUpon>Bai_2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bài_3_1.cs">
+    <Compile Include="Bai_3_1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bài_3_1.Designer.cs">
-      <DependentUpon>Bài_3_1.cs</DependentUpon>
+    <Compile Include="Bai_3_1.Designer.cs">
+      <DependentUpon>Bai_3_1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bài_4.cs">
+    <Compile Include="Bai_4.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bài_4.Designer.cs">
-      <DependentUpon>Bài_4.cs</DependentUpon>
+    <Compile Include="Bai_4.Designer.cs">
+      <DependentUpon>Bai_4.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bài_5.cs">
+    <Compile Include="Bai_5.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bài_5.Designer.cs">
-      <DependentUpon>Bài_5.cs</DependentUpon>
+    <Compile Include="Bai_5.Designer.cs">
+      <DependentUpon>Bai_5.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bài_6.cs">
+    <Compile Include="Bai_6.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bài_6.Designer.cs">
-      <DependentUpon>Bài_6.cs</DependentUpon>
+    <Compile Include="Bai_6.Designer.cs">
+      <DependentUpon>Bai_6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bai_3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bai_3.Designer.cs">
+      <DependentUpon>Bai_3.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MenuForm.Designer.cs">
       <DependentUpon>MenuForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Bài_3.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Bài_3.Designer.cs">
-      <DependentUpon>Bài_3.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -121,26 +121,26 @@
     <Compile Include="UserForm.Designer.cs">
       <DependentUpon>UserForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Bài_1.resx">
-      <DependentUpon>Bài_1.cs</DependentUpon>
+    <EmbeddedResource Include="Bai_1.resx">
+      <DependentUpon>Bai_1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bài_2.resx">
-      <DependentUpon>Bài_2.cs</DependentUpon>
+    <EmbeddedResource Include="Bai_2.resx">
+      <DependentUpon>Bai_2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bài_3.resx">
-      <DependentUpon>Bài_3.cs</DependentUpon>
+    <EmbeddedResource Include="Bai_3.resx">
+      <DependentUpon>Bai_3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bài_3_1.resx">
-      <DependentUpon>Bài_3_1.cs</DependentUpon>
+    <EmbeddedResource Include="Bai_3_1.resx">
+      <DependentUpon>Bai_3_1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bài_4.resx">
-      <DependentUpon>Bài_4.cs</DependentUpon>
+    <EmbeddedResource Include="Bai_4.resx">
+      <DependentUpon>Bai_4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bài_5.resx">
-      <DependentUpon>Bài_5.cs</DependentUpon>
+    <EmbeddedResource Include="Bai_5.resx">
+      <DependentUpon>Bai_5.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bài_6.resx">
-      <DependentUpon>Bài_6.cs</DependentUpon>
+    <EmbeddedResource Include="Bai_6.resx">
+      <DependentUpon>Bai_6.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuForm.resx">
       <DependentUpon>MenuForm.cs</DependentUpon>

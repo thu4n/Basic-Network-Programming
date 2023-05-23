@@ -14,9 +14,9 @@ using System.Windows.Forms;
 
 namespace Lab04
 {
-    public partial class Bài_4 : Form
+    public partial class Bai_4 : Form
     {
-        public Bài_4()
+        public Bai_4()
         {
             InitializeComponent();
         }
@@ -111,6 +111,7 @@ namespace Lab04
 
         private void Bài_4_Load(object sender, EventArgs e)
         {
+            
             page1();
             Previous.Enabled = false;
         }

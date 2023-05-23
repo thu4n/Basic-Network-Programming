@@ -1,6 +1,6 @@
 ﻿namespace Lab04
 {
-    partial class Bài_4
+    partial class Bai_4
     {
         /// <summary>
         /// Required designer variable.
@@ -41,7 +41,9 @@
             // 
             // ProgressBar
             // 
-            this.ProgressBar.Location = new System.Drawing.Point(40, 400);
+            this.ProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProgressBar.Location = new System.Drawing.Point(40, 405);
             this.ProgressBar.Name = "ProgressBar";
             this.ProgressBar.Size = new System.Drawing.Size(724, 27);
             this.ProgressBar.TabIndex = 2;
@@ -49,6 +51,8 @@
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(40, 127);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -58,6 +62,7 @@
             // 
             // Previous
             // 
+            this.Previous.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Previous.Location = new System.Drawing.Point(440, 76);
             this.Previous.Name = "Previous";
             this.Previous.Size = new System.Drawing.Size(108, 29);
@@ -68,6 +73,7 @@
             // 
             // Forward
             // 
+            this.Forward.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Forward.Location = new System.Drawing.Point(661, 76);
             this.Forward.Name = "Forward";
             this.Forward.Size = new System.Drawing.Size(103, 29);
@@ -114,6 +120,7 @@
             // 
             // UserList
             // 
+            this.UserList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.UserList.AutoSize = true;
             this.UserList.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.UserList.Location = new System.Drawing.Point(570, 82);
@@ -122,11 +129,11 @@
             this.UserList.TabIndex = 10;
             this.UserList.Text = "User List";
             // 
-            // Bài_4
+            // Bai_4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(802, 467);
             this.Controls.Add(this.UserList);
             this.Controls.Add(this.TotalUser);
             this.Controls.Add(this.TotalPage);
@@ -136,7 +143,7 @@
             this.Controls.Add(this.Previous);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.ProgressBar);
-            this.Name = "Bài_4";
+            this.Name = "Bai_4";
             this.Text = "Bài_4";
             this.Load += new System.EventHandler(this.Bài_4_Load);
             this.ResumeLayout(false);

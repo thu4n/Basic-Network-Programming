@@ -1,6 +1,6 @@
 ﻿namespace Lab04
 {
-    partial class Bài_1
+    partial class Bai_1
     {
         /// <summary>
         /// Required designer variable.
@@ -69,7 +69,7 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "URL";
             // 
-            // Bài_1
+            // Bai_1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -78,7 +78,7 @@
             this.Controls.Add(this.Content_txt);
             this.Controls.Add(this.Url_txt);
             this.Controls.Add(this.Get_btn);
-            this.Name = "Bài_1";
+            this.Name = "Bai_1";
             this.Text = "Bài_1";
             this.ResumeLayout(false);
             this.PerformLayout();

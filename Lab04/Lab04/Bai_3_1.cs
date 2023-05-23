@@ -12,16 +12,16 @@ using System.Net;
 
 namespace Lab04
 {
-    public partial class Bài_3_1 : Form
+    public partial class Bai_3_1 : Form
     {
         public string urls = "";
         public string location = "";
-        public Bài_3_1()
+        public Bai_3_1()
         {
-            InitializeComponent();// System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            InitializeComponent();
         }
        //
-        public Bài_3_1(string url, string location)
+        public Bai_3_1(string url, string location)
         {
             InitializeComponent();
             urls = url;
@@ -31,10 +31,6 @@ namespace Lab04
         public List<string> FetchImages(string Url)
         {
             List<string> imageList = new List<string>();
-
-            if (!Url.StartsWith("http://") && !Url.StartsWith("https://"))
-                Url = "http://" + Url;
-          
             var htmlDoc = new HtmlAgilityPack.HtmlWeb().Load(Url);
             var htmlData = htmlDoc.DocumentNode.OuterHtml;
             string imageHtmlCode = "<img";
@@ -43,86 +39,38 @@ namespace Lab04
             int index = htmlData.IndexOf(imageHtmlCode);
             while (index != -1)
             {
-                //Remove previous data
+                //Xóa dữ liệu trước đó
                 htmlData = htmlData.Substring(index);
-
-                //Find the location of the two quotes that mark the image's location
-                int brackedEnd = htmlData.IndexOf('>'); //make sure data will be inside img tag
+                //TÌm vị trí đánh dấu của ảnh
+                int brackedEnd = htmlData.IndexOf('>'); //kiểm tra dữ liệu ở trong tag image
                 int start = htmlData.IndexOf(imageSrcCode) + imageSrcCode.Length;
                 int end = htmlData.IndexOf('"', start + 1);
-
-                //Extract the line
+                //lưu đường dẫn  .
                 if (end > start && start < brackedEnd)
                 {
                     string loc = htmlData.Substring(start, end - start);
-
-                    //Store line
-                    imageList.Add(loc);
+                    if (loc.Contains("https") || loc.Contains("http"))
+                        imageList.Add(loc);
                 }
-
-                //Move index to next image location
+                // kiểm tra xem đã duyệt hết dữ liệu hay chưa.
                 if (imageHtmlCode.Length < htmlData.Length)
                     index = htmlData.IndexOf(imageHtmlCode, imageHtmlCode.Length);
                 else
                     index = -1;
             }
-
-            //Format the image URLs
-            for (int i = 0; i < imageList.Count; i++)
-            {
-                string img = imageList[i];
-
-                string baseUrl = GetBaseURL(Url);
-
-                if ((!img.StartsWith("http://") && !img.StartsWith("https://"))
-                    && baseUrl != string.Empty)
-                    img = baseUrl + "/" + img.TrimStart('/');
-
-                imageList[i] = img;
-            }
             return imageList;
         }
-
-        private string GetBaseURL(string Url)
-        {
-            int inx = Url.IndexOf("://") + "://".Length;
-            int end = Url.IndexOf('/', inx);
-
-            string baseUrl = string.Empty;
-            if (end != -1)
-                return Url.Substring(0, end);
-            else
-                return string.Empty;
-        }
-
-
-        public bool ExploreFile(string filePath)
-        {
-            if (!System.IO.File.Exists(filePath))
-            {
-                return false;
-            }
-
-            filePath = System.IO.Path.GetFullPath(filePath);
-            System.Diagnostics.Process.Start("explorer.exe", string.Format("/select,\"{0}\"", filePath));
-            return true;
-        }
-
         private void ListFile_SelectedValueChanged(object sender, EventArgs e)
         {
             string curItem = ListFile.SelectedItem.ToString();
             picImages.Load(curItem);
         }
-       
         private void Bài_3_1_Load(object sender, EventArgs e)
         {
-            ListFile.Items.Clear();
             foreach (string image in FetchImages(urls))
             {
                 ListFile.Items.Add(image);
             }
-
-            var firstname = "";
             foreach (var item in ListFile.Items)
             {
                 using (WebClient webClient = new WebClient())
@@ -131,13 +79,8 @@ namespace Lab04
                     {
                         string fileName = Path.GetFileName(new UriBuilder(item.ToString()).Path);
                         webClient.DownloadFile(item.ToString(), location + fileName);
-                        firstname = fileName;
-
                     }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
+                    catch {}
                 }
             }
         }
