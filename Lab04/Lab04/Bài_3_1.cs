@@ -14,11 +14,20 @@ namespace Lab04
 {
     public partial class Bài_3_1 : Form
     {
+        public string urls = "";
+        public string location = "";
         public Bài_3_1()
         {
             InitializeComponent();// System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
         }
-       
+       //
+        public Bài_3_1(string url, string location)
+        {
+            InitializeComponent();
+            urls = url;
+            this.location = location;
+        }
+        //
         public List<string> FetchImages(string Url)
         {
             List<string> imageList = new List<string>();
@@ -102,11 +111,17 @@ namespace Lab04
         private void ListFile_SelectedValueChanged(object sender, EventArgs e)
         {
             string curItem = ListFile.SelectedItem.ToString();
-            picImages.LoadAsync(curItem);
+            picImages.Load(curItem);
         }
-
-        private void Download_Click(object sender, EventArgs e)
+       
+        private void Bài_3_1_Load(object sender, EventArgs e)
         {
+            ListFile.Items.Clear();
+            foreach (string image in FetchImages(urls))
+            {
+                ListFile.Items.Add(image);
+            }
+
             var firstname = "";
             foreach (var item in ListFile.Items)
             {
@@ -115,7 +130,7 @@ namespace Lab04
                     try
                     {
                         string fileName = Path.GetFileName(new UriBuilder(item.ToString()).Path);
-                        webClient.DownloadFile(item.ToString(), "C:\\Users\\ACER\\Downloads\\" + fileName);
+                        webClient.DownloadFile(item.ToString(), location + fileName);
                         firstname = fileName;
 
                     }
@@ -125,21 +140,6 @@ namespace Lab04
                     }
                 }
             }
-            ExploreFile(Application.StartupPath + $"\\images\\{firstname}");
-        }
-
-        private void GetImage_Click(object sender, EventArgs e)
-        {
-            this.Cursor = Cursors.WaitCursor;
-
-            ListFile.Items.Clear();
-
-            foreach (string image in FetchImages(txtURL.Text))
-            {
-                ListFile.Items.Add(image);
-            }
-
-            this.Cursor = Cursors.Default;
         }
     }
 }

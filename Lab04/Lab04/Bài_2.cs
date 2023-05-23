@@ -29,13 +29,20 @@ namespace Lab04
             response.Close();
             return responseFromServer;
         }
-
         private void DownLoad_Click(object sender, EventArgs e)
         {
-            WebClient myClient = new WebClient();
-            Stream response = myClient.OpenRead(URL.Text);
-            myClient.DownloadFile(URL.Text, HTML.Text);
-            richTextBox1.Text = GetHTML(URL.Text);
+            try
+            {
+                SaveFileDialog Sfd = new SaveFileDialog();
+                Sfd.ShowDialog();
+                string filename = Sfd.FileName + ".html";
+                WebClient myClient = new WebClient();
+                Stream response = myClient.OpenRead(URL.Text);
+                myClient.DownloadFile(URL.Text, filename);
+                MessageBox.Show("Download thành công");
+                richTextBox1.Text = GetHTML(URL.Text);
+            }
+            catch (Exception) { MessageBox.Show("Download thất bại"); }
         }
     }
 }

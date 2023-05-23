@@ -1,6 +1,6 @@
 ﻿namespace Lab04
 {
-    partial class Form1
+    partial class MenuForm
     {
         /// <summary>
         /// Required designer variable.
@@ -118,7 +118,7 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Bài Thực hành Lập trình mạng Lab 4";
             // 
-            // Form1
+            // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -131,7 +131,7 @@
             this.Controls.Add(this.Bai3);
             this.Controls.Add(this.Bai2);
             this.Controls.Add(this.Bai1);
-            this.Name = "Form1";
+            this.Name = "MenuForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
