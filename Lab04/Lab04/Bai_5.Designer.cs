@@ -1,6 +1,6 @@
 ﻿namespace Lab04
 {
-    partial class Bài_5
+    partial class Bai_5
     {
         /// <summary>
         /// Required designer variable.

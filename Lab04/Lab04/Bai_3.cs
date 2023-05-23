@@ -13,9 +13,9 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Lab04
 {
-    public partial class Bai3 : Form
+    public partial class Bai_3 : Form
     {
-        public Bai3() 
+        public Bai_3() 
         { 
             InitializeComponent(); 
         }
@@ -62,7 +62,7 @@ namespace Lab04
         {
             SaveFileDialog Sfd = new SaveFileDialog();
             Sfd.ShowDialog();
-            var DownResouce = new Bài_3_1(URL.Text,Sfd.FileName);
+            var DownResouce = new Bai_3_1(URL.Text,Sfd.FileName);
             DownResouce.Show();
         }
     }

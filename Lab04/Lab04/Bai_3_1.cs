@@ -12,16 +12,16 @@ using System.Net;
 
 namespace Lab04
 {
-    public partial class Bài_3_1 : Form
+    public partial class Bai_3_1 : Form
     {
         public string urls = "";
         public string location = "";
-        public Bài_3_1()
+        public Bai_3_1()
         {
             InitializeComponent();// System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
         }
        //
-        public Bài_3_1(string url, string location)
+        public Bai_3_1(string url, string location)
         {
             InitializeComponent();
             urls = url;

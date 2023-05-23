@@ -1,6 +1,6 @@
 ﻿namespace Lab04
 {
-    partial class Bai3
+    partial class Bai_3
     {
         /// <summary>
         /// Required designer variable.
@@ -142,7 +142,7 @@
             this.webView21.TabIndex = 11;
             this.webView21.ZoomFactor = 1D;
             // 
-            // Bai3
+            // Bai_3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -156,7 +156,7 @@
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.Load);
             this.Controls.Add(this.URL);
-            this.Name = "Bai3";
+            this.Name = "Bai_3";
             this.Text = "Bài 3";
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
             this.ResumeLayout(false);

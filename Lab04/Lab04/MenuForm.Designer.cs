@@ -28,111 +28,135 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Bai1 = new System.Windows.Forms.Button();
-            this.Bai2 = new System.Windows.Forms.Button();
-            this.Bai3 = new System.Windows.Forms.Button();
-            this.Bai4 = new System.Windows.Forms.Button();
-            this.Bai5 = new System.Windows.Forms.Button();
-            this.Bai6 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.Bai1Btn = new System.Windows.Forms.Button();
+            this.Bai5Btn = new System.Windows.Forms.Button();
+            this.Bai2Btn = new System.Windows.Forms.Button();
+            this.Bai4Btn = new System.Windows.Forms.Button();
+            this.Bai3Btn = new System.Windows.Forms.Button();
+            this.Bai6Btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // Bai1
-            // 
-            this.Bai1.BackColor = System.Drawing.SystemColors.Desktop;
-            this.Bai1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Bai1.Location = new System.Drawing.Point(142, 150);
-            this.Bai1.Name = "Bai1";
-            this.Bai1.Size = new System.Drawing.Size(120, 70);
-            this.Bai1.TabIndex = 0;
-            this.Bai1.Text = "Bài 1";
-            this.Bai1.UseVisualStyleBackColor = false;
-            this.Bai1.Click += new System.EventHandler(this.Bai1_Click);
-            // 
-            // Bai2
-            // 
-            this.Bai2.BackColor = System.Drawing.SystemColors.Desktop;
-            this.Bai2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Bai2.Location = new System.Drawing.Point(356, 150);
-            this.Bai2.Name = "Bai2";
-            this.Bai2.Size = new System.Drawing.Size(120, 70);
-            this.Bai2.TabIndex = 1;
-            this.Bai2.Text = "Bài 2";
-            this.Bai2.UseVisualStyleBackColor = false;
-            this.Bai2.Click += new System.EventHandler(this.Bai2_Click_1);            // 
-            // Bai3
-            // 
-            this.Bai3.BackColor = System.Drawing.SystemColors.Desktop;
-            this.Bai3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Bai3.Location = new System.Drawing.Point(570, 150);
-            this.Bai3.Name = "Bai3";
-            this.Bai3.Size = new System.Drawing.Size(120, 70);
-            this.Bai3.TabIndex = 2;
-            this.Bai3.Text = "Bài 3";
-            this.Bai3.UseVisualStyleBackColor = false;
-            this.Bai3.Click += new System.EventHandler(this.Bai3_Click_1);
-            // 
-            // Bai4
-            // 
-            this.Bai4.BackColor = System.Drawing.SystemColors.Desktop;
-            this.Bai4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Bai4.Location = new System.Drawing.Point(142, 299);
-            this.Bai4.Name = "Bai4";
-            this.Bai4.Size = new System.Drawing.Size(120, 70);
-            this.Bai4.TabIndex = 3;
-            this.Bai4.Text = "Bài 4";
-            this.Bai4.UseVisualStyleBackColor = false;
-            this.Bai4.Click += new System.EventHandler(this.Bai4_Click);
-             /*
-            // Bai5
-            // 
-            this.Bai5.BackColor = System.Drawing.SystemColors.Desktop;
-            this.Bai5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Bai5.Location = new System.Drawing.Point(356, 299);
-            this.Bai5.Name = "Bai5";
-            this.Bai5.Size = new System.Drawing.Size(120, 70);
-            this.Bai5.TabIndex = 4;
-            this.Bai5.Text = "Bài 5";
-            this.Bai5.UseVisualStyleBackColor = false;
-            this.Bai5.Click += new System.EventHandler(this.Bai5);
-            // 
-            // Bai6
-            //
-            this.Bai6.BackColor = System.Drawing.SystemColors.Desktop;
-            this.Bai6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Bai6.Location = new System.Drawing.Point(570, 299);
-            this.Bai6.Name = "Bai6";
-            this.Bai6.Size = new System.Drawing.Size(120, 70);
-            this.Bai6.TabIndex = 5;
-            this.Bai6.Text = "Bài 6";
-            this.Bai6.UseVisualStyleBackColor = false;
-            this.Bai6.Click += new System.EventHandler(this.Bai6_Click); */
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label1.Location = new System.Drawing.Point(193, 40);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(123, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(429, 29);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Bài Thực hành Lập trình mạng Lab 4";
+            this.label1.Size = new System.Drawing.Size(410, 31);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Lab 04: Làm việc với Web Server";
+            // 
+            // Bai1Btn
+            // 
+            this.Bai1Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(122)))), ((int)(((byte)(208)))));
+            this.Bai1Btn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.Bai1Btn.FlatAppearance.BorderSize = 0;
+            this.Bai1Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Bai1Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bai1Btn.ForeColor = System.Drawing.Color.White;
+            this.Bai1Btn.Location = new System.Drawing.Point(60, 122);
+            this.Bai1Btn.Name = "Bai1Btn";
+            this.Bai1Btn.Size = new System.Drawing.Size(135, 46);
+            this.Bai1Btn.TabIndex = 2;
+            this.Bai1Btn.Text = "Bài 1";
+            this.Bai1Btn.UseVisualStyleBackColor = false;
+            this.Bai1Btn.Click += new System.EventHandler(this.Bai1Btn_Click);
+            // 
+            // Bai5Btn
+            // 
+            this.Bai5Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(122)))), ((int)(((byte)(208)))));
+            this.Bai5Btn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.Bai5Btn.FlatAppearance.BorderSize = 0;
+            this.Bai5Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Bai5Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bai5Btn.ForeColor = System.Drawing.Color.White;
+            this.Bai5Btn.Location = new System.Drawing.Point(266, 235);
+            this.Bai5Btn.Name = "Bai5Btn";
+            this.Bai5Btn.Size = new System.Drawing.Size(135, 46);
+            this.Bai5Btn.TabIndex = 3;
+            this.Bai5Btn.Text = "Bài 5";
+            this.Bai5Btn.UseVisualStyleBackColor = false;
+            this.Bai5Btn.Click += new System.EventHandler(this.Bai5Btn_Click);
+            // 
+            // Bai2Btn
+            // 
+            this.Bai2Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(122)))), ((int)(((byte)(208)))));
+            this.Bai2Btn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.Bai2Btn.FlatAppearance.BorderSize = 0;
+            this.Bai2Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Bai2Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bai2Btn.ForeColor = System.Drawing.Color.White;
+            this.Bai2Btn.Location = new System.Drawing.Point(266, 122);
+            this.Bai2Btn.Name = "Bai2Btn";
+            this.Bai2Btn.Size = new System.Drawing.Size(135, 46);
+            this.Bai2Btn.TabIndex = 4;
+            this.Bai2Btn.Text = "Bài 2";
+            this.Bai2Btn.UseVisualStyleBackColor = false;
+            this.Bai2Btn.Click += new System.EventHandler(this.Bai2Btn_Click);
+            // 
+            // Bai4Btn
+            // 
+            this.Bai4Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(122)))), ((int)(((byte)(208)))));
+            this.Bai4Btn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.Bai4Btn.FlatAppearance.BorderSize = 0;
+            this.Bai4Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Bai4Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bai4Btn.ForeColor = System.Drawing.Color.White;
+            this.Bai4Btn.Location = new System.Drawing.Point(60, 235);
+            this.Bai4Btn.Name = "Bai4Btn";
+            this.Bai4Btn.Size = new System.Drawing.Size(135, 46);
+            this.Bai4Btn.TabIndex = 5;
+            this.Bai4Btn.Text = "Bài 4";
+            this.Bai4Btn.UseVisualStyleBackColor = false;
+            this.Bai4Btn.Click += new System.EventHandler(this.Bai4Btn_Click);
+            // 
+            // Bai3Btn
+            // 
+            this.Bai3Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(122)))), ((int)(((byte)(208)))));
+            this.Bai3Btn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.Bai3Btn.FlatAppearance.BorderSize = 0;
+            this.Bai3Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Bai3Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bai3Btn.ForeColor = System.Drawing.Color.White;
+            this.Bai3Btn.Location = new System.Drawing.Point(477, 122);
+            this.Bai3Btn.Name = "Bai3Btn";
+            this.Bai3Btn.Size = new System.Drawing.Size(135, 46);
+            this.Bai3Btn.TabIndex = 6;
+            this.Bai3Btn.Text = "Bài 3";
+            this.Bai3Btn.UseVisualStyleBackColor = false;
+            this.Bai3Btn.Click += new System.EventHandler(this.Bai3Btn_Click);
+            // 
+            // Bai6Btn
+            // 
+            this.Bai6Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(122)))), ((int)(((byte)(208)))));
+            this.Bai6Btn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.Bai6Btn.FlatAppearance.BorderSize = 0;
+            this.Bai6Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Bai6Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bai6Btn.ForeColor = System.Drawing.Color.White;
+            this.Bai6Btn.Location = new System.Drawing.Point(477, 235);
+            this.Bai6Btn.Name = "Bai6Btn";
+            this.Bai6Btn.Size = new System.Drawing.Size(135, 46);
+            this.Bai6Btn.TabIndex = 7;
+            this.Bai6Btn.Text = "Bài 6";
+            this.Bai6Btn.UseVisualStyleBackColor = false;
+            this.Bai6Btn.Click += new System.EventHandler(this.Bai6Btn_Click);
             // 
             // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(686, 330);
+            this.Controls.Add(this.Bai6Btn);
+            this.Controls.Add(this.Bai3Btn);
+            this.Controls.Add(this.Bai4Btn);
+            this.Controls.Add(this.Bai2Btn);
+            this.Controls.Add(this.Bai5Btn);
+            this.Controls.Add(this.Bai1Btn);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.Bai6);
-            this.Controls.Add(this.Bai5);
-            this.Controls.Add(this.Bai4);
-            this.Controls.Add(this.Bai3);
-            this.Controls.Add(this.Bai2);
-            this.Controls.Add(this.Bai1);
             this.Name = "MenuForm";
-            this.Text = "Form1";
+            this.Text = "Menu";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,13 +164,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Button Bai1;
-        private System.Windows.Forms.Button Bai2;
-        private System.Windows.Forms.Button Bai3;
-        private System.Windows.Forms.Button Bai4;
-        private System.Windows.Forms.Button Bai5;
-        private System.Windows.Forms.Button Bai6;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button Bai1Btn;
+        private System.Windows.Forms.Button Bai5Btn;
+        private System.Windows.Forms.Button Bai2Btn;
+        private System.Windows.Forms.Button Bai4Btn;
+        private System.Windows.Forms.Button Bai3Btn;
+        private System.Windows.Forms.Button Bai6Btn;
     }
 }
-
