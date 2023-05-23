@@ -111,6 +111,7 @@ namespace Lab04
 
         private void Bài_4_Load(object sender, EventArgs e)
         {
+            
             page1();
             Previous.Enabled = false;
         }

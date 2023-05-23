@@ -18,7 +18,7 @@ namespace Lab04
         public string location = "";
         public Bai_3_1()
         {
-            InitializeComponent();// System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            InitializeComponent();
         }
        //
         public Bai_3_1(string url, string location)
@@ -31,10 +31,6 @@ namespace Lab04
         public List<string> FetchImages(string Url)
         {
             List<string> imageList = new List<string>();
-
-            if (!Url.StartsWith("http://") && !Url.StartsWith("https://"))
-                Url = "http://" + Url;
-          
             var htmlDoc = new HtmlAgilityPack.HtmlWeb().Load(Url);
             var htmlData = htmlDoc.DocumentNode.OuterHtml;
             string imageHtmlCode = "<img";
@@ -50,14 +46,13 @@ namespace Lab04
                 int brackedEnd = htmlData.IndexOf('>'); //make sure data will be inside img tag
                 int start = htmlData.IndexOf(imageSrcCode) + imageSrcCode.Length;
                 int end = htmlData.IndexOf('"', start + 1);
-
+                string test = "https"; string test1 = "http";
                 //Extract the line
                 if (end > start && start < brackedEnd)
                 {
                     string loc = htmlData.Substring(start, end - start);
-
-                    //Store line
-                    imageList.Add(loc);
+                    if (loc.Contains(test) || loc.Contains(test1))
+                        imageList.Add(loc);
                 }
 
                 //Move index to next image location
@@ -71,47 +66,15 @@ namespace Lab04
             for (int i = 0; i < imageList.Count; i++)
             {
                 string img = imageList[i];
-
-                string baseUrl = GetBaseURL(Url);
-
-                if ((!img.StartsWith("http://") && !img.StartsWith("https://"))
-                    && baseUrl != string.Empty)
-                    img = baseUrl + "/" + img.TrimStart('/');
-
                 imageList[i] = img;
             }
             return imageList;
         }
-
-        private string GetBaseURL(string Url)
-        {
-            int inx = Url.IndexOf("://") + "://".Length;
-            int end = Url.IndexOf('/', inx);
-
-            string baseUrl = string.Empty;
-            if (end != -1)
-                return Url.Substring(0, end);
-            else
-                return string.Empty;
-        }
-
-
-        public bool ExploreFile(string filePath)
-        {
-            if (!System.IO.File.Exists(filePath))
-            {
-                return false;
-            }
-
-            filePath = System.IO.Path.GetFullPath(filePath);
-            System.Diagnostics.Process.Start("explorer.exe", string.Format("/select,\"{0}\"", filePath));
-            return true;
-        }
-
         private void ListFile_SelectedValueChanged(object sender, EventArgs e)
         {
             string curItem = ListFile.SelectedItem.ToString();
             picImages.Load(curItem);
+           
         }
        
         private void Bài_3_1_Load(object sender, EventArgs e)
@@ -121,8 +84,6 @@ namespace Lab04
             {
                 ListFile.Items.Add(image);
             }
-
-            var firstname = "";
             foreach (var item in ListFile.Items)
             {
                 using (WebClient webClient = new WebClient())
@@ -131,8 +92,6 @@ namespace Lab04
                     {
                         string fileName = Path.GetFileName(new UriBuilder(item.ToString()).Path);
                         webClient.DownloadFile(item.ToString(), location + fileName);
-                        firstname = fileName;
-
                     }
                     catch (Exception ex)
                     {
