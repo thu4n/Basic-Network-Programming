@@ -43,13 +43,13 @@ namespace Lab04
 
         private void Bai5Btn_Click(object sender, EventArgs e)
         {
-            var form = new Bai_5();
+            var form = new Bai5();
             form.Show();
         }
 
         private void Bai6Btn_Click(object sender, EventArgs e)
         {
-            var form = new Bai_6();
+            var form = new Bai6();
             form.Show();
         }
     }
