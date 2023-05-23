@@ -39,34 +39,25 @@ namespace Lab04
             int index = htmlData.IndexOf(imageHtmlCode);
             while (index != -1)
             {
-                //Remove previous data
+                //Xóa dữ liệu trước đó
                 htmlData = htmlData.Substring(index);
-
-                //Find the location of the two quotes that mark the image's location
+                //TÌm vị trí đánh dấu của ảnh
                 int brackedEnd = htmlData.IndexOf('>'); //make sure data will be inside img tag
                 int start = htmlData.IndexOf(imageSrcCode) + imageSrcCode.Length;
                 int end = htmlData.IndexOf('"', start + 1);
                 string test = "https"; string test1 = "http";
-                //Extract the line
+                //lưu đường dẫn  .
                 if (end > start && start < brackedEnd)
                 {
                     string loc = htmlData.Substring(start, end - start);
                     if (loc.Contains(test) || loc.Contains(test1))
                         imageList.Add(loc);
                 }
-
-                //Move index to next image location
+                // kiểm tra xem đã duyệt hết dữ liệu hay chưa.
                 if (imageHtmlCode.Length < htmlData.Length)
                     index = htmlData.IndexOf(imageHtmlCode, imageHtmlCode.Length);
                 else
                     index = -1;
-            }
-
-            //Format the image URLs
-            for (int i = 0; i < imageList.Count; i++)
-            {
-                string img = imageList[i];
-                imageList[i] = img;
             }
             return imageList;
         }
@@ -74,12 +65,9 @@ namespace Lab04
         {
             string curItem = ListFile.SelectedItem.ToString();
             picImages.Load(curItem);
-           
         }
-       
         private void Bài_3_1_Load(object sender, EventArgs e)
         {
-            ListFile.Items.Clear();
             foreach (string image in FetchImages(urls))
             {
                 ListFile.Items.Add(image);
@@ -93,10 +81,7 @@ namespace Lab04
                         string fileName = Path.GetFileName(new UriBuilder(item.ToString()).Path);
                         webClient.DownloadFile(item.ToString(), location + fileName);
                     }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
+                    catch {}
                 }
             }
         }
