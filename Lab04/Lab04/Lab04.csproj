@@ -63,6 +63,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bai_6_Article.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Bai_6_Article.Designer.cs">
+      <DependentUpon>Bai_6_Article.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bai_6_Article_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bai_6_Article_View.Designer.cs">
+      <DependentUpon>Bai_6_Article_View.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bài_1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +125,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Bai_6_Article.resx">
+      <DependentUpon>Bai_6_Article.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bai_6_Article_View.resx">
+      <DependentUpon>Bai_6_Article_View.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Bài_1.resx">
       <DependentUpon>Bài_1.cs</DependentUpon>
     </EmbeddedResource>

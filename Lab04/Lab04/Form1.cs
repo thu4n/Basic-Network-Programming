@@ -44,5 +44,11 @@ namespace Lab04
             var b5 = new Bai5();
             b5.Show();
         }
+
+        private void Bai6_Click(object sender, EventArgs e)
+        {
+            var b6 = new Bai6();
+            b6.Show();
+        }
     }
 }
