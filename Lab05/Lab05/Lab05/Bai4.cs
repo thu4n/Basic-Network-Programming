@@ -49,7 +49,8 @@ namespace Lab05
 
         private void sendBtn_Click(object sender, EventArgs e)
         {
-
+            Bai4_SendMail sendView = new Bai4_SendMail(smtpClient, account);
+            sendView.Show();
         }
 
         // jughocgapaqbyiqh
