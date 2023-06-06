@@ -110,6 +110,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Bai1.resx">
+      <DependentUpon>Bai1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bai2-3.resx">
+      <DependentUpon>Bai2-3.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Bai4.resx">
       <DependentUpon>Bai4.cs</DependentUpon>
     </EmbeddedResource>
