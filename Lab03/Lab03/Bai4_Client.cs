@@ -40,7 +40,7 @@ namespace Lab03
             public Bai4_TcpClient(string name, IPAddress ip)
             {
                 client = new TcpClient();
-                client.Connect(ip, 16000);
+                client.Connect(ip, 80);
                 portNum = ((IPEndPoint)client.Client.LocalEndPoint).Port;
                 username = name;
             }
