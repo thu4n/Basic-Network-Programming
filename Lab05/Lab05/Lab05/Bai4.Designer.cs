@@ -48,6 +48,8 @@
             this.fromCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.subjectCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sendBtn = new System.Windows.Forms.Button();
+            this.refreshBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imapPortNum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.smtpPortNum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -268,11 +270,35 @@
             this.dateCol.MinimumWidth = 6;
             this.dateCol.Name = "dateCol";
             // 
+            // sendBtn
+            // 
+            this.sendBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sendBtn.Location = new System.Drawing.Point(32, 156);
+            this.sendBtn.Name = "sendBtn";
+            this.sendBtn.Size = new System.Drawing.Size(107, 37);
+            this.sendBtn.TabIndex = 16;
+            this.sendBtn.Text = "Gửi mail";
+            this.sendBtn.UseVisualStyleBackColor = true;
+            this.sendBtn.Visible = false;
+            // 
+            // refreshBtn
+            // 
+            this.refreshBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.refreshBtn.Location = new System.Drawing.Point(142, 156);
+            this.refreshBtn.Name = "refreshBtn";
+            this.refreshBtn.Size = new System.Drawing.Size(107, 37);
+            this.refreshBtn.TabIndex = 17;
+            this.refreshBtn.Text = "Refresh";
+            this.refreshBtn.UseVisualStyleBackColor = true;
+            this.refreshBtn.Visible = false;
+            // 
             // Bai4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(910, 646);
+            this.Controls.Add(this.refreshBtn);
+            this.Controls.Add(this.sendBtn);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.smtpTB);
             this.Controls.Add(this.imapTB);
@@ -321,5 +347,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fromCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn subjectCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateCol;
+        private System.Windows.Forms.Button sendBtn;
+        private System.Windows.Forms.Button refreshBtn;
     }
 }

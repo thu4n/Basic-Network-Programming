@@ -38,6 +38,13 @@ namespace Lab05
         // jughocgapaqbyiqh
         private async void loginBtn_Click(object sender, EventArgs e)
         {
+            if(loginBtn.Text == "Đăng xuất")
+            {
+                await imapClient.DisconnectAsync(true);
+                SetState(false);
+                loginBtn.Text = "Đăng nhập";
+                return;
+            }
             if(emailTB.Text.Length == 0 || passwordTB.Text.Length == 0)
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin");
@@ -61,7 +68,8 @@ namespace Lab05
             if(imapClient.IsAuthenticated)
             {
                 MessageBox.Show("Đăng nhập thành công");
-                SetState(false);
+                loginBtn.Text = "Đăng nhập";
+                SetState(true);
             }
             /*smtpClient.Connect(smtpHost, smtpPort);
             smtpClient.Authenticate(emailTB.Text, passwordTB.Text);*/
@@ -77,6 +85,9 @@ namespace Lab05
             imapPortNum.ReadOnly = state;
             emailTB.ReadOnly = state;
             passwordTB.ReadOnly = state;
+
+            sendBtn.Visible = !state;
+            refreshBtn.Visible = !state;
         }
         private async void DisplayMail()
         {
