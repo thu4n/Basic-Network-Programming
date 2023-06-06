@@ -203,7 +203,7 @@
             this.smtpPortNum.Size = new System.Drawing.Size(166, 27);
             this.smtpPortNum.TabIndex = 12;
             this.smtpPortNum.Value = new decimal(new int[] {
-            993,
+            465,
             0,
             0,
             0});

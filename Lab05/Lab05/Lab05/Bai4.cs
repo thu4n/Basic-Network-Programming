@@ -58,6 +58,7 @@ namespace Lab05
             if(loginBtn.Text == "Đăng xuất")
             {
                 await imapClient.DisconnectAsync(true);
+                await smtpClient.DisconnectAsync(true);
                 SetState(false);
                 loginBtn.Text = "Đăng nhập";
                 return;
@@ -82,14 +83,14 @@ namespace Lab05
             imapClient = new ImapClient();
             await imapClient.ConnectAsync(imapHost, imapPort);
             await imapClient.AuthenticateAsync(account, password);
-            if(imapClient.IsAuthenticated)
+            await smtpClient.ConnectAsync(smtpHost, smtpPort);
+            await smtpClient.AuthenticateAsync(emailTB.Text, passwordTB.Text);
+            if (imapClient.IsAuthenticated && smtpClient.IsAuthenticated)
             {
                 MessageBox.Show("Đăng nhập thành công");
                 loginBtn.Text = "Đăng xuất";
                 SetState(true);
             }
-            /*smtpClient.Connect(smtpHost, smtpPort);
-            smtpClient.Authenticate(emailTB.Text, passwordTB.Text);*/
             DisplayMail();
 
         }
