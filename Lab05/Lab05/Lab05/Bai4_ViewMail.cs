@@ -57,7 +57,7 @@ namespace Lab05
 
         private void ReplyBtn_Click(object sender, EventArgs e)
         {
-            message =  Reply(message,true);
+            message =  Reply(message,false);
             Bai4_SendMail sendMail = new Bai4_SendMail(smtpClient, account,message); 
             sendMail.Show(); 
         }

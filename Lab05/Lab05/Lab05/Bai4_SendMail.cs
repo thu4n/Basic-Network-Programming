@@ -37,10 +37,9 @@ namespace Lab05
             this.email = email;
             this.msg = message;
             InitializeComponent();
-            nameTB.Text = message.Cc.ToString();
-            fromTB.Text = message.From.ToString();
+            nameTB.Text = message.InReplyTo.ToString();
             subjectTB.Text = message.Subject.ToString();
-            toTB.Text = message.To.ToString();
+            toTB.Text = message.ReplyTo.ToString();
         }
         private void Bai4_SendMail_Load(object sender, EventArgs e)
         {
