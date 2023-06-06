@@ -42,7 +42,7 @@ namespace Lab05
             if(e.RowIndex != -1 && inbox != null)
             {
                 var message = await inbox.GetMessageAsync(e.RowIndex);
-                Bai4_ViewMail viewMail = new Bai4_ViewMail(message);
+                Bai4_ViewMail viewMail = new Bai4_ViewMail(message,smtpClient, account);
                 viewMail.Show();
             }
         }

@@ -19,6 +19,7 @@ namespace Lab05
         string email;
         OpenFileDialog ofd;
         bool imgChosen = false;
+        MimeMessage msg = new MimeMessage();
         public Bai4_SendMail()
         {
             InitializeComponent();
@@ -30,7 +31,13 @@ namespace Lab05
             this.email = email;
             InitializeComponent();
         }
-
+        public Bai4_SendMail(SmtpClient smtpClient, string email, MimeMessage message)
+        {
+            this.smtpClient = smtpClient;
+            this.email = email;
+            this.msg = message;
+            InitializeComponent();
+        }
         private void Bai4_SendMail_Load(object sender, EventArgs e)
         {
             fromTB.Text = email;
@@ -59,7 +66,7 @@ namespace Lab05
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin");
                 return;
             }
-            var msg = new MimeMessage();
+            //var msg = new MimeMessage();
             msg.From.Add(new MailboxAddress(nameTB.Text,fromTB.Text));
             msg.To.Add(new MailboxAddress("", toTB.Text));
             msg.Subject = subjectTB.Text;

@@ -32,6 +32,7 @@
             this.toLabel = new System.Windows.Forms.Label();
             this.subjectLabel = new System.Windows.Forms.Label();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.ReplyBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // fromLabel
@@ -72,11 +73,23 @@
             this.webBrowser1.Size = new System.Drawing.Size(749, 473);
             this.webBrowser1.TabIndex = 6;
             // 
+            // ReplyBtn
+            // 
+            this.ReplyBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReplyBtn.Location = new System.Drawing.Point(672, 77);
+            this.ReplyBtn.Name = "ReplyBtn";
+            this.ReplyBtn.Size = new System.Drawing.Size(107, 37);
+            this.ReplyBtn.TabIndex = 7;
+            this.ReplyBtn.Text = "Reply";
+            this.ReplyBtn.UseVisualStyleBackColor = true;
+            this.ReplyBtn.Click += new System.EventHandler(this.ReplyBtn_Click);
+            // 
             // Bai4_ViewMail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 615);
+            this.Controls.Add(this.ReplyBtn);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.subjectLabel);
             this.Controls.Add(this.toLabel);
@@ -95,5 +108,6 @@
         private System.Windows.Forms.Label toLabel;
         private System.Windows.Forms.Label subjectLabel;
         private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.Button ReplyBtn;
     }
 }

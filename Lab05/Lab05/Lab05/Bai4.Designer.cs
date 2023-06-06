@@ -92,6 +92,7 @@
             this.emailTB.Name = "emailTB";
             this.emailTB.Size = new System.Drawing.Size(238, 27);
             this.emailTB.TabIndex = 3;
+            this.emailTB.Text = "smtp.gmail.com";
             // 
             // passwordTB
             // 
@@ -100,6 +101,7 @@
             this.passwordTB.Name = "passwordTB";
             this.passwordTB.Size = new System.Drawing.Size(238, 27);
             this.passwordTB.TabIndex = 4;
+            this.passwordTB.Text = "xymnehxlmrupryfn";
             // 
             // loginBtn
             // 
