@@ -21,6 +21,7 @@ namespace Lab05
         int smtpPort = 0, imapPort = 0;
         string smtpHost, imapHost;
         string account, password;
+        IMailFolder inbox = null;
         public Bai4()
         {
             InitializeComponent();
@@ -35,6 +36,22 @@ namespace Lab05
             return false;
 
         }
+
+        private async void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex != -1 && inbox != null)
+            {
+                var message = await inbox.GetMessageAsync(e.RowIndex);
+                Bai4_ViewMail viewMail = new Bai4_ViewMail(message);
+                viewMail.Show();
+            }
+        }
+
+        private void sendBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
         // jughocgapaqbyiqh
         private async void loginBtn_Click(object sender, EventArgs e)
         {
@@ -68,7 +85,7 @@ namespace Lab05
             if(imapClient.IsAuthenticated)
             {
                 MessageBox.Show("Đăng nhập thành công");
-                loginBtn.Text = "Đăng nhập";
+                loginBtn.Text = "Đăng xuất";
                 SetState(true);
             }
             /*smtpClient.Connect(smtpHost, smtpPort);
@@ -86,12 +103,12 @@ namespace Lab05
             emailTB.ReadOnly = state;
             passwordTB.ReadOnly = state;
 
-            sendBtn.Visible = !state;
-            refreshBtn.Visible = !state;
+            sendBtn.Visible = state;
+            refreshBtn.Visible = state;
         }
         private async void DisplayMail()
         {
-            var inbox = imapClient.Inbox;
+            inbox = imapClient.Inbox;
             inbox.Open(FolderAccess.ReadOnly);
             for (int i=0; i < 25;i++)
             {

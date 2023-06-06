@@ -90,6 +90,12 @@
     <Compile Include="Bai4.Designer.cs">
       <DependentUpon>Bai4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bai4_ViewMail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bai4_ViewMail.Designer.cs">
+      <DependentUpon>Bai4_ViewMail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +106,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Bai4.resx">
       <DependentUpon>Bai4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bai4_ViewMail.resx">
+      <DependentUpon>Bai4_ViewMail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>

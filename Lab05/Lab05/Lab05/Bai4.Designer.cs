@@ -240,6 +240,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(847, 424);
             this.dataGridView1.TabIndex = 15;
+            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             // 
             // sttCol
             // 
@@ -280,6 +281,7 @@
             this.sendBtn.Text = "Gửi mail";
             this.sendBtn.UseVisualStyleBackColor = true;
             this.sendBtn.Visible = false;
+            this.sendBtn.Click += new System.EventHandler(this.sendBtn_Click);
             // 
             // refreshBtn
             // 
