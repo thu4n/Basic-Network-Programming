@@ -38,6 +38,7 @@
             this.UploadBtn = new System.Windows.Forms.Button();
             this.DownloadBtn = new System.Windows.Forms.Button();
             this.fileListLV = new System.Windows.Forms.ListView();
+            this.RefreshBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // FTPClientLB
@@ -118,6 +119,7 @@
             this.UploadBtn.TabIndex = 7;
             this.UploadBtn.Text = "UPLOAD FILE";
             this.UploadBtn.UseVisualStyleBackColor = false;
+            this.UploadBtn.Click += new System.EventHandler(this.UploadBtn_Click);
             // 
             // DownloadBtn
             // 
@@ -130,6 +132,7 @@
             this.DownloadBtn.TabIndex = 8;
             this.DownloadBtn.Text = "DOWNLOAD FILE";
             this.DownloadBtn.UseVisualStyleBackColor = false;
+            this.DownloadBtn.Click += new System.EventHandler(this.DownloadBtn_Click);
             // 
             // fileListLV
             // 
@@ -141,12 +144,28 @@
             this.fileListLV.TabIndex = 9;
             this.fileListLV.UseCompatibleStateImageBehavior = false;
             // 
+            // RefreshBtn
+            // 
+            this.RefreshBtn.BackColor = System.Drawing.Color.PaleVioletRed;
+            this.RefreshBtn.BackgroundImage = global::ftp_client.Properties.Resources.Refresh_icon;
+            this.RefreshBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.RefreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RefreshBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RefreshBtn.ForeColor = System.Drawing.Color.PaleVioletRed;
+            this.RefreshBtn.Location = new System.Drawing.Point(616, 158);
+            this.RefreshBtn.Name = "RefreshBtn";
+            this.RefreshBtn.Size = new System.Drawing.Size(52, 35);
+            this.RefreshBtn.TabIndex = 10;
+            this.RefreshBtn.UseVisualStyleBackColor = false;
+            this.RefreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
+            // 
             // FTPClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleVioletRed;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.RefreshBtn);
             this.Controls.Add(this.fileListLV);
             this.Controls.Add(this.DownloadBtn);
             this.Controls.Add(this.UploadBtn);
@@ -176,5 +195,6 @@
         private System.Windows.Forms.Button UploadBtn;
         private System.Windows.Forms.Button DownloadBtn;
         private System.Windows.Forms.ListView fileListLV;
+        private System.Windows.Forms.Button RefreshBtn;
     }
 }
