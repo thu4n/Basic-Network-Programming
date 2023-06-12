@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ftp_client
 {
-    public partial class LoginForm : Form
+    public partial class FTPClientForm : Form
     {
-        public LoginForm()
+        public FTPClientForm()
         {
             InitializeComponent();
         }
