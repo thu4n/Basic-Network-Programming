@@ -19,12 +19,14 @@ namespace Lab06
 
         private void serverBtn_Click(object sender, EventArgs e)
         {
-
+            Bai3_Server server = new Bai3_Server();
+            server.Show();
         }
 
         private void clientBtn_Click(object sender, EventArgs e)
         {
-
+            Bai3_Client client = new Bai3_Client();
+            client.Show();
         }
     }
 }
