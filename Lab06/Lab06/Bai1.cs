@@ -24,25 +24,34 @@ namespace Lab06
             for (int i = 0; i < Input.Text.Length; i++)
             {
                 char letter = Input.Text[i];
-              if(char.IsUpper(letter))
-                    is_Upper = true;
-                if (letter == ' ')
+                if (char.IsLetter(letter) == false)
                 {
-                    Encrypted.Text += alphabet[0];
+                    Encrypted.Text += letter;
+                    continue;
+
                 }
-                else
-                {
-                    int index = Array.IndexOf(alphabet, char.ToLower(letter));
-                    int newIndex = (Int32.Parse(Shift.Text) + index) % 26;
-                    if(is_Upper)
+                
+                    if (char.IsUpper(letter))
+                        is_Upper = true;
+                    if (letter == ' ')
                     {
-                        Encrypted.Text += Char.ToUpper(alphabet[newIndex + 1]);
-                        is_Upper = false;
+                        Encrypted.Text += alphabet[0];
                     }
                     else
-                    Encrypted.Text += alphabet[newIndex +1 ];
-                    
-                }
+                    {
+                        int index = Array.IndexOf(alphabet, char.ToLower(letter));
+                        int newIndex = (Int32.Parse(Shift.Text) + index) % 26;
+                        if (is_Upper)
+                        {
+                            Encrypted.Text += Char.ToUpper(alphabet[newIndex + 1]);
+                            is_Upper = false;
+                        }
+                        else
+                            Encrypted.Text += alphabet[newIndex + 1];
+
+                    }
+                
+                
             }
         }
 
@@ -51,7 +60,14 @@ namespace Lab06
             Decrypted.Clear();
             for (int i = 0; i < Encrypted.Text.Length; i++)
             {
+               
                 char letter = Encrypted.Text[i];
+                if (char.IsLetter(letter) == false)
+                {
+                    Decrypted.Text += letter;
+                    continue;
+
+                }
                 if (char.IsUpper(letter))
                     is_Upper = true;
                 if (letter == ' ')
@@ -71,6 +87,16 @@ namespace Lab06
                     Decrypted.Text += alphabet[newIndex-1];
                 }
             }
+        }
+
+        private void Encrypted_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Decrypted_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
