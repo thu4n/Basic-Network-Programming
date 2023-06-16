@@ -16,5 +16,15 @@ namespace Lab06
         {
             InitializeComponent();
         }
+
+        private void serverBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clientBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
