@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.listenBtn = new System.Windows.Forms.Button();
             this.ipTB = new System.Windows.Forms.TextBox();
             this.ipLabel = new System.Windows.Forms.Label();
             this.chatBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button1
+            // listenBtn
             // 
-            this.button1.Location = new System.Drawing.Point(353, 23);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 41);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Start Listening";
-            this.button1.UseVisualStyleBackColor = true;
+            this.listenBtn.Location = new System.Drawing.Point(353, 23);
+            this.listenBtn.Name = "listenBtn";
+            this.listenBtn.Size = new System.Drawing.Size(130, 41);
+            this.listenBtn.TabIndex = 0;
+            this.listenBtn.Text = "Start Listening";
+            this.listenBtn.UseVisualStyleBackColor = true;
             // 
             // ipTB
             // 
@@ -79,7 +79,7 @@
             this.Controls.Add(this.chatBox);
             this.Controls.Add(this.ipLabel);
             this.Controls.Add(this.ipTB);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.listenBtn);
             this.Name = "Bai3_Server";
             this.Text = "Bai3_Server";
             this.ResumeLayout(false);
@@ -89,7 +89,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button listenBtn;
         private System.Windows.Forms.TextBox ipTB;
         private System.Windows.Forms.Label ipLabel;
         private System.Windows.Forms.TextBox chatBox;
