@@ -64,6 +64,7 @@
             this.connectBtn.TabIndex = 5;
             this.connectBtn.Text = "Connect";
             this.connectBtn.UseVisualStyleBackColor = true;
+            this.connectBtn.Click += new System.EventHandler(this.connectBtn_Click);
             // 
             // chatBox
             // 
@@ -92,6 +93,7 @@
             this.sendBtn.TabIndex = 8;
             this.sendBtn.Text = "Send";
             this.sendBtn.UseVisualStyleBackColor = true;
+            this.sendBtn.Click += new System.EventHandler(this.sendBtn_Click);
             // 
             // usernameLabel
             // 
@@ -126,6 +128,7 @@
             this.Controls.Add(this.ipTB);
             this.Name = "Bai3_Client";
             this.Text = "Bai3_Client";
+            this.Load += new System.EventHandler(this.Bai3_Client_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
