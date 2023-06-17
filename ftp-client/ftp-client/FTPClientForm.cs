@@ -29,14 +29,14 @@ namespace ftp_client
             {
                 string localFilePath = openFileDialog.FileName;
                 string fileName = Path.GetFileName(localFilePath);
-                string ftpFilePath = IPServer + fileName;
 
                 IPServer = IPServerTB.Text;
                 username = UsernameTB.Text;
                 password = PasswordTB.Text;
+
                 try
                 {
-                    FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create(ftpFilePath);
+                    FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://" + IPServer + "/" + fileName);
                     ftpRequest.Method = WebRequestMethods.Ftp.UploadFile;
                     ftpRequest.Credentials = new NetworkCredential(username, password);
 
@@ -66,7 +66,7 @@ namespace ftp_client
             if (fileListLV.SelectedItems.Count > 0)
             {
                 string selectedFile = fileListLV.SelectedItems[0].Text;
-                string ftpFilePath = IPServer + selectedFile;
+                string ftpFilePath = "ftp://" + IPServer + "/" + selectedFile;
                 string localFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), selectedFile);
 
                 try
