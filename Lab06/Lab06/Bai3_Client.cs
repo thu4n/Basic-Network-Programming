@@ -31,6 +31,7 @@ namespace Lab06
         private string pubKeyString;
         private bool shared = false;
         RSACryptoServiceProvider csp;
+        RSAParameters pubKeyReceived;
         public class Bai3_TcpClient
         {
             public TcpClient client { get; set; }
@@ -119,6 +120,7 @@ namespace Lab06
                     if (msg[0] == '?' && !shared)
                     {
                         pubKeyString = msg.Substring(1);
+                        pubKeyReceived = StringToKey(pubKeyString);
                         shared = false;
                     }
                     else if (msg[0] == '-')
@@ -133,6 +135,7 @@ namespace Lab06
         private void SendMsg(string msg)
         {
             byte[] buffer = Encoding.Unicode.GetBytes(msg);
+            //buffer = Encryption(buffer, csp.ExportParameters(f))
             nwStream.Write(buffer, 0, buffer.Length);
         }
         private void Disconnect()
@@ -163,6 +166,13 @@ namespace Lab06
             serializer.Serialize(stringWriter, pubKey);
             pubKeyTB.Text = stringWriter.ToString();
             shareBtn.Enabled = true;
+        }
+        private RSAParameters StringToKey(string keyString)
+        {
+            var sr = new System.IO.StringReader(keyString);
+            var serializer = new System.Xml.Serialization.XmlSerializer(typeof(RSAParameters));
+            var key = (RSAParameters)serializer.Deserialize(sr);
+            return key;
         }
         static public byte[] Encryption(byte[] Data, RSAParameters RSAKey, bool DoOAEPPadding)
         {
