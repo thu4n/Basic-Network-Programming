@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.IO;
+using System.Reflection;
+using System.Globalization;
 
 namespace ftp_client
 {
@@ -73,6 +75,7 @@ namespace ftp_client
                     MessageBox.Show("An error occurred: " + ex.Message);
                 }
             }
+            RefreshFileList();
         }
 
         private void DownloadBtn_Click(object sender, EventArgs e)
@@ -108,6 +111,7 @@ namespace ftp_client
                     MessageBox.Show("An error occurred: " + ex.Message);
                 }
             }
+            RefreshFileList();
         }
 
         private void RefreshBtn_Click(object sender, EventArgs e)
@@ -123,7 +127,7 @@ namespace ftp_client
                 password = PasswordTB.Text;
 
                 FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://" + IPServer);
-                ftpRequest.Method = WebRequestMethods.Ftp.ListDirectory;
+                ftpRequest.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
                 ftpRequest.Credentials = new NetworkCredential(username, password);
 
                 using (FtpWebResponse ftpResponse = (FtpWebResponse)ftpRequest.GetResponse())
@@ -131,10 +135,48 @@ namespace ftp_client
                 using (StreamReader reader = new StreamReader(ftpStream))
                 {
                     fileListLV.Items.Clear();
-                    string fileName;
-                    while ((fileName = reader.ReadLine()) != null)
+
+                    string directoryListing = reader.ReadToEnd();
+                    string[] fileDetails = directoryListing.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                    for (int i = 0; i < fileDetails.Length; i++)
                     {
-                        fileListLV.Items.Add(fileName);
+                        string fileDetail = fileDetails[i];
+                        string[] fileProperties = fileDetail.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                        string fileName = fileProperties[fileProperties.Length - 1];
+
+                        // Lấy kích thước file
+                        long fileSize = 0;
+                        if (fileProperties.Length >= 5)
+                        {
+                            long.TryParse(fileProperties[fileProperties.Length - 5], out fileSize);
+                        }
+
+                        // Lấy ngày tháng năm
+                        DateTime creationDate = DateTime.MinValue;
+                        if (fileProperties.Length >= 4)
+                        {
+                            string dateString = string.Format("{0} {1} {2}", fileProperties[fileProperties.Length - 4],
+                                fileProperties[fileProperties.Length - 3], fileProperties[fileProperties.Length - 2]);
+                            DateTime.TryParseExact(dateString, "MMM dd yyyy", CultureInfo.InvariantCulture,
+                                DateTimeStyles.None, out creationDate);
+                        }
+
+                        ListViewItem item = new ListViewItem((i + 1).ToString());
+                        item.SubItems.Add(fileName);
+                        item.SubItems.Add(creationDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                        item.SubItems.Add(fileSize.ToString());
+
+                        fileListLV.Items.Add(item);
+                    }
+
+                    // Đặt tên cho các cột
+                    if (fileListLV.Columns.Count == 0)
+                    {
+                        fileListLV.Columns.Add("Number");
+                        fileListLV.Columns.Add("FileName");
+                        fileListLV.Columns.Add("Date");
+                        fileListLV.Columns.Add("Size");
                     }
                 }
             }
@@ -143,7 +185,7 @@ namespace ftp_client
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
 
-        }
 
+        }
     }
 }

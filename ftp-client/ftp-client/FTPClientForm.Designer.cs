@@ -38,6 +38,10 @@
             this.UploadBtn = new System.Windows.Forms.Button();
             this.DownloadBtn = new System.Windows.Forms.Button();
             this.fileListLV = new System.Windows.Forms.ListView();
+            this.Number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.FileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Size = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RefreshBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -137,12 +141,41 @@
             // fileListLV
             // 
             this.fileListLV.BackColor = System.Drawing.Color.LavenderBlush;
+            this.fileListLV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Number,
+            this.FileName,
+            this.Date,
+            this.Size});
             this.fileListLV.HideSelection = false;
-            this.fileListLV.Location = new System.Drawing.Point(46, 210);
+            this.fileListLV.Location = new System.Drawing.Point(46, 199);
             this.fileListLV.Name = "fileListLV";
-            this.fileListLV.Size = new System.Drawing.Size(700, 228);
+            this.fileListLV.Size = new System.Drawing.Size(691, 239);
             this.fileListLV.TabIndex = 9;
             this.fileListLV.UseCompatibleStateImageBehavior = false;
+            this.fileListLV.View = System.Windows.Forms.View.Details;
+            // 
+            // Number
+            // 
+            this.Number.Text = "Number";
+            this.Number.Width = 100;
+            // 
+            // FileName
+            // 
+            this.FileName.Text = "File Name";
+            this.FileName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.FileName.Width = 300;
+            // 
+            // Date
+            // 
+            this.Date.Text = "Creation Date";
+            this.Date.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Date.Width = 150;
+            // 
+            // Size
+            // 
+            this.Size.Text = "File Size";
+            this.Size.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Size.Width = 150;
             // 
             // RefreshBtn
             // 
@@ -196,5 +229,9 @@
         private System.Windows.Forms.Button DownloadBtn;
         private System.Windows.Forms.ListView fileListLV;
         private System.Windows.Forms.Button RefreshBtn;
+        private System.Windows.Forms.ColumnHeader Number;
+        private System.Windows.Forms.ColumnHeader FileName;
+        private System.Windows.Forms.ColumnHeader Date;
+        private System.Windows.Forms.ColumnHeader Size;
     }
 }
