@@ -19,7 +19,6 @@ namespace Lab06
         }
         char[] alphabet = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
         bool is_Upper = false;
-        
         private void Encrypt_Click(object sender, EventArgs e)
         {
             Encrypted.Clear();
@@ -35,25 +34,21 @@ namespace Lab06
 
                 if (char.IsUpper(letter))
                     is_Upper = true;
-                if (letter == ' ')
-                {
-                    Encrypted.Text += alphabet[0];
-                }
-                else
-                {
-                    int index = Array.IndexOf(alphabet, char.ToLower(letter));
-                    int newIndex = (Int32.Parse(Shift.Text) + index) % 26;
-                    if (is_Upper)
+                // Lấy chữ cái tương ứng với vị trí dịch mã. Nếu như vị trí của Mã Rõ lớn hơn Key thì sẽ quay lại từ đầu
+                char KeyLetter = Key.Text[i % (Key.Text.Length)];
+                MessageBox.Show(Key.Text.Length.ToString());
+                int index = Array.IndexOf(alphabet, char.ToLower(letter));
+                int KeyIndex = Array.IndexOf(alphabet, char.ToLower(KeyLetter));
+                MessageBox.Show(KeyIndex.ToString());
+                int newIndex = (KeyIndex + index) % 26;
+                MessageBox.Show(newIndex.ToString());
+                if (is_Upper)
                     {
-                        Encrypted.Text += Char.ToUpper(alphabet[newIndex + 1]);
+                        Encrypted.Text += Char.ToUpper(alphabet[newIndex]);
                         is_Upper = false;
-                    }
-                    else
-                        Encrypted.Text += alphabet[newIndex + 1];
-
-                }
-
-
+                   }
+                else
+                Encrypted.Text += alphabet[newIndex];
             }
         }
     }

@@ -31,12 +31,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.Key = new System.Windows.Forms.Label();
+            this.LabelKey = new System.Windows.Forms.Label();
             this.TieuDe = new System.Windows.Forms.Label();
             this.Decrypted = new System.Windows.Forms.TextBox();
             this.Encrypted = new System.Windows.Forms.TextBox();
             this.Input = new System.Windows.Forms.TextBox();
-            this.Shift = new System.Windows.Forms.TextBox();
+            this.Key = new System.Windows.Forms.TextBox();
             this.Decrypt = new System.Windows.Forms.Button();
             this.Encrypt = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -71,15 +71,15 @@
             this.label3.TabIndex = 19;
             this.label3.Text = "Dữ liệu (Input)";
             // 
-            // Key
+            // LabelKey
             // 
-            this.Key.AutoSize = true;
-            this.Key.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Key.Location = new System.Drawing.Point(68, 55);
-            this.Key.Name = "Key";
-            this.Key.Size = new System.Drawing.Size(92, 20);
-            this.Key.TabIndex = 18;
-            this.Key.Text = "Khóa (Key)";
+            this.LabelKey.AutoSize = true;
+            this.LabelKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.LabelKey.Location = new System.Drawing.Point(68, 55);
+            this.LabelKey.Name = "LabelKey";
+            this.LabelKey.Size = new System.Drawing.Size(92, 20);
+            this.LabelKey.TabIndex = 18;
+            this.LabelKey.Text = "Khóa (Key)";
             // 
             // TieuDe
             // 
@@ -116,12 +116,12 @@
             this.Input.Size = new System.Drawing.Size(661, 75);
             this.Input.TabIndex = 14;
             // 
-            // Shift
+            // Key
             // 
-            this.Shift.Location = new System.Drawing.Point(66, 88);
-            this.Shift.Name = "Shift";
-            this.Shift.Size = new System.Drawing.Size(126, 22);
-            this.Shift.TabIndex = 13;
+            this.Key.Location = new System.Drawing.Point(66, 88);
+            this.Key.Name = "Key";
+            this.Key.Size = new System.Drawing.Size(126, 22);
+            this.Key.TabIndex = 13;
             // 
             // Decrypt
             // 
@@ -150,12 +150,12 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.Key);
+            this.Controls.Add(this.LabelKey);
             this.Controls.Add(this.TieuDe);
             this.Controls.Add(this.Decrypted);
             this.Controls.Add(this.Encrypted);
             this.Controls.Add(this.Input);
-            this.Controls.Add(this.Shift);
+            this.Controls.Add(this.Key);
             this.Controls.Add(this.Decrypt);
             this.Controls.Add(this.Encrypt);
             this.Name = "Bai2";
@@ -170,12 +170,12 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label Key;
+        private System.Windows.Forms.Label LabelKey;
         private System.Windows.Forms.Label TieuDe;
         private System.Windows.Forms.TextBox Decrypted;
         private System.Windows.Forms.TextBox Encrypted;
         private System.Windows.Forms.TextBox Input;
-        private System.Windows.Forms.TextBox Shift;
+        private System.Windows.Forms.TextBox Key;
         private System.Windows.Forms.Button Decrypt;
         private System.Windows.Forms.Button Encrypt;
     }
