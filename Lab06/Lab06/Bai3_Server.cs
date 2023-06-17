@@ -92,7 +92,7 @@ namespace Lab06
         {
             int portNum = ((IPEndPoint)client.Client.RemoteEndPoint).Port;
             NetworkStream nwStream = client.GetStream();
-            byte[] buffer = new byte[10000000];
+            byte[] buffer = new byte[1000];
             while (client.Connected && isListening)
             {
                 try
