@@ -29,6 +29,7 @@ namespace Lab06
         private NetworkStream nwStream;
         private bool connected = false;
         private string pubKeyString;
+        private bool shared = false;
         RSACryptoServiceProvider csp;
         public class Bai3_TcpClient
         {
@@ -115,7 +116,12 @@ namespace Lab06
                     {
                        chatBox.Text += msg + "\r\n";
                     }));
-                    if (msg[0] == '-')
+                    if (msg[0] == '?' && !shared)
+                    {
+                        pubKeyString = msg.Substring(1);
+                        shared = false;
+                    }
+                    else if (msg[0] == '-')
                     {
                         Disconnect();
                     }
@@ -150,13 +156,12 @@ namespace Lab06
         }
         private void GetPublicKey()
         {
-            csp = new RSACryptoServiceProvider(256); // Khởi tạo cặp key ở đây nhưng chỉ show public key
+            csp = new RSACryptoServiceProvider(512); // Khởi tạo cặp key ở đây nhưng chỉ show public key
             var pubKey = csp.ExportParameters(false);
             var stringWriter = new System.IO.StringWriter();
             var serializer = new System.Xml.Serialization.XmlSerializer(typeof(RSAParameters));
             serializer.Serialize(stringWriter, pubKey);
-            pubKeyString = stringWriter.ToString();
-            pubKeyTB.Text = pubKeyString;
+            pubKeyTB.Text = stringWriter.ToString();
             shareBtn.Enabled = true;
         }
         static public byte[] Encryption(byte[] Data, RSAParameters RSAKey, bool DoOAEPPadding)
@@ -198,7 +203,10 @@ namespace Lab06
 
         private void shareBtn_Click(object sender, EventArgs e)
         {
-
+            byte[] buffer = Encoding.Unicode.GetBytes("?"+pubKeyTB.Text);
+            nwStream.Write(buffer, 0, buffer.Length);
+            shared = true;
+            MessageBox.Show("Đã chia sẻ public key");
         }
     }
 }

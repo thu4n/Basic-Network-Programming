@@ -44,7 +44,7 @@ namespace Lab06
                 listenBtn.Text = "Start Listening";
                 listenBtn.BackColor = ColorTranslator.FromHtml("#457ad0");
                 string msg = "-- Server has stopped listening --";
-                //broadcastMsg(clients, msg);
+                BroadcastMsg(clients, msg);
                 chatBox.Text += msg + "\r\n";
                 isListening = false;
                 listener.Stop();
