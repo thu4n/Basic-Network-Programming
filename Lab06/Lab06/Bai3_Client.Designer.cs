@@ -40,6 +40,7 @@
             this.pubKeyLabel = new System.Windows.Forms.Label();
             this.shareBtn = new System.Windows.Forms.Button();
             this.infoLabel = new System.Windows.Forms.Label();
+            this.recvTB = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // ipLabel
@@ -119,12 +120,12 @@
             // 
             // pubKeyTB
             // 
-            this.pubKeyTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pubKeyTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pubKeyTB.Location = new System.Drawing.Point(569, 86);
             this.pubKeyTB.Multiline = true;
             this.pubKeyTB.Name = "pubKeyTB";
             this.pubKeyTB.ReadOnly = true;
-            this.pubKeyTB.Size = new System.Drawing.Size(219, 273);
+            this.pubKeyTB.Size = new System.Drawing.Size(219, 93);
             this.pubKeyTB.TabIndex = 12;
             // 
             // pubKeyLabel
@@ -141,7 +142,7 @@
             // 
             this.shareBtn.BackColor = System.Drawing.Color.White;
             this.shareBtn.Enabled = false;
-            this.shareBtn.Location = new System.Drawing.Point(569, 365);
+            this.shareBtn.Location = new System.Drawing.Point(569, 185);
             this.shareBtn.Name = "shareBtn";
             this.shareBtn.Size = new System.Drawing.Size(219, 49);
             this.shareBtn.TabIndex = 13;
@@ -159,11 +160,22 @@
             this.infoLabel.TabIndex = 14;
             this.infoLabel.Text = "Đây là phòng chat bảo mật, \r\nhãy chia sẻ public key của \r\nmình trước khi chat.\r\n";
             // 
+            // recvTB
+            // 
+            this.recvTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recvTB.Location = new System.Drawing.Point(569, 250);
+            this.recvTB.Multiline = true;
+            this.recvTB.Name = "recvTB";
+            this.recvTB.ReadOnly = true;
+            this.recvTB.Size = new System.Drawing.Size(219, 93);
+            this.recvTB.TabIndex = 15;
+            // 
             // Bai3_Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 497);
+            this.Controls.Add(this.recvTB);
             this.Controls.Add(this.infoLabel);
             this.Controls.Add(this.shareBtn);
             this.Controls.Add(this.pubKeyTB);
@@ -198,5 +210,6 @@
         private System.Windows.Forms.Label pubKeyLabel;
         private System.Windows.Forms.Button shareBtn;
         private System.Windows.Forms.Label infoLabel;
+        private System.Windows.Forms.TextBox recvTB;
     }
 }

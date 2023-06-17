@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Net.Configuration;
 using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
@@ -28,8 +29,8 @@ namespace Lab06
     {
         private NetworkStream nwStream;
         private bool connected = false;
-        private string pubKeyString;
-        private bool shared = false;
+        private string pubKeyString = "<RSAKeyValue><Modulus>1L+WKDCTomMNBv42f5IppEeVZ8hh6QNxgDNSZ7ixa0tw+BmwNLmCbib0BkXkGvtyoWZAlscYtcAojSbvOtSNGQ==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>";
+        private string priKeyString = "<RSAKeyValue><Modulus>1L+WKDCTomMNBv42f5IppEeVZ8hh6QNxgDNSZ7ixa0tw+BmwNLmCbib0BkXkGvtyoWZAlscYtcAojSbvOtSNGQ==</Modulus><Exponent>AQAB</Exponent><P>8KyW9pRU3cDB1sm7iTMQtIM9or47GGJyBvgp3ke8/hs=</P><Q>4kvB7m/Qq0ESHV+emsKmriAeqn/Kq7M55SxyoGR4RNs=</Q><DP>4Im0wlI7JzRJ5DELlQIeaLs0ytu92I8oIRZwQWAek9c=</DP><DQ>mhL0hnAxBfi26bLp3Pr8239ZAcMibYcIuyVpIhVl4ZM=</DQ><InverseQ>n+Q6KBJhZnlKYXHd86y7ZtYNigJcSsFocSeq6mLqmGw=</InverseQ><D>jTvewDF3YN8mv9S1cz0h/dgzvCEPtrO9fqETfJ3k0led1zIy8b3aYGo9R3kOJu8nOrt6XBqERn0ImVIGZPgkLQ==</D></RSAKeyValue>";
         RSACryptoServiceProvider csp;
         RSAParameters pubKeyReceived;
         public class Bai3_TcpClient
@@ -73,7 +74,6 @@ namespace Lab06
                     nwStream = tcpClient.client.GetStream();
                     SendMsg("$" + tcpClient.username + " has joined the chat");
                     GetMsg();
-                    GetPublicKey();
                 }
                 catch (SocketException se)
                 {
@@ -97,7 +97,6 @@ namespace Lab06
             }
             else
             {
-                //clients.TryRemove(tcpClient.portNum, out string temp);
                 SendMsg("!" + tcpClient.username + " has left the chat !");
                 Disconnect();
             }
@@ -113,17 +112,17 @@ namespace Lab06
                     byte[] formatted = new byte[byte_count];
                     Array.Copy(received, formatted, byte_count);
                     string msg = Encoding.Unicode.GetString(formatted);
+                    if (msg[0] != '$')
+                    {
+                        string[] strings = msg.Split(':');
+                        msg = strings[0] + ": " + Decryption(strings[1]);
+                    }
                     Invoke(new MethodInvoker(delegate ()
                     {
                        chatBox.Text += msg + "\r\n";
+
                     }));
-                    if (msg[0] == '?' && !shared)
-                    {
-                        pubKeyString = msg.Substring(1);
-                        pubKeyReceived = StringToKey(pubKeyString);
-                        shared = false;
-                    }
-                    else if (msg[0] == '-')
+                    if (msg[0] == '-')
                     {
                         Disconnect();
                     }
@@ -134,8 +133,11 @@ namespace Lab06
         }
         private void SendMsg(string msg)
         {
+            if (msg[0] != '$')
+            {
+                msg = tcpClient.username + ": " + Encryption(msg);
+            }
             byte[] buffer = Encoding.Unicode.GetBytes(msg);
-            //buffer = Encryption(buffer, csp.ExportParameters(f))
             nwStream.Write(buffer, 0, buffer.Length);
         }
         private void Disconnect()
@@ -154,69 +156,49 @@ namespace Lab06
         private void sendBtn_Click(object sender, EventArgs e)
         {
             if (typeTB.Text.Length == 0) return;
-            SendMsg(usernameTB.Text + ": " + typeTB.Text);
+            SendMsg(typeTB.Text);
             typeTB.Clear();
         }
-        private void GetPublicKey()
-        {
-            csp = new RSACryptoServiceProvider(512); // Khởi tạo cặp key ở đây nhưng chỉ show public key
-            var pubKey = csp.ExportParameters(false);
-            var stringWriter = new System.IO.StringWriter();
-            var serializer = new System.Xml.Serialization.XmlSerializer(typeof(RSAParameters));
-            serializer.Serialize(stringWriter, pubKey);
-            pubKeyTB.Text = stringWriter.ToString();
-            shareBtn.Enabled = true;
-        }
-        private RSAParameters StringToKey(string keyString)
-        {
-            var sr = new System.IO.StringReader(keyString);
-            var serializer = new System.Xml.Serialization.XmlSerializer(typeof(RSAParameters));
-            var key = (RSAParameters)serializer.Deserialize(sr);
-            return key;
-        }
-        static public byte[] Encryption(byte[] Data, RSAParameters RSAKey, bool DoOAEPPadding)
-        {
-            try
-            {
-                byte[] encryptedData;
-                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
-                {
-                    RSA.ImportParameters(RSAKey);
-                    encryptedData = RSA.Encrypt(Data, DoOAEPPadding);
-                }
-                return encryptedData;
-            }
-            catch (CryptographicException e)
-            {
-                MessageBox.Show(e.ToString());
-                return null;
-            }
-        }
-        static public byte[] Decryption(byte[] Data, RSAParameters RSAKey, bool DoOAEPPadding)
-        {
-            try
-            {
-                byte[] decryptedData;
-                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
-                {
-                    RSA.ImportParameters(RSAKey);
-                    decryptedData = RSA.Decrypt(Data, DoOAEPPadding);
-                }
-                return decryptedData;
-            }
-            catch (CryptographicException e)
-            {
-                MessageBox.Show(e.ToString());
-                return null;
-            }
-        }
-
         private void shareBtn_Click(object sender, EventArgs e)
         {
-            byte[] buffer = Encoding.Unicode.GetBytes("?"+pubKeyTB.Text);
-            nwStream.Write(buffer, 0, buffer.Length);
-            shared = true;
-            MessageBox.Show("Đã chia sẻ public key");
+
+        }
+        public string Encryption(string msg)
+        {
+            var data = Encoding.UTF8.GetBytes(msg);
+            using (var rsa = new RSACryptoServiceProvider(1024))
+            {
+                try
+                {
+                    rsa.FromXmlString(pubKeyString.ToString());
+                    var encryptedData = rsa.Encrypt(data, true);
+                    var base64Encrypted = Convert.ToBase64String(encryptedData);
+                    return base64Encrypted;
+                }
+                finally
+                {
+                    rsa.PersistKeyInCsp = false;
+                }
+            }
+        }
+        public string Decryption(string msg)
+        {
+            using (var rsa = new RSACryptoServiceProvider(1024))
+            {
+                try
+                {
+                    var base64Encrypted = msg;
+                    rsa.FromXmlString(priKeyString);
+                    var resultBytes = Convert.FromBase64String(base64Encrypted);
+                    var decryptedBytes = rsa.Decrypt(resultBytes, true);
+                    var decryptedData = Encoding.UTF8.GetString(decryptedBytes);
+                    return decryptedData.ToString();
+                }
+                finally
+                {
+                    rsa.PersistKeyInCsp = false;
+                }
+            }
         }
     }
 }
