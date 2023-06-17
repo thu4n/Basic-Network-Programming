@@ -16,7 +16,7 @@ namespace Lab06
         {
             InitializeComponent();
         }
-        char[] alphabet = new char[] {' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+        char[] alphabet = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
         bool is_Upper = false;
         private void Encrypt_Click(object sender, EventArgs e)
         {
@@ -33,24 +33,16 @@ namespace Lab06
                 
                     if (char.IsUpper(letter))
                         is_Upper = true;
-                    if (letter == ' ')
-                    {
-                        Encrypted.Text += alphabet[0];
-                    }
-                    else
-                    {
+                             
                         int index = Array.IndexOf(alphabet, char.ToLower(letter));
                         int newIndex = (Int32.Parse(Shift.Text) + index) % 26;
                         if (is_Upper)
                         {
-                            Encrypted.Text += Char.ToUpper(alphabet[newIndex + 1]);
+                            Encrypted.Text += Char.ToUpper(alphabet[newIndex ]);
                             is_Upper = false;
                         }
                         else
-                            Encrypted.Text += alphabet[newIndex + 1];
-
-                    }
-                
+                            Encrypted.Text += alphabet[newIndex];
                 
             }
         }
@@ -70,22 +62,18 @@ namespace Lab06
                 }
                 if (char.IsUpper(letter))
                     is_Upper = true;
-                if (letter == ' ')
-                {
-                    Decrypted.Text += alphabet[0];
-                }
-                else
-                {
+               
+               
                     int index = Array.IndexOf(alphabet, char.ToLower(letter));
                     int newIndex = Math.Abs((index - Int32.Parse(Shift.Text) +26)) % 26;
                     if (is_Upper)
                     {
-                        Decrypted.Text += Char.ToUpper(alphabet[newIndex -1]);
+                        Decrypted.Text += Char.ToUpper(alphabet[newIndex ]);
                         is_Upper = false;
                     }
                     else
-                    Decrypted.Text += alphabet[newIndex-1];
-                }
+                    Decrypted.Text += alphabet[newIndex];
+                
             }
         }
 
