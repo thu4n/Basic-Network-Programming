@@ -29,7 +29,7 @@ namespace Lab06
         private NetworkStream nwStream;
         private bool connected = false;
         private string pubKeyString;
-        RSACryptoServiceProvider csp = new RSACryptoServiceProvider(256);
+        RSACryptoServiceProvider csp;
         public class Bai3_TcpClient
         {
             public TcpClient client { get; set; }
@@ -71,6 +71,7 @@ namespace Lab06
                     nwStream = tcpClient.client.GetStream();
                     SendMsg("$" + tcpClient.username + " has joined the chat");
                     GetMsg();
+                    GetPublicKey();
                 }
                 catch (SocketException se)
                 {
@@ -147,15 +148,16 @@ namespace Lab06
             SendMsg(usernameTB.Text + ": " + typeTB.Text);
             typeTB.Clear();
         }
-        private void GenerateRSAKeys()
+        private void GetPublicKey()
         {
-            csp = new RSACryptoServiceProvider(256);
-            var privKey = csp.ExportParameters(true);
+            csp = new RSACryptoServiceProvider(256); // Khởi tạo cặp key ở đây nhưng chỉ show public key
             var pubKey = csp.ExportParameters(false);
             var stringWriter = new System.IO.StringWriter();
             var serializer = new System.Xml.Serialization.XmlSerializer(typeof(RSAParameters));
             serializer.Serialize(stringWriter, pubKey);
             pubKeyString = stringWriter.ToString();
+            pubKeyTB.Text = pubKeyString;
+            shareBtn.Enabled = true;
         }
         static public byte[] Encryption(byte[] Data, RSAParameters RSAKey, bool DoOAEPPadding)
         {

@@ -139,12 +139,14 @@
             // 
             // shareBtn
             // 
+            this.shareBtn.BackColor = System.Drawing.Color.White;
+            this.shareBtn.Enabled = false;
             this.shareBtn.Location = new System.Drawing.Point(569, 365);
             this.shareBtn.Name = "shareBtn";
             this.shareBtn.Size = new System.Drawing.Size(219, 49);
             this.shareBtn.TabIndex = 13;
             this.shareBtn.Text = "Share public key";
-            this.shareBtn.UseVisualStyleBackColor = true;
+            this.shareBtn.UseVisualStyleBackColor = false;
             this.shareBtn.Click += new System.EventHandler(this.shareBtn_Click);
             // 
             // infoLabel
