@@ -36,9 +36,9 @@
             // 
             // listenBtn
             // 
-            this.listenBtn.Location = new System.Drawing.Point(353, 23);
+            this.listenBtn.Location = new System.Drawing.Point(342, 23);
             this.listenBtn.Name = "listenBtn";
-            this.listenBtn.Size = new System.Drawing.Size(130, 41);
+            this.listenBtn.Size = new System.Drawing.Size(145, 41);
             this.listenBtn.TabIndex = 0;
             this.listenBtn.Text = "Start Listening";
             this.listenBtn.UseVisualStyleBackColor = true;
@@ -49,7 +49,7 @@
             this.ipTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ipTB.Location = new System.Drawing.Point(120, 29);
             this.ipTB.Name = "ipTB";
-            this.ipTB.Size = new System.Drawing.Size(206, 27);
+            this.ipTB.Size = new System.Drawing.Size(216, 27);
             this.ipTB.TabIndex = 1;
             // 
             // ipLabel
@@ -69,14 +69,14 @@
             this.chatBox.Multiline = true;
             this.chatBox.Name = "chatBox";
             this.chatBox.ReadOnly = true;
-            this.chatBox.Size = new System.Drawing.Size(446, 356);
+            this.chatBox.Size = new System.Drawing.Size(575, 356);
             this.chatBox.TabIndex = 3;
             // 
             // Bai3_Server
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(639, 450);
             this.Controls.Add(this.chatBox);
             this.Controls.Add(this.ipLabel);
             this.Controls.Add(this.ipTB);

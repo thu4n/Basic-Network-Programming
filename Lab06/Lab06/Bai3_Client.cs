@@ -16,23 +16,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace Lab06
 {
-    /*
-     * Chỉ cho tối đa 2 client kết nối vào chatroom của 1 server
-     * Trao đổi public key giữa 2 client khi khởi tạo kết nối
-     * Server lưu trữ tin nhắn chứa public key rồi broadcast lại khi có client mới vào
-     * Khi gửi tin nhắn, mã hóa với public key nhận được từ đối phương
-     * Khi nhận tin nhắn, giải mã với private key của mình.
-     * Như vậy, dữ liệu sẽ được bảo mật khi private key chưa bao giờ được tiết lộ.
-     * 2 bên chỉ biết cách mã hóa (thông qua public key) sao cho bên kia tự giải mã được
-     */
     public partial class Bai3_Client : Form
     {
         private NetworkStream nwStream;
         private bool connected = false;
         private string pubKeyString = "<RSAKeyValue><Modulus>1L+WKDCTomMNBv42f5IppEeVZ8hh6QNxgDNSZ7ixa0tw+BmwNLmCbib0BkXkGvtyoWZAlscYtcAojSbvOtSNGQ==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>";
         private string priKeyString = "<RSAKeyValue><Modulus>1L+WKDCTomMNBv42f5IppEeVZ8hh6QNxgDNSZ7ixa0tw+BmwNLmCbib0BkXkGvtyoWZAlscYtcAojSbvOtSNGQ==</Modulus><Exponent>AQAB</Exponent><P>8KyW9pRU3cDB1sm7iTMQtIM9or47GGJyBvgp3ke8/hs=</P><Q>4kvB7m/Qq0ESHV+emsKmriAeqn/Kq7M55SxyoGR4RNs=</Q><DP>4Im0wlI7JzRJ5DELlQIeaLs0ytu92I8oIRZwQWAek9c=</DP><DQ>mhL0hnAxBfi26bLp3Pr8239ZAcMibYcIuyVpIhVl4ZM=</DQ><InverseQ>n+Q6KBJhZnlKYXHd86y7ZtYNigJcSsFocSeq6mLqmGw=</InverseQ><D>jTvewDF3YN8mv9S1cz0h/dgzvCEPtrO9fqETfJ3k0led1zIy8b3aYGo9R3kOJu8nOrt6XBqERn0ImVIGZPgkLQ==</D></RSAKeyValue>";
-        RSACryptoServiceProvider csp;
-        RSAParameters pubKeyReceived;
         public class Bai3_TcpClient
         {
             public TcpClient client { get; set; }
@@ -59,7 +48,7 @@ namespace Lab06
 
         private void connectBtn_Click(object sender, EventArgs e)
         {
-            if (usernameTB.Text == "")
+            if (usernameTB.Text == "" || ipTB.Text == "")
             {
                 MessageBox.Show("Username cannot be empty");
                 return;
@@ -87,8 +76,6 @@ namespace Lab06
                 {
                     MessageBox.Show(ex.ToString());
                 }
-                /*titleLabel0.Text = "You are connected to the server";
-                titleLabel0.ForeColor = ColorTranslator.FromHtml("#457ad0");*/
                 connected = true;
                 connectBtn.Text = "Disconnect";
                 ipTB.ReadOnly = true;
@@ -158,10 +145,6 @@ namespace Lab06
             if (typeTB.Text.Length == 0) return;
             SendMsg(typeTB.Text);
             typeTB.Clear();
-        }
-        private void shareBtn_Click(object sender, EventArgs e)
-        {
-
         }
         public string Encryption(string msg)
         {
