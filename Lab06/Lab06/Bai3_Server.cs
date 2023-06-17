@@ -146,8 +146,6 @@ namespace Lab06
                 NetworkStream nwStream = client.Value.GetStream();
                 byte[] buffer = Encoding.Unicode.GetBytes(msg);
                 nwStream.Write(buffer, 0, buffer.Length);
-                //IPEndPoint remote = client.Value.Client.RemoteEndPoint as IPEndPoint;
-                //MessageBox.Show("remote address is: " + remote.Address.ToString()); // Luu dia chi nay vo dau do
             }
         }
     }

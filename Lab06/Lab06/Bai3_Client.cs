@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,29 +15,31 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace Lab06
 {
+    /*
+     * Chỉ cho tối đa 2 client kết nối vào chatroom của 1 server
+     * Trao đổi public key giữa 2 client khi khởi tạo kết nối
+     * Server lưu trữ tin nhắn chứa public key rồi broadcast lại khi có client mới vào
+     * Khi gửi tin nhắn, mã hóa với public key nhận được từ đối phương
+     * Khi nhận tin nhắn, giải mã với private key của mình.
+     * Như vậy, dữ liệu sẽ được bảo mật khi private key chưa bao giờ được tiết lộ.
+     * 2 bên chỉ biết cách mã hóa (thông qua public key) sao cho bên kia tự giải mã được
+     */
     public partial class Bai3_Client : Form
     {
         private NetworkStream nwStream;
-        private int currentCount = 0;
         private bool connected = false;
+        private string pubKeyString;
+        RSACryptoServiceProvider csp = new RSACryptoServiceProvider(256);
         public class Bai3_TcpClient
         {
             public TcpClient client { get; set; }
             public string username { get; set; }
-            public int portNum { get; set; }
             public Bai3_TcpClient() { }
             public Bai3_TcpClient(string name, IPAddress ip)
             {
                 client = new TcpClient();
                 client.Connect(ip, 16000);
-                portNum = ((IPEndPoint)client.Client.LocalEndPoint).Port;
                 username = name;
-            }
-            public string nameTag()
-            {
-                if (username != "" && portNum > 0)
-                    return username + "#" + portNum;
-                return "";
             }
 
         }
@@ -66,10 +69,8 @@ namespace Lab06
                     IPAddress localIP = IPAddress.Parse(str);
                     tcpClient = new Bai3_TcpClient(usernameTB.Text, localIP);
                     nwStream = tcpClient.client.GetStream();
-                    //clients.TryAdd(tcpClient.portNum, tcpClient.username);
-                    SendMsg("$" + tcpClient.nameTag() + " has joined the chat");
+                    SendMsg("$" + tcpClient.username + " has joined the chat");
                     GetMsg();
-                    //displayClients();
                 }
                 catch (SocketException se)
                 {
@@ -94,7 +95,7 @@ namespace Lab06
             else
             {
                 //clients.TryRemove(tcpClient.portNum, out string temp);
-                SendMsg("!" + tcpClient.nameTag() + " has left the chat !");
+                SendMsg("!" + tcpClient.username + " has left the chat !");
                 Disconnect();
             }
         }
@@ -113,10 +114,10 @@ namespace Lab06
                     {
                        chatBox.Text += msg + "\r\n";
                     }));
-                    /*if (msg[0] == '-')
+                    if (msg[0] == '-')
                     {
-                        disconnect();
-                    }*/
+                        Disconnect();
+                    }
                 }
                 nwStream.Close();
                 tcpClient.client.Close();
@@ -143,8 +144,59 @@ namespace Lab06
         private void sendBtn_Click(object sender, EventArgs e)
         {
             if (typeTB.Text.Length == 0) return;
-            SendMsg(typeTB.Text);
+            SendMsg(usernameTB.Text + ": " + typeTB.Text);
             typeTB.Clear();
+        }
+        private void GenerateRSAKeys()
+        {
+            csp = new RSACryptoServiceProvider(256);
+            var privKey = csp.ExportParameters(true);
+            var pubKey = csp.ExportParameters(false);
+            var stringWriter = new System.IO.StringWriter();
+            var serializer = new System.Xml.Serialization.XmlSerializer(typeof(RSAParameters));
+            serializer.Serialize(stringWriter, pubKey);
+            pubKeyString = stringWriter.ToString();
+        }
+        static public byte[] Encryption(byte[] Data, RSAParameters RSAKey, bool DoOAEPPadding)
+        {
+            try
+            {
+                byte[] encryptedData;
+                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                {
+                    RSA.ImportParameters(RSAKey);
+                    encryptedData = RSA.Encrypt(Data, DoOAEPPadding);
+                }
+                return encryptedData;
+            }
+            catch (CryptographicException e)
+            {
+                MessageBox.Show(e.ToString());
+                return null;
+            }
+        }
+        static public byte[] Decryption(byte[] Data, RSAParameters RSAKey, bool DoOAEPPadding)
+        {
+            try
+            {
+                byte[] decryptedData;
+                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                {
+                    RSA.ImportParameters(RSAKey);
+                    decryptedData = RSA.Decrypt(Data, DoOAEPPadding);
+                }
+                return decryptedData;
+            }
+            catch (CryptographicException e)
+            {
+                MessageBox.Show(e.ToString());
+                return null;
+            }
+        }
+
+        private void shareBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
