@@ -24,6 +24,7 @@ namespace ftp_client
 
         private void UploadBtn_Click(object sender, EventArgs e)
         {
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -39,6 +40,7 @@ namespace ftp_client
                     FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://" + IPServer + "/" + fileName);
                     ftpRequest.Method = WebRequestMethods.Ftp.UploadFile;
                     ftpRequest.Credentials = new NetworkCredential(username, password);
+                    ftpRequest.UsePassive = true; // Thêm dòng này
 
                     using (Stream ftpStream = ftpRequest.GetRequestStream())
                     using (FileStream fileStream = File.OpenRead(localFilePath))
@@ -53,6 +55,18 @@ namespace ftp_client
 
                     MessageBox.Show("File uploaded successfully!");
                     RefreshFileList();
+                }
+                catch (WebException ex)
+                {
+                    FtpWebResponse response = (FtpWebResponse)ex.Response;
+                    if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
+                    {
+                        MessageBox.Show("File not found on the server.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error occurred: " + ex.Message);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -104,7 +118,11 @@ namespace ftp_client
         {
             try
             {
-                FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create(IPServer);
+                IPServer = IPServerTB.Text;
+                username = UsernameTB.Text;
+                password = PasswordTB.Text;
+
+                FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://" + IPServer);
                 ftpRequest.Method = WebRequestMethods.Ftp.ListDirectory;
                 ftpRequest.Credentials = new NetworkCredential(username, password);
 
@@ -124,6 +142,7 @@ namespace ftp_client
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
+
         }
 
     }
