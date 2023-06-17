@@ -51,5 +51,34 @@ namespace Lab06
                 Encrypted.Text += alphabet[newIndex];
             }
         }
+
+        private void Decrypt_Click(object sender, EventArgs e)
+        {
+            Decrypted.Clear();
+            for (int i = 0; i < Encrypted.Text.Length; i++)
+            {
+
+                char letter = Encrypted.Text[i];
+                if (char.IsLetter(letter) == false)
+                {
+                    Decrypted.Text += letter;
+                    continue;
+                }
+                if (char.IsUpper(letter))
+                    is_Upper = true;
+                
+                    int index = Array.IndexOf(alphabet, char.ToLower(letter));
+                // int newIndex = Math.Abs((index - Int32.Parse(Shift.Text) + 26)) % 26;
+                int newIndex = 0;
+                    if (is_Upper)
+                    {
+                        Decrypted.Text += Char.ToUpper(alphabet[newIndex - 1]);
+                        is_Upper = false;
+                    }
+                    else
+                        Decrypted.Text += alphabet[newIndex - 1];
+                
+            }
+        }
     }
 }

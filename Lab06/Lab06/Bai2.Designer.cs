@@ -131,6 +131,7 @@
             this.Decrypt.TabIndex = 12;
             this.Decrypt.Text = "Giải mã";
             this.Decrypt.UseVisualStyleBackColor = true;
+            this.Decrypt.Click += new System.EventHandler(this.Decrypt_Click);
             // 
             // Encrypt
             // 
