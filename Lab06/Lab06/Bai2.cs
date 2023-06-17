@@ -21,6 +21,7 @@ namespace Lab06
         bool is_Upper = false;
         private void Encrypt_Click(object sender, EventArgs e)
         {
+            int check = -1;
             Encrypted.Clear();
             for (int i = 0; i < Input.Text.Length; i++)
             {
@@ -34,14 +35,14 @@ namespace Lab06
 
                 if (char.IsUpper(letter))
                     is_Upper = true;
+                // biến check để lấy vị trí chữ cái trong Khóa để so sánh
+                check++;
                 // Lấy chữ cái tương ứng với vị trí dịch mã. Nếu như vị trí của Mã Rõ lớn hơn Key thì sẽ quay lại từ đầu
-                char KeyLetter = Key.Text[i % (Key.Text.Length)];
-                MessageBox.Show(Key.Text.Length.ToString());
+                char KeyLetter = Key.Text[check % (Key.Text.Length)];
+
                 int index = Array.IndexOf(alphabet, char.ToLower(letter));
                 int KeyIndex = Array.IndexOf(alphabet, char.ToLower(KeyLetter));
-                MessageBox.Show(KeyIndex.ToString());
                 int newIndex = (KeyIndex + index) % 26;
-                MessageBox.Show(newIndex.ToString());
                 if (is_Upper)
                     {
                         Encrypted.Text += Char.ToUpper(alphabet[newIndex]);
@@ -54,6 +55,7 @@ namespace Lab06
 
         private void Decrypt_Click(object sender, EventArgs e)
         {
+            int check = -1;
             Decrypted.Clear();
             for (int i = 0; i < Encrypted.Text.Length; i++)
             {
@@ -66,17 +68,20 @@ namespace Lab06
                 }
                 if (char.IsUpper(letter))
                     is_Upper = true;
-                
-                    int index = Array.IndexOf(alphabet, char.ToLower(letter));
-                // int newIndex = Math.Abs((index - Int32.Parse(Shift.Text) + 26)) % 26;
-                int newIndex = 0;
+
+                check++;
+                char KeyLetter = Key.Text[check % (Key.Text.Length )];
+                int index = Array.IndexOf(alphabet, char.ToLower(letter));
+                int KeyIndex = Array.IndexOf(alphabet, char.ToLower(KeyLetter));
+                int newIndex = Math.Abs((index - KeyIndex + 26)) % 26;
+               
                     if (is_Upper)
                     {
-                        Decrypted.Text += Char.ToUpper(alphabet[newIndex - 1]);
+                        Decrypted.Text += Char.ToUpper(alphabet[newIndex]);
                         is_Upper = false;
                     }
                     else
-                        Decrypted.Text += alphabet[newIndex - 1];
+                        Decrypted.Text += alphabet[newIndex];
                 
             }
         }
