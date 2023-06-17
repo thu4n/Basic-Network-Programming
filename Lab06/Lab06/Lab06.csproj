@@ -64,6 +64,18 @@
     <Compile Include="Bai3.Designer.cs">
       <DependentUpon>Bai3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bai3_Client.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bai3_Client.Designer.cs">
+      <DependentUpon>Bai3_Client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bai3_Server.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bai3_Server.Designer.cs">
+      <DependentUpon>Bai3_Server.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +84,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Bai3.resx">
+      <DependentUpon>Bai3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bai3_Client.resx">
+      <DependentUpon>Bai3_Client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bai3_Server.resx">
+      <DependentUpon>Bai3_Server.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>

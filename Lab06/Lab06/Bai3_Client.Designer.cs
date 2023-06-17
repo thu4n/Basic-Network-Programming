@@ -33,7 +33,7 @@
             this.connectBtn = new System.Windows.Forms.Button();
             this.chatBox = new System.Windows.Forms.TextBox();
             this.typeTB = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.sendBtn = new System.Windows.Forms.Button();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.usernameTB = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -84,14 +84,14 @@
             this.typeTB.Size = new System.Drawing.Size(412, 49);
             this.typeTB.TabIndex = 7;
             // 
-            // button1
+            // sendBtn
             // 
-            this.button1.Location = new System.Drawing.Point(445, 425);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 49);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Send";
-            this.button1.UseVisualStyleBackColor = true;
+            this.sendBtn.Location = new System.Drawing.Point(445, 425);
+            this.sendBtn.Name = "sendBtn";
+            this.sendBtn.Size = new System.Drawing.Size(118, 49);
+            this.sendBtn.TabIndex = 8;
+            this.sendBtn.Text = "Send";
+            this.sendBtn.UseVisualStyleBackColor = true;
             // 
             // usernameLabel
             // 
@@ -118,7 +118,7 @@
             this.ClientSize = new System.Drawing.Size(800, 486);
             this.Controls.Add(this.usernameTB);
             this.Controls.Add(this.usernameLabel);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.sendBtn);
             this.Controls.Add(this.typeTB);
             this.Controls.Add(this.chatBox);
             this.Controls.Add(this.connectBtn);
@@ -138,7 +138,7 @@
         private System.Windows.Forms.Button connectBtn;
         private System.Windows.Forms.TextBox chatBox;
         private System.Windows.Forms.TextBox typeTB;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button sendBtn;
         private System.Windows.Forms.Label usernameLabel;
         private System.Windows.Forms.TextBox usernameTB;
     }

@@ -42,6 +42,7 @@
             this.listenBtn.TabIndex = 0;
             this.listenBtn.Text = "Start Listening";
             this.listenBtn.UseVisualStyleBackColor = true;
+            this.listenBtn.Click += new System.EventHandler(this.listenBtn_Click);
             // 
             // ipTB
             // 
@@ -82,6 +83,7 @@
             this.Controls.Add(this.listenBtn);
             this.Name = "Bai3_Server";
             this.Text = "Bai3_Server";
+            this.Load += new System.EventHandler(this.Bai3_Server_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
