@@ -134,12 +134,13 @@
             // 
             // Encrypt
             // 
-            this.Encrypt.Location = new System.Drawing.Point(462, 78);
+            this.Encrypt.Location = new System.Drawing.Point(458, 78);
             this.Encrypt.Name = "Encrypt";
             this.Encrypt.Size = new System.Drawing.Size(103, 43);
             this.Encrypt.TabIndex = 11;
             this.Encrypt.Text = "Mã hóa";
             this.Encrypt.UseVisualStyleBackColor = true;
+            this.Encrypt.Click += new System.EventHandler(this.Encrypt_Click);
             // 
             // Bai2
             // 

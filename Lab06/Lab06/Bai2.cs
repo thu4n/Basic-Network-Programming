@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,45 @@ namespace Lab06
         public Bai2()
         {
             InitializeComponent();
+        }
+        char[] alphabet = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+        bool is_Upper = false;
+        
+        private void Encrypt_Click(object sender, EventArgs e)
+        {
+            Encrypted.Clear();
+            for (int i = 0; i < Input.Text.Length; i++)
+            {
+                char letter = Input.Text[i];
+                // kiểm tra từng kí tự xem nó có phải là chữ không, nếu không thì sẽ không mã hóa nó
+                if (char.IsLetter(letter) == false)
+                {
+                    Encrypted.Text += letter;
+                    continue;
+                }
+
+                if (char.IsUpper(letter))
+                    is_Upper = true;
+                if (letter == ' ')
+                {
+                    Encrypted.Text += alphabet[0];
+                }
+                else
+                {
+                    int index = Array.IndexOf(alphabet, char.ToLower(letter));
+                    int newIndex = (Int32.Parse(Shift.Text) + index) % 26;
+                    if (is_Upper)
+                    {
+                        Encrypted.Text += Char.ToUpper(alphabet[newIndex + 1]);
+                        is_Upper = false;
+                    }
+                    else
+                        Encrypted.Text += alphabet[newIndex + 1];
+
+                }
+
+
+            }
         }
     }
 }
