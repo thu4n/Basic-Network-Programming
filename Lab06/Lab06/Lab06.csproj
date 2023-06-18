@@ -92,6 +92,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bai3_Server.resx">
       <DependentUpon>Bai3_Server.cs</DependentUpon>
+    <EmbeddedResource Include="Bai2.resx">
+      <DependentUpon>Bai2.cs</DependentUpon>
+    <EmbeddedResource Include="Bai1.resx">
+      <DependentUpon>Bai1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
