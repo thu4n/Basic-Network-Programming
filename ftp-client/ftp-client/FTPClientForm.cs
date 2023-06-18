@@ -111,7 +111,7 @@ namespace ftp_client
                     MessageBox.Show("An error occurred: " + ex.Message);
                 }
             }
-            RefreshFileList();
+           
         }
 
         private void RefreshBtn_Click(object sender, EventArgs e)
@@ -127,7 +127,7 @@ namespace ftp_client
                 password = PasswordTB.Text;
 
                 FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://" + IPServer);
-                ftpRequest.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
+                ftpRequest.Method = WebRequestMethods.Ftp.ListDirectory;
                 ftpRequest.Credentials = new NetworkCredential(username, password);
 
                 using (FtpWebResponse ftpResponse = (FtpWebResponse)ftpRequest.GetResponse())
@@ -136,38 +136,26 @@ namespace ftp_client
                 {
                     fileListLV.Items.Clear();
 
-                    string directoryListing = reader.ReadToEnd();
-                    string[] fileDetails = directoryListing.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-                    for (int i = 0; i < fileDetails.Length; i++)
+                    string[] fileNames = reader.ReadToEnd().Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                    for (int i = 0; i < fileNames.Length; i++)
                     {
-                        string fileDetail = fileDetails[i];
-                        string[] fileProperties = fileDetail.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                        string fileName = fileNames[i];
 
-                        string fileName = fileProperties[fileProperties.Length - 1];
+                        FtpWebRequest fileInfoRequest = (FtpWebRequest)WebRequest.Create("ftp://" + IPServer + "/" + fileName);
+                        fileInfoRequest.Method = WebRequestMethods.Ftp.GetFileSize;
+                        fileInfoRequest.Credentials = new NetworkCredential(username, password);
 
-                        // Lấy kích thước file
-                        long fileSize = 0;
-                        if (fileProperties.Length >= 5)
+                        using (FtpWebResponse fileInfoResponse = (FtpWebResponse)fileInfoRequest.GetResponse())
                         {
-                            long.TryParse(fileProperties[fileProperties.Length - 5], out fileSize);
+                            long fileSize = fileInfoResponse.ContentLength;
+                            DateTime creationDate = DateTime.Now;
+                            ListViewItem item = new ListViewItem((i + 1).ToString());
+                            item.SubItems.Add(fileName);
+                            item.SubItems.Add(creationDate.ToString());
+                            item.SubItems.Add(fileSize.ToString() + " bytes");
+
+                            fileListLV.Items.Add(item);
                         }
-
-                        // Lấy ngày tháng năm
-                        DateTime creationDate = DateTime.MinValue;
-                        if (fileProperties.Length >= 4)
-                        {
-                            string dateString = string.Format("{0} {1} {2}", fileProperties[fileProperties.Length - 4],
-                                fileProperties[fileProperties.Length - 3], fileProperties[fileProperties.Length - 2]);
-                            DateTime.TryParseExact(dateString, "MMM dd yyyy", CultureInfo.InvariantCulture,
-                                DateTimeStyles.None, out creationDate);
-                        }
-
-                        ListViewItem item = new ListViewItem((i + 1).ToString());
-                        item.SubItems.Add(fileName);
-                        item.SubItems.Add(creationDate.ToString("yyyy-MM-dd HH:mm:ss"));
-                        item.SubItems.Add(fileSize.ToString());
-
-                        fileListLV.Items.Add(item);
                     }
 
                     // Đặt tên cho các cột
@@ -184,6 +172,7 @@ namespace ftp_client
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
+
 
 
         }
