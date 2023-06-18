@@ -72,6 +72,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Bai2.resx">
+      <DependentUpon>Bai2.cs</DependentUpon>
     <EmbeddedResource Include="Bai1.resx">
       <DependentUpon>Bai1.cs</DependentUpon>
     </EmbeddedResource>
