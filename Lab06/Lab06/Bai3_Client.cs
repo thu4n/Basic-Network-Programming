@@ -16,7 +16,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace Lab06
 {
-    public partial class Bai3_Client : Form
+    public partial class Bai3_Client : Form 
     {
         private NetworkStream nwStream;
         private bool connected = false;
