@@ -11,6 +11,7 @@ using System.Net;
 using System.IO;
 using System.Reflection;
 using System.Globalization;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ftp_client
 {
@@ -19,23 +20,29 @@ namespace ftp_client
         private string IPServer;
         private string username;
         private string password;
+        private Dictionary<string,string> aryProp = new Dictionary<string, string>();
+        private int cntFiles = 0;
         public FTPClientForm()
         {
             InitializeComponent();
+            cntFiles = 0;
+            IPServer = string.Empty;
+            username = string.Empty;
+            password = string.Empty;
         }
 
         private void UploadBtn_Click(object sender, EventArgs e)
         {
-
+            if (CheckEmptyProfileUser() == false)
+            {
+                MessageBox.Show("Vui lòng đăng nhập", "Thông báo");
+                return;
+            }
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string localFilePath = openFileDialog.FileName;
                 string fileName = Path.GetFileName(localFilePath);
-
-                IPServer = IPServerTB.Text;
-                username = UsernameTB.Text;
-                password = PasswordTB.Text;
 
                 try
                 {
@@ -55,7 +62,7 @@ namespace ftp_client
                         }
                     }
 
-                    MessageBox.Show("File uploaded successfully!");
+                    MessageBox.Show("Upload file thành công!");
                     RefreshFileList();
                 }
                 catch (WebException ex)
@@ -63,16 +70,16 @@ namespace ftp_client
                     FtpWebResponse response = (FtpWebResponse)ex.Response;
                     if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
                     {
-                        MessageBox.Show("File not found on the server.");
+                        MessageBox.Show("Không tìm thấy trên Server");
                     }
                     else
                     {
-                        MessageBox.Show("An error occurred: " + ex.Message);
+                        MessageBox.Show("Lỗi: " + ex.Message);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("An error occurred: " + ex.Message);
+                    MessageBox.Show("Lỗi: " + ex.Message);
                 }
             }
             RefreshFileList();
@@ -80,52 +87,89 @@ namespace ftp_client
 
         private void DownloadBtn_Click(object sender, EventArgs e)
         {
-            if (fileListLV.SelectedItems.Count > 0)
+            if (CheckEmptyProfileUser() == false)
             {
-                string selectedFile = fileListLV.SelectedItems[0].Text;
-                string ftpFilePath = "ftp://" + IPServer + "/" + selectedFile;
-                string localFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), selectedFile);
+                MessageBox.Show("Vui lòng đăng nhập", "Thông báo");
+                return;
+            }
+            if (aryProp.Count > 0)
+            {
+                if(fileDownloadTB.Text == string.Empty)
+                {
+                    MessageBox.Show("Hãy chọn file để download", "Thông báo");
+                    return;
+                }
+                string selectedFileName = fileDownloadTB.Text;
 
                 try
                 {
-                    FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create(ftpFilePath);
+                    FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://" + IPServer + "/" + selectedFileName);
                     ftpRequest.Method = WebRequestMethods.Ftp.DownloadFile;
                     ftpRequest.Credentials = new NetworkCredential(username, password);
+                    ftpRequest.UsePassive = true; // Add this line if you're behind a firewall
 
                     using (FtpWebResponse ftpResponse = (FtpWebResponse)ftpRequest.GetResponse())
                     using (Stream ftpStream = ftpResponse.GetResponseStream())
-                    using (FileStream fileStream = File.Create(localFilePath))
                     {
-                        byte[] buffer = new byte[1024];
-                        int bytesRead = 0;
-                        while ((bytesRead = ftpStream.Read(buffer, 0, buffer.Length)) > 0)
+                        SaveFileDialog saveFileDialog = new SaveFileDialog();
+                        saveFileDialog.FileName = selectedFileName;
+                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
                         {
-                            fileStream.Write(buffer, 0, bytesRead);
+                            string localFilePath = saveFileDialog.FileName;
+
+                            using (FileStream fileStream = File.Create(localFilePath))
+                            {
+                                byte[] buffer = new byte[1024];
+                                int bytesRead;
+                                while ((bytesRead = ftpStream.Read(buffer, 0, buffer.Length)) > 0)
+                                {
+                                    fileStream.Write(buffer, 0, bytesRead);
+                                }
+                            }
+
+                            MessageBox.Show("Download File thành công!");
                         }
                     }
-
-                    MessageBox.Show("File downloaded successfully!");
+                }
+                catch (WebException ex)
+                {
+                    FtpWebResponse response = (FtpWebResponse)ex.Response;
+                    if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
+                    {
+                        MessageBox.Show("Không tìm thấy file trên server");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi: " + ex.Message);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("An error occurred: " + ex.Message);
+                    MessageBox.Show("Lỗi: " + ex.Message);
                 }
             }
-           
+            else
+            {
+                MessageBox.Show("Vui lòng chọn file download","Thông báo");
+            }
+
         }
 
         private void RefreshBtn_Click(object sender, EventArgs e)
         {
+            if(CheckEmptyProfileUser() == false)
+            {
+                MessageBox.Show("Vui lòng đăng nhập", "Thông báo");
+                return;
+            }
             RefreshFileList();
         }
         private void RefreshFileList()
         {
+            cntFiles = 0;
             try
             {
-                IPServer = IPServerTB.Text;
-                username = UsernameTB.Text;
-                password = PasswordTB.Text;
-
+                this.aryProp = new Dictionary<string, string>();
                 FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://" + IPServer);
                 ftpRequest.Method = WebRequestMethods.Ftp.ListDirectory;
                 ftpRequest.Credentials = new NetworkCredential(username, password);
@@ -147,34 +191,63 @@ namespace ftp_client
 
                         using (FtpWebResponse fileInfoResponse = (FtpWebResponse)fileInfoRequest.GetResponse())
                         {
-                            long fileSize = fileInfoResponse.ContentLength;
-                            DateTime creationDate = DateTime.Now;
                             ListViewItem item = new ListViewItem((i + 1).ToString());
                             item.SubItems.Add(fileName);
-                            item.SubItems.Add(creationDate.ToString());
-                            item.SubItems.Add(fileSize.ToString() + " bytes");
-
-                            fileListLV.Items.Add(item);
+                            ++cntFiles;
+                            this.aryProp.Add(fileName,cntFiles.ToString());
+                            fileListLV.Items.Add(fileName);
                         }
+                        
                     }
 
                     // Đặt tên cho các cột
                     if (fileListLV.Columns.Count == 0)
                     {
-                        fileListLV.Columns.Add("Number");
                         fileListLV.Columns.Add("FileName");
-                        fileListLV.Columns.Add("Date");
-                        fileListLV.Columns.Add("Size");
                     }
                 }
+                
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred: " + ex.Message);
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
+            
 
+        }
 
+        private void FTPClientForm_Load(object sender, EventArgs e)
+        {
 
+        }
+
+        private void loginBtn_Click(object sender, EventArgs e)
+        {
+            IPServer = IPServerTB.Text;
+            username = UsernameTB.Text;
+            password = PasswordTB.Text;
+        }
+
+        public bool CheckEmptyProfileUser()
+        {
+            if(IPServer == string.Empty)
+            {
+                return false;
+            }
+            if (username == string.Empty)
+            {
+                return false;
+            }
+            if (password == string.Empty)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void fileListLV_DoubleClick(object sender, EventArgs e)
+        {
+            fileDownloadTB.Text = fileListLV.SelectedItems[0].Text;
         }
     }
 }

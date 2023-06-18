@@ -38,20 +38,20 @@
             this.UploadBtn = new System.Windows.Forms.Button();
             this.DownloadBtn = new System.Windows.Forms.Button();
             this.fileListLV = new System.Windows.Forms.ListView();
-            this.Number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.FileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Size = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RefreshBtn = new System.Windows.Forms.Button();
+            this.fileDownloadTB = new System.Windows.Forms.TextBox();
+            this.nameFileDownloadLB = new System.Windows.Forms.Label();
+            this.loginBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // FTPClientLB
             // 
             this.FTPClientLB.AutoSize = true;
             this.FTPClientLB.Font = new System.Drawing.Font("Segoe UI", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FTPClientLB.Location = new System.Drawing.Point(298, 9);
+            this.FTPClientLB.Location = new System.Drawing.Point(265, 7);
             this.FTPClientLB.Name = "FTPClientLB";
-            this.FTPClientLB.Size = new System.Drawing.Size(153, 38);
+            this.FTPClientLB.Size = new System.Drawing.Size(129, 32);
             this.FTPClientLB.TabIndex = 0;
             this.FTPClientLB.Text = "FTP Client";
             // 
@@ -59,9 +59,9 @@
             // 
             this.IPServerLB.AutoSize = true;
             this.IPServerLB.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IPServerLB.Location = new System.Drawing.Point(41, 59);
+            this.IPServerLB.Location = new System.Drawing.Point(36, 47);
             this.IPServerLB.Name = "IPServerLB";
-            this.IPServerLB.Size = new System.Drawing.Size(129, 28);
+            this.IPServerLB.Size = new System.Drawing.Size(111, 23);
             this.IPServerLB.TabIndex = 1;
             this.IPServerLB.Text = "IP FTP Server";
             // 
@@ -69,9 +69,9 @@
             // 
             this.UsernameLB.AutoSize = true;
             this.UsernameLB.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameLB.Location = new System.Drawing.Point(41, 108);
+            this.UsernameLB.Location = new System.Drawing.Point(36, 86);
             this.UsernameLB.Name = "UsernameLB";
-            this.UsernameLB.Size = new System.Drawing.Size(103, 28);
+            this.UsernameLB.Size = new System.Drawing.Size(88, 23);
             this.UsernameLB.TabIndex = 2;
             this.UsernameLB.Text = "Username";
             // 
@@ -79,9 +79,9 @@
             // 
             this.PasswordLB.AutoSize = true;
             this.PasswordLB.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordLB.Location = new System.Drawing.Point(41, 158);
+            this.PasswordLB.Location = new System.Drawing.Point(36, 126);
             this.PasswordLB.Name = "PasswordLB";
-            this.PasswordLB.Size = new System.Drawing.Size(96, 28);
+            this.PasswordLB.Size = new System.Drawing.Size(82, 23);
             this.PasswordLB.TabIndex = 3;
             this.PasswordLB.Text = "Password";
             // 
@@ -89,27 +89,30 @@
             // 
             this.IPServerTB.BackColor = System.Drawing.Color.LavenderBlush;
             this.IPServerTB.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IPServerTB.Location = new System.Drawing.Point(192, 56);
+            this.IPServerTB.Location = new System.Drawing.Point(171, 45);
+            this.IPServerTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.IPServerTB.Name = "IPServerTB";
-            this.IPServerTB.Size = new System.Drawing.Size(300, 34);
+            this.IPServerTB.Size = new System.Drawing.Size(267, 30);
             this.IPServerTB.TabIndex = 4;
             // 
             // UsernameTB
             // 
             this.UsernameTB.BackColor = System.Drawing.Color.LavenderBlush;
             this.UsernameTB.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameTB.Location = new System.Drawing.Point(192, 108);
+            this.UsernameTB.Location = new System.Drawing.Point(171, 86);
+            this.UsernameTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UsernameTB.Name = "UsernameTB";
-            this.UsernameTB.Size = new System.Drawing.Size(300, 34);
+            this.UsernameTB.Size = new System.Drawing.Size(267, 30);
             this.UsernameTB.TabIndex = 5;
             // 
             // PasswordTB
             // 
             this.PasswordTB.BackColor = System.Drawing.Color.LavenderBlush;
             this.PasswordTB.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordTB.Location = new System.Drawing.Point(192, 158);
+            this.PasswordTB.Location = new System.Drawing.Point(171, 126);
+            this.PasswordTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PasswordTB.Name = "PasswordTB";
-            this.PasswordTB.Size = new System.Drawing.Size(300, 34);
+            this.PasswordTB.Size = new System.Drawing.Size(267, 30);
             this.PasswordTB.TabIndex = 6;
             // 
             // UploadBtn
@@ -117,9 +120,10 @@
             this.UploadBtn.BackColor = System.Drawing.Color.LavenderBlush;
             this.UploadBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UploadBtn.ForeColor = System.Drawing.Color.Crimson;
-            this.UploadBtn.Location = new System.Drawing.Point(541, 55);
+            this.UploadBtn.Location = new System.Drawing.Point(477, 92);
+            this.UploadBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UploadBtn.Name = "UploadBtn";
-            this.UploadBtn.Size = new System.Drawing.Size(205, 35);
+            this.UploadBtn.Size = new System.Drawing.Size(182, 28);
             this.UploadBtn.TabIndex = 7;
             this.UploadBtn.Text = "UPLOAD FILE";
             this.UploadBtn.UseVisualStyleBackColor = false;
@@ -130,9 +134,10 @@
             this.DownloadBtn.BackColor = System.Drawing.Color.LavenderBlush;
             this.DownloadBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DownloadBtn.ForeColor = System.Drawing.Color.Crimson;
-            this.DownloadBtn.Location = new System.Drawing.Point(541, 108);
+            this.DownloadBtn.Location = new System.Drawing.Point(477, 134);
+            this.DownloadBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DownloadBtn.Name = "DownloadBtn";
-            this.DownloadBtn.Size = new System.Drawing.Size(205, 35);
+            this.DownloadBtn.Size = new System.Drawing.Size(182, 28);
             this.DownloadBtn.TabIndex = 8;
             this.DownloadBtn.Text = "DOWNLOAD FILE";
             this.DownloadBtn.UseVisualStyleBackColor = false;
@@ -142,40 +147,22 @@
             // 
             this.fileListLV.BackColor = System.Drawing.Color.LavenderBlush;
             this.fileListLV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Number,
-            this.FileName,
-            this.Date,
-            this.Size});
+            this.FileName});
             this.fileListLV.HideSelection = false;
-            this.fileListLV.Location = new System.Drawing.Point(46, 199);
+            this.fileListLV.Location = new System.Drawing.Point(40, 230);
+            this.fileListLV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.fileListLV.Name = "fileListLV";
-            this.fileListLV.Size = new System.Drawing.Size(691, 239);
+            this.fileListLV.Size = new System.Drawing.Size(603, 192);
             this.fileListLV.TabIndex = 9;
             this.fileListLV.UseCompatibleStateImageBehavior = false;
             this.fileListLV.View = System.Windows.Forms.View.Details;
-            // 
-            // Number
-            // 
-            this.Number.Text = "Number";
-            this.Number.Width = 100;
+            this.fileListLV.DoubleClick += new System.EventHandler(this.fileListLV_DoubleClick);
             // 
             // FileName
             // 
             this.FileName.Text = "File Name";
             this.FileName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.FileName.Width = 300;
-            // 
-            // Date
-            // 
-            this.Date.Text = "Creation Date";
-            this.Date.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Date.Width = 150;
-            // 
-            // Size
-            // 
-            this.Size.Text = "File Size";
-            this.Size.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Size.Width = 150;
+            this.FileName.Width = 600;
             // 
             // RefreshBtn
             // 
@@ -185,19 +172,58 @@
             this.RefreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RefreshBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RefreshBtn.ForeColor = System.Drawing.Color.PaleVioletRed;
-            this.RefreshBtn.Location = new System.Drawing.Point(616, 158);
+            this.RefreshBtn.Location = new System.Drawing.Point(544, 174);
+            this.RefreshBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RefreshBtn.Name = "RefreshBtn";
-            this.RefreshBtn.Size = new System.Drawing.Size(52, 35);
+            this.RefreshBtn.Size = new System.Drawing.Size(46, 28);
             this.RefreshBtn.TabIndex = 10;
             this.RefreshBtn.UseVisualStyleBackColor = false;
             this.RefreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
             // 
+            // fileDownloadTB
+            // 
+            this.fileDownloadTB.BackColor = System.Drawing.Color.LavenderBlush;
+            this.fileDownloadTB.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fileDownloadTB.Location = new System.Drawing.Point(171, 171);
+            this.fileDownloadTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.fileDownloadTB.Name = "fileDownloadTB";
+            this.fileDownloadTB.ReadOnly = true;
+            this.fileDownloadTB.Size = new System.Drawing.Size(267, 30);
+            this.fileDownloadTB.TabIndex = 13;
+            // 
+            // nameFileDownloadLB
+            // 
+            this.nameFileDownloadLB.AutoSize = true;
+            this.nameFileDownloadLB.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameFileDownloadLB.Location = new System.Drawing.Point(36, 171);
+            this.nameFileDownloadLB.Name = "nameFileDownloadLB";
+            this.nameFileDownloadLB.Size = new System.Drawing.Size(119, 23);
+            this.nameFileDownloadLB.TabIndex = 12;
+            this.nameFileDownloadLB.Text = "File download";
+            // 
+            // loginBtn
+            // 
+            this.loginBtn.BackColor = System.Drawing.Color.LavenderBlush;
+            this.loginBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginBtn.ForeColor = System.Drawing.Color.Crimson;
+            this.loginBtn.Location = new System.Drawing.Point(477, 45);
+            this.loginBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.loginBtn.Name = "loginBtn";
+            this.loginBtn.Size = new System.Drawing.Size(182, 28);
+            this.loginBtn.TabIndex = 15;
+            this.loginBtn.Text = "LOGIN";
+            this.loginBtn.UseVisualStyleBackColor = false;
+            this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
+            // 
             // FTPClientForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleVioletRed;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1015, 475);
+            this.Controls.Add(this.loginBtn);
+            this.Controls.Add(this.fileDownloadTB);
+            this.Controls.Add(this.nameFileDownloadLB);
             this.Controls.Add(this.RefreshBtn);
             this.Controls.Add(this.fileListLV);
             this.Controls.Add(this.DownloadBtn);
@@ -209,8 +235,10 @@
             this.Controls.Add(this.UsernameLB);
             this.Controls.Add(this.IPServerLB);
             this.Controls.Add(this.FTPClientLB);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FTPClientForm";
             this.Text = "FTPClientForm";
+            this.Load += new System.EventHandler(this.FTPClientForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,9 +257,9 @@
         private System.Windows.Forms.Button DownloadBtn;
         private System.Windows.Forms.ListView fileListLV;
         private System.Windows.Forms.Button RefreshBtn;
-        private System.Windows.Forms.ColumnHeader Number;
         private System.Windows.Forms.ColumnHeader FileName;
-        private System.Windows.Forms.ColumnHeader Date;
-        private System.Windows.Forms.ColumnHeader Size;
+        private System.Windows.Forms.TextBox fileDownloadTB;
+        private System.Windows.Forms.Label nameFileDownloadLB;
+        private System.Windows.Forms.Button loginBtn;
     }
 }
