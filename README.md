@@ -1,7 +1,15 @@
-# NT106-Nhom01
-Nơi chứa soucre code bài tập nhóm các tuần trong môn Lập trình mạng căn bản
-## Thành viên nhóm
-- Tống Võ Anh Thuận - 21522652 (Nhóm trưởng)
-- Nguyễn Lê Tiến Phát - 21522446
-- Phạm Thái Bảo - 21520156
-- Lê Thị Ngọc Diễm - 21520186
+# Basic-Network-Programming
+This repository serves as an archive for the all the coding done by me and my team for the course of **Basic Network Programming** at UIT.
+## Structure of the repo
+There are two main folders `Theory` and `Practice` representing the two parts of the course. In each folder, there are several subfolders, each contains an exercise for that week. Details of the content:
+
+*To be updated...*
+
+PDF files containing the instructions and reports will be added later on.
+
+## Contributors
+- [thu4n](https://github.com/thu4n): Theory and Practice
+- [howtodie123](https://github.com/howtodie123): Theory and Practice
+- [K1m3r4-vn](https://github.com/K1m3r4-vn): Practice
+- [ngocdiem-le](https://github.com/ngocdiem-le): Theory
+- [baoipc](https://github.com/baoipc): Theory
