@@ -1,5 +1,7 @@
 # Basic-Network-Programming
 This repository serves as an archive for the all the coding done by me and my team for the course of **Basic Network Programming** at UIT.
+
+The primary language in use is `C#` with the graphical framework being `WinForms .NET`.
 ## Structure of the repo
 There are two main folders `Theory` and `Practice` representing the two parts of the course. In each folder, there are several subfolders, each contains an exercise for that week. Details of the content:
 
